@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.tech.ibara.csnotice.dao.QnaBoardIDao">
+
+	<sql id="includlist">
+		<choose>
+			<when test="param4==1">
+				WHERE NBTITLE LIKE '%'||#{param3}||'%'
+			</when>
+			<when test="param4==2">
+				WHERE NBCONTENT LIKE '%'||#{param3}||'%'
+			</when>
+			<when test="param4==3">
+				WHERE NBCONTENT LIKE '%'||#{param3}||'%' OR NBTITLE LIKE '%'||#{param3}||'%'
+			</when>
+			<otherwise>
+			
+			
+			</otherwise>
+		</choose>
+	</sql>
+
+	
+	<select id="Qnalist"
+		resultType="com.tech.ibara.csnotice.dto.QnaDto">
+		SELECT NBNO,NBWRITER,NBTITLE,NBCONTENT,NBDATE,NBHIT,NBGROUP,NBSTEP,NBINDENT 
+		FROM (SELECT ROWNUM NUM,N.* 
+				FROM (SELECT NBNO,NBWRITER,NBTITLE,NBCONTENT,NBDATE,NBHIT,NBGROUP,NBSTEP,NBINDENT
+		FROM CS_NOTICEBOARD
+		ORDER BY NBGROUP DESC,NBSTEP ASC)N
+		<include refid="includlist" />
+		)WHERE NUM BETWEEN #{param1} AND #{param2}
+	</select>
+
+	<select id="qnacontentView"
+		resultType="com.tech.ibara.csnotice.dto.QnaDto">
+		SELECT NBNO,NBTITLE,NBCONTENT,NBWRITER,NBHIT,NBDATE,NBFILE
+		FROM CS_NOTICEBOARD
+		WHERE NBNO=#{param1}
+	</select>
+
+	<update id="qnauphit">
+		UPDATE CS_NOTICEBOARD SET NBHIT=NBHIT+1 WHERE
+		NBNO=#{PARAM1}
+	</update>
+
+	<update id="qnaEdit">
+		UPDATE CS_NOTICEBOARD SET
+		NBTITLE=#{param2},NBCONTENT=#{param3}
+		WHERE NBNO=#{param1}
+	</update>
+
+	<update id="qnaDelete">
+		DELETE FROM CS_NOTICEBOARD WHERE NBNO=#{param1}
+	</update>
+
+	<insert id="qnaWrite" >
+		INSERT INTO CS_NOTICEBOARD(NBNO,NBTITLE,NBCONTENT,NBWRITER,NBHIT,NBDATE,NBGROUP,NBSTEP,NBINDENT,NBFILE) 
+    	VALUES(CS_NOTICEBOARD_SEQ.NEXTVAL,#{param1},#{param2},#{param3},0,SYSDATE,CS_NOTICEBOARD_SEQ.CURRVAL,0,0,#{param4})
+	</insert>
+
+	<select id="selectBoardTotalCount1" resultType="Integer">
+		SELECT COUNT(*)
+		FROM CS_NOTICEBOARD 
+		WHERE BTITLE LIKE '%'||#{param1}||'%'
+	</select>
+
+	<select id="selectBoardTotalCount2" resultType="Integer">
+		SELECT COUNT(*)
+		FROM CS_NOTICEBOARD 
+		WHERE BCONTENT LIKE '%'||#{param1}||'%'
+	</select>
+
+	<select id="selectBoardTotalCount3" resultType="Integer">
+		SELECT COUNT(*)
+		FROM CS_NOTICEBOARD 
+		WHERE BCONTENT LIKE '%'||#{param1}||'%' OR BCONTENT LIKE '%'||#{param1}||'%'
+	</select>
+	
+	<select id="selectBoardTotalCount4" resultType="Integer">
+		SELECT COUNT(*)
+		FROM CS_NOTICEBOARD 
+	</select>
+
+
+
+</mapper>
