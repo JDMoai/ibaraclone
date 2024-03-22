@@ -8,7 +8,7 @@
    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head> 
 <body>
-<script> 
+<script>
     $(document).ready(function() {
         var modal = $('#myModal');
         var btn = $('#openModal');
