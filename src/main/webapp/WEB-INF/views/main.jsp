@@ -157,7 +157,7 @@
 		<br />
 		<div class="category_button_wrap">
 			<button id="openModal" class="category_button category_1"> <span>퀵견적</span> </button>
-			<jsp:include page="modal/mmain.jsp" />
+			<jsp:include page="modal/mMain.jsp" />
             <button onclick="location.href='shop/list'" class="category_button category_2"> <span>소품 샵</span> </button>
             <button class="category_button category_3"> <span>업체 <br> 둘러보기 </span> </button>
             <button onclick="location.href='oh/OHMainView'" class="category_button category_4"> <span>우리 집 <br> 자랑하기</span> </button>

@@ -9,10 +9,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class MController {
 
-	@RequestMapping(value = "/modal", method = RequestMethod.GET)
-	public String modal(Model model) {
+	@RequestMapping(value = "modal/mMain", method = RequestMethod.GET)
+	public String mMain(Model model) {
 		
-		return "/modal/mmain";
+		return "modal/mMain";
 	}
-
+	@RequestMapping(value = "modal/mSize", method = RequestMethod.GET)
+	public String mSize(Model model) {
+		
+		return "modal/mSize";
+	}
 }

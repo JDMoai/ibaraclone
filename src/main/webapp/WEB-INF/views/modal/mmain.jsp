@@ -13,6 +13,10 @@
         var modal = $('#myModal');
         var btn = $('#openModal');
         var span = $('.close');
+        var sizeModal = $('#sizeModal');
+        var openSizeModalBtn = $('#openSizeModal');
+        var closeSizeModalBtn = $('#closeSizeModal');
+
 
         btn.click(function() {
             modal.css('display', 'block');
@@ -27,11 +31,26 @@
                 modal.css('display', 'none');
             }
         });
-        window.addEventListener('message', function(event) {
+        openSizeModalBtn.click(function() {
+            var option = $(this).data('option');
+            $('#sizeOption').val(option);
+            sizeModal.css('display', 'block');
+        });
+
+        closeSizeModalBtn.click(function() {
+            sizeModal.css('display', 'none');
+        });
+
+        $(window).click(function(event) {
+            if (event.target == sizeModal[0]) {
+                sizeModal.css('display', 'none');
+            }
+        });
+        /* window.addEventListener('message', function(event) {
             var selectedOption = event.data.option;
             var selectedSize = event.data.size;
             modalRightside.append(`<div>선택한 옵션: ${selectedOption}</div><div>선택한 평수: ${selectedSize}평</div>`);
-        }, false);
+        }, false); */
     });
 </script>
 
@@ -100,12 +119,12 @@
 							<img src="resources/img/modalimg/company.png" alt="Icon 1" class="icon1"> <span>업체 먼저 둘러보기</span>
 						</div>
 						</a>
-						<a href="modal/mSize?option=custom" target="_blank" class="option-link">
+						<a href="modal/mSize?option=custom" id="openSizeModal" data-option="custom" ><!-- target="_blank" class="option-link" -->
 						<div class="item2">
 							<img src="resources/img/modalimg/custom.png" alt="Icon 2" class="icon2"> <span>스탠다드 커스텀 인테리어 시공하기</span>
 						</div>
 						</a>
-						<a href="modal/mSize?option=premium" target="_blank" class="option-link">
+						<a href="modal/mSize?option=premium" id="openSizeModal" data-option="premium" ><!-- target="_blank" class="option-link" -->
 						<div class="item3">
 							<img src="resources/img/modalimg/premium.png" alt="Icon 3" class="icon3"> <span>프리미엄 커스텀 인테리어 시공하기</span>
 						</div>

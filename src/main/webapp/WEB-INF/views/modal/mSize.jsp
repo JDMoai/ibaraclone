@@ -4,59 +4,53 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>평형 선택 모달창</title>
+    <title>평수 선택</title>
     <link rel="stylesheet" href="resources/css/modal.css">
-   	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <h2>평형 선택</h2>
-    
-    <button onclick="openModal('sizeModal')">평형 선택</button>
-    
-    <div id="sizeModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('sizeModal')">&times;</span>
-            <h3>평형을 선택해주세요</h3>
-            <input type="number" id="pyeongInput" value="0">
-            <button onclick="increasePyeong()">+</button>
-            <button onclick="decreasePyeong()">-</button>
-            <br><br>
-            <button onclick="confirmSize()">확인</button>
+   <div id="sizeModal" class="modal">
+    <div class="modal-content">
+        <span id="closeSizeModal" class="close">&times;</span>
+        <h3>평형을 알려주세요.</h3>
+        <div class="size-control">
+            <button id="decreaseSize">-</button>
+            <input type="number" id="sizeInput" value="10" min="1" max="100" readonly>
+            <button id="increaseSize">+</button>
         </div>
+        <p>평</p>
+        <input type="hidden" id="sizeOption" value="">
+        <button id="confirmSize">다음</button>
     </div>
-    
-    <script>
-        let selectedPyeong = 0;
-        
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
-            document.getElementById("pyeongInput").value = selectedPyeong;
-        }
-        
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-        }
-        
-        function increasePyeong() {
-            selectedPyeong++;
-            document.getElementById("pyeongInput").value = selectedPyeong;
-        }
-        
-        function decreasePyeong() {
-            if (selectedPyeong > 0) {
-                selectedPyeong--;
-                document.getElementById("pyeongInput").value = selectedPyeong;
+</div>
+
+<script>
+    $(document).ready(function() {
+        var sizeInput = $('#sizeInput');
+        var decreaseBtn = $('#decreaseSize');
+        var increaseBtn = $('#increaseSize');
+
+        decreaseBtn.click(function() {
+            var currentSize = parseInt(sizeInput.val());
+            if (currentSize > 1) {
+                sizeInput.val(currentSize - 1);
             }
-        }
-        
-        function confirmSize() {
-            selectedPyeong = document.getElementById("pyeongInput").value;
-            closeModal('sizeModal');
-            // 선택한 평형 정보를 다음 단계에서 사용할 수 있도록 저장하거나 전달하는 로직을 추가해주세요.
-            console.log("선택한 평형: " + selectedPyeong);
-        }
-    </script>
+        });
+
+        increaseBtn.click(function() {
+            var currentSize = parseInt(sizeInput.val());
+            if (currentSize < 100) {
+                sizeInput.val(currentSize + 1);
+            }
+        });
+
+        $('#confirmSize').click(function() {
+            var selectedOption = $('#sizeOption').val();
+            var selectedSize = sizeInput.val();
+            window.opener.postMessage({ option: selectedOption, size: selectedSize }, '*');
+            window.close();
+        });
+    });
+</script>
 </body>
 </html>

@@ -198,5 +198,48 @@ a {
     background-color: #fff;
 }
 
+/* -----------mSize------------------------ */
 
+.modal-content {
+    display: flex;
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 0px;
+    border: 0px solid #888;
+    width: 80%;
+    max-width: 800px;
+}
+
+.size-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.size-control button {
+    font-size: 24px;
+    padding: 5px 15px;
+    margin: 0 10px;
+    border: none;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.size-control input {
+    font-size: 24px;
+    width: 60px;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+#confirmSize {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
 
