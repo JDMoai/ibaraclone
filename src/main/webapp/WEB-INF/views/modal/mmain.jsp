@@ -27,6 +27,11 @@
                 modal.css('display', 'none');
             }
         });
+        window.addEventListener('message', function(event) {
+            var selectedOption = event.data.option;
+            var selectedSize = event.data.size;
+            modalRightside.append(`<div>선택한 옵션: ${selectedOption}</div><div>선택한 평수: ${selectedSize}평</div>`);
+        }, false);
     });
 </script>
 
