@@ -30,13 +30,14 @@
         });
 
         $('.openSizeModal').click(function(){
-        	var option = $(this).data('option');
-        	$('#modalFrame').attr('src', 'mSize.jsp?option=' + option);
-            $('.modal_center').hide(); // 모달창의 중앙 부분을 숨깁니다.
-            $('.modal_rightside').show(); // 모달창의 오른쪽 부분을 표시합니다.
+            var option = $(this).data('option');
+            $('#modalFrame').attr('src', 'modal/mSize?option=' + option);
+            $('.modal_center').hide();
+            $('.modal_rightside').show();
         });
         window.addEventListener('message', function(event) {
-            if (event.origin !== window.location.origin) return;
+            if (event.origin !== window.location.origin)           
+            	return;
             var selectedOption = event.data.option;
             var selectedSize = event.data.size;
             $('.modal_center').show(); // 모달창의 중앙 부분을 다시 표시합니다.

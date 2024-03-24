@@ -15,12 +15,18 @@
         var decreaseBtn = $('#decreaseSize');
         var increaseBtn = $('#increaseSize');
    
+        
+        closeSizeModalBtn.click(function() {
+            sizeModal.css('display', 'none');
+            modal.css('display', 'block');
+        });
+        
         decreaseBtn.click(function() {
             var currentSize = parseInt(sizeInput.val());
             if (currentSize > 1) {
                 sizeInput.val(currentSize - 1);
             }
-        });
+        });      
 
         increaseBtn.click(function() {
             var currentSize = parseInt(sizeInput.val());
@@ -32,7 +38,9 @@
         $('#confirmSize').click(function() {
             var selectedOption = $('#sizeOption').val();
             var selectedSize = sizeInput.val();
-            window.parent.postMessage({ option: selectedOption, size: selectedSize }, '*');
+            modalRightside.append(`<div>선택한 옵션: ${selectedOption}</div><div>선택한 평수: ${selectedSize}평</div>`);
+            sizeModal.css('display', 'none');
+            modal.css('display', 'block');
         });
         $('#closeSizeModal').click(function() {
             window.parent.postMessage({ action: 'close' }, '*');
