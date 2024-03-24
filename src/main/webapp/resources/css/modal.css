@@ -189,8 +189,10 @@ a {
     right: 50%;
     width:550px;
     justify-content: center; /* 가로 가운데정렬 */
-    align-items: center; /* 세로가운데정렬 */
-    
+    align-items: center; /* 세로가운데정렬 */   
+}
+.sizeModal_center_body p{
+     color: #bbb;
 }
 
 
@@ -198,24 +200,39 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 20px 0;
+    margin: 20px 10px;
+    padding :10px 5px;
+    border: 2px solid rgba(0, 0, 0, .05);
+    border-radius: 8px;
+    
 }
 
-.size-control button {
-    font-size: 24px;
-    padding: 5px 15px;
-    margin: 0 10px;
+.size-control #decreaseSize {
+    font-size: 20px;
+    padding: 5px 13px;
+    margin: 0 5px;
     border: none;
     background-color: #f1f1f1;
+    border-radius: 12px;
+    cursor: pointer;
+}
+.size-control #increaseSize {
+    font-size: 20px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    border: none;
+    background-color: #f1f1f1;
+    border-radius: 12px;
     cursor: pointer;
 }
 
 .size-control input {
-    font-size: 24px;
+    font-size: 31px;
     width: 60px;
     text-align: center;
     border: none;
-    border-bottom:
+    
+    
 }
 
 .modal_center_footer {
@@ -227,6 +244,50 @@ a {
     background-color: #fff;
 }
 
+.modal_center_footer button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
 
+.modal_center_footer button:hover {
+    background-color: #e5e5e5;
+}
+
+/* -------------------------------rightside--------------- */
+.modal_rightside_header{
+	border-bottom: 1px solid rgba(0, 0, 0, .05);
+	background-image: radial-gradient(#d4d4d4 1px, transparent 0);
+    background-size: 7px 7px;
+    display: flex;    
+    padding: 12px 20px;    
+    justify-content: flex-end;
     
- 
+}
+.modal_rightside {
+    flex: 0 0 250px;
+    padding: 20px;
+    margin-left:10px;
+    background-color: #fffbf3;
+    text-align: left;
+    
+    
+}
+.selected-service {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+.modal_center_footer button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+.modal_center_footer button:hover {
+    background-color: #e5e5e5;
+}
+.service_box{
+    border-bottom: 1px solid rgba(0, 0, 0, .05);
+}
