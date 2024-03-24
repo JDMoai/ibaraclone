@@ -9,6 +9,7 @@
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.2);
 }
+
 .close {
     color: #aaa;
     float: right;
@@ -26,16 +27,16 @@
     max-width: 800px;
 }
 .modal_leftside{
-	display:flex;
-	flex-direction: column;
-	text-align: center;
-	flex: 0 0 200px;
+    display:flex;
+    flex-direction: column;
+    text-align: center;
+    flex: 0 0 200px;
     padding: 20px;
     background-color: #fffbf3;
 }
 .modal_center {
-	display:flex;
-	flex-direction: column;
+    display:flex;
+    flex-direction: column;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 20px;
@@ -44,100 +45,88 @@
 }
 
 .modal_leftside_progress ul{
-	/* list-style: none;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    gap: 10px; */
     list-style-type: none;
     padding: 0;
 }
 .modal_leftside_progress li{
-	/* list-style: none;
-    display: block;
-    flex: 0;
-    margin: 0;
-    padding: 0; */
     position: relative;
     margin-bottom: 20px;
 }
 .modal_leftside_progress li::before {
-content: '';
-position: absolute;
-top: 50%;
-left: -20px;
-transform: translateY(-50%);
-width: 5px;
-height: 5px;
-background-color: #ccc;
-border-radius: 50%;
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    transform: translateY(-50%);
+    width: 5px;
+    height: 5px;
+    background-color: #ccc;
+    border-radius: 50%;
 }
 
 .modal_leftside_progress li div {
-display: none;
-position: absolute;
-top: 50%;
-left: 0;
-transform: translateY(-50%);
-background-color: #fff;
-padding: 5px 10px;
-border: 1px solid #ccc;
-white-space: nowrap;
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    background-color: #fff;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    white-space: nowrap;
 }
 
 .modal_leftside_progress li:hover div {
-display: block;
+    display: block;
 }
 .modal_leftside_content{
-	height: 70%;
-	margin-top: 50%;
-	margin-bottom: 50%;
+    height: 70%;
+    margin-top: 50%;
+    margin-bottom: 50%;
 }
 
 .modal_leftside_question{
-	margin-top: 0;
+    margin-top: 0;
 }
 .modal_center{
-	margin-top:0;
-	margin-bottom:0;
-	flex:1;
-	width:550px;
-	padding: 10px 0px;
-	
+    margin-top:0;
+    margin-bottom:0;
+    flex:1;
+    width:550px;
+    padding: 10px 0px;
+    
 }
 .modal_center_header{
-	display: flex;
-	flex:0 0 auto;
+    display: flex;
+    flex:0 0 auto;
     justify-content: space-between;
     text-align:left;
     border-bottom: 1px solid rgba(0, 0, 0, .05);
     padding-left:10px; 
     padding-right:10px;
     margin-right: 10px; 
-	width:550px;
-	height: 40px auto;
+    width:550px;
+    height: 40px auto;
 }
 .modal_center_body{
-	display:flex;
-	flex:1 1 auto;
-	overflow-y:auto;
-	text-align: center;
-	left: 50%;
-	right: 50%;
-	width:550px;
-	
+    display:flex;
+    flex:1 1 auto;
+    overflow-y:auto;
+    text-align: center;
+    left: 50%;
+    right: 50%;
+    width:550px;
+    
 }
 .row{
-	display: flex;
-	flex-direction:column;
-	justify-content: center;
-	align-items: center;
-	flex-wrap: wrap;
-	padding: 10px;
-	margin: 10px;
-	width:550px;		
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px;
+    margin: 10px;
+    width:550px;      
 }
 a {
   display: block;
@@ -152,8 +141,8 @@ a {
 .item3,
 .item4,
 .item5{
-	cursor: pointer;
-	flex:1;
+    cursor: pointer;
+    flex:1;
     display: flex;
     background: #fff;
     border: 1px solid #e5e7ee;
@@ -193,23 +182,12 @@ a {
     padding: 10px;
     border-top: 1px solid rgba(0, 0, 0, .05);
     display: flex;
-	justify-content: space-between;
+    justify-content: space-between;
     flex:0 0 auto;
     background-color: #fff;
 }
 
-/* -----------mSize------------------------ */
-
-.modal-content {
-    display: flex;
-    background-color: #fefefe;
-    margin: 10% auto;
-    padding: 0px;
-    border: 0px solid #888;
-    width: 80%;
-    max-width: 800px;
-}
-
+/* 평수 선택 모달 창 스타일 */
 .size-control {
     display: flex;
     justify-content: center;
@@ -231,15 +209,4 @@ a {
     width: 60px;
     text-align: center;
     border: none;
-    border-bottom: 1px solid #ccc;
-}
-
-#confirmSize {
-    padding: 10px 20px;
-    font-size: 16px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
+    border-bottom:
