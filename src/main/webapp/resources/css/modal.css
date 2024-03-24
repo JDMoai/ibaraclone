@@ -177,17 +177,23 @@ a {
 .item span {
     margin-top: 5px;
 }
+/* --------------size-------------------------------- */
+/* 평수 선택 모달 창 스타일 */
 
-.modal_center_footer {
-    padding: 10px;
-    border-top: 1px solid rgba(0, 0, 0, .05);
-    display: flex;
-    justify-content: space-between;
-    flex:0 0 auto;
-    background-color: #fff;
+.sizeModal_center_body{
+    display:flex;
+    flex:1 1 auto;
+    overflow-y:auto;
+    text-align: center;
+    left: 50%;
+    right: 50%;
+    width:550px;
+    justify-content: center; /* 가로 가운데정렬 */
+    align-items: center; /* 세로가운데정렬 */
+    
 }
 
-/* 평수 선택 모달 창 스타일 */
+
 .size-control {
     display: flex;
     justify-content: center;
@@ -210,3 +216,17 @@ a {
     text-align: center;
     border: none;
     border-bottom:
+}
+
+.modal_center_footer {
+    padding: 10px;
+    border-top: 1px solid rgba(0, 0, 0, .05);
+    display: flex;
+    justify-content: space-between;
+    flex:0 0 auto;
+    background-color: #fff;
+}
+
+
+    
+ 
