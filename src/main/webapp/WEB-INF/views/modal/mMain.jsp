@@ -2,91 +2,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>modalmain</title>
-    
-   <link rel="stylesheet" href="resources/css/modal.css">
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>mMain.jsp</title>
+   
+    <link rel="stylesheet" href="resources/css/modal.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+   
 </head> 
 <body>
-<script>
-    $(document).ready(function() {
-        var modal = $('#myModal');
-        var btn = $('#openModal');
-        var span = $('.close');
-        var sizeModal = $('#sizeModal');
-        var openSizeModalBtn = $('.openSizeModal');
-        var closeSizeModalBtn = $('#closeSizeModal');
-        var sizeInput = $('#sizeInput');
-        var decreaseBtn = $('#decreaseSize');
-        var increaseBtn = $('#increaseSize');
-        var modalRightside = $('.modal_rightside');
-        var privBtn = $('#privBtn');
-
-        btn.click(function() {
-            modal.css('display', 'block');
-        });
-
-        span.click(function() {
-            modal.css('display', 'none');
-            sizeModal.css('display', 'none');
-        });
-        privBtn.click(function() {
-            modal.css('display', 'block');
-            sizeModal.css('display', 'none');
-        });
-
-        $(window).click(function(event) {
-            if (event.target == modal[0]) {
-                modal.css('display', 'none');
-            }
-        });
-
-        openSizeModalBtn.click(function() {
-            
-            var service = $(this).data('service');
-            $('#selectedService').text(service);
-            
-            
-            modal.css('display', 'none');
-            sizeModal.css('display', 'block');
-        });
-
-        closeSizeModalBtn.click(function() {
-            sizeModal.css('display', 'none');
-            modal.css('display', 'none');
-        });
-
-        decreaseBtn.click(function() {
-            var currentSize = parseInt(sizeInput.val());
-            if (currentSize > 1) {
-                sizeInput.val(currentSize - 1);
-            }
-        });
-
-        increaseBtn.click(function() {
-            var currentSize = parseInt(sizeInput.val());
-            if (currentSize < 99) {
-                sizeInput.val(currentSize + 1);
-            }
-        });
-
-        $('#confirmSize').click(function() {
-            
-            var selectedSize = $('#sizeInput').val();
-            var selectedService = $('#selectedService').text();
-            
-            $('.selectedSize').text(selectedSize + '평');
-            $('.selectedService').text(selectedService);
-           
-            
-            $('.selectedSize, .selectedService').show();
-            
-            $('#sizeModal').css('display', 'block');
-            $('#myModal').css('display', 'none');
-        });
-    });
-</script>
-
 
 <!-- 모달 창 영역 -->
 <div id="myModal" class="modal">
@@ -256,9 +178,11 @@
 				</div>
 				<div class="modal_center_footer">
 					<button id="privBtn">이전</button>
-					<button id="confirmSize">다음</button>
+					<button id="nextBtn">다음</button>				
 				</div>
+					
 			</div>
+			
 			<div class="modal_rightside">
 				<div class="modal_rightside_header">
 				<p>요약</p>
@@ -273,6 +197,94 @@
 			</div>
 		</div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        var modal = $('#myModal');
+        var btn = $('#openModal');
+        var span = $('.close');
+        var sizeModal = $('#sizeModal');
+        var openSizeModalBtn = $('.openSizeModal');
+        var closeSizeModalBtn = $('#closeSizeModal');
+        var sizeInput = $('#sizeInput');
+        var decreaseBtn = $('#decreaseSize');
+        var increaseBtn = $('#increaseSize');
+        var modalRightside = $('.modal_rightside');
+        var privBtn = $('#privBtn');
+
+        btn.click(function() {
+            modal.css('display', 'block');
+        });
+
+        span.click(function() {
+            modal.css('display', 'none');
+            sizeModal.css('display', 'none');
+        });
+        privBtn.click(function() {
+            modal.css('display', 'block');
+            sizeModal.css('display', 'none');
+        });
+
+        $(window).click(function(event) {
+            if (event.target == modal[0]) {
+                modal.css('display', 'none');
+            }
+        });
+
+        openSizeModalBtn.click(function() {
+            
+            var service = $(this).data('service');
+            $('#selectedService').text(service);
+            
+            
+            modal.css('display', 'none');
+            sizeModal.css('display', 'block');
+        });
+
+        closeSizeModalBtn.click(function() {
+            sizeModal.css('display', 'none');
+            modal.css('display', 'none');
+        });
+
+        decreaseBtn.click(function() {
+            var currentSize = parseInt(sizeInput.val());
+            if (currentSize > 1) {
+                sizeInput.val(currentSize - 1);
+            }
+        });
+
+        increaseBtn.click(function() {
+            var currentSize = parseInt(sizeInput.val());
+            if (currentSize < 99) {
+                sizeInput.val(currentSize + 1);
+            }
+        });
+        
+        $('#nextBtn').click(function() {
+            
+            var selectedSize = $('#sizeInput').val();
+            var selectedService = $('#selectedService').text();
+            
+            $('.selectedSize').text(selectedSize + '평');
+            $('.selectedService').text(selectedService);
+            
+            $('.selectedSize, .selectedService').show(); 
+           
+            //var url = 'modal/mStandard.jsp?selectedSize=' + encodeURIComponent(selectedSize) + '&selectedService=' + encodeURIComponent(selectedService);
+            
+            //$('#sizeModal').css('display', 'none');
+           // $('#myModal').css('display', 'none');
+           // $('#standardModal').css('display', 'block');
+            
+         
+        });
+
+        
+       
+    });
+     
+</script>
+
 
 </body>
 </html>
