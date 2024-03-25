@@ -30,6 +30,12 @@ public class ModalController {
 		
 		return "modal/mStandard";
 	}
-	
+//	@RequestMapping("/modal/mStandard")
+//	public String mStandard(@RequestParam("selectedSize") String selectedSize, @RequestParam("selectedService") String selectedService, Model model) {
+//		modalService.processModalData(selectedSize, selectedService);
+//	    model.addAttribute("selectedSize", selectedSize);
+//	    model.addAttribute("selectedService", selectedService);
+//	    return "modal/mStandard";
+//	}
 
 }

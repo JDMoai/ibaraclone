@@ -176,9 +176,11 @@
 						</div>
 					</div>
 				</div>
+				
 				<div class="modal_center_footer">
 					<button id="privBtn">이전</button>
-					<button id="nextBtn">다음</button>				
+					<button id="nextBtn">다음</button>	
+					<jsp:include page="mStandard.jsp" />		
 				</div>
 					
 			</div>
@@ -197,7 +199,7 @@
 			</div>
 		</div>
 </div>
-
+<jsp:include page="mStandard.jsp" />
 <script>
     $(document).ready(function() {
         var modal = $('#myModal');
@@ -270,11 +272,11 @@
             
             $('.selectedSize, .selectedService').show(); 
            
-            //var url = 'modal/mStandard.jsp?selectedSize=' + encodeURIComponent(selectedSize) + '&selectedService=' + encodeURIComponent(selectedService);
+           
             
-            //$('#sizeModal').css('display', 'none');
-           // $('#myModal').css('display', 'none');
-           // $('#standardModal').css('display', 'block');
+          // 	$('#sizeModal').css('display', 'none');
+          // 	$('#myModal').css('display', 'none');
+           //	$('#standardModal').css('display', 'block');
             
          
         });

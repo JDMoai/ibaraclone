@@ -8,7 +8,8 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<h3>mStandard.jsp</h3>
+
+
 <!--모달 창 영역 -->
 <div id="standardModal" class="modal2">
     <div class="modal_content">
@@ -78,7 +79,7 @@
 				<div class="modal_center_footer">
 					<button id="privBtn">이전</button>
 					<button id="nextBtn2">다음</button>	
-					<jsp:include page="mStandard.jsp" />
+					
 					
 				</div>
 			</div>
@@ -87,9 +88,9 @@
 				<p>요약</p>
 				</div>
 				<div class="service_box">
-				<div class="selectedSize" >${param.selectedSize}</div>
+				<div class="selectedSize" ></div>
 				<div class="selectedService" >
-					<span id="selectedService">${param.selectedService}</span>
+					<span id="selectedService"></span>
 				</div>
 				</div>
 				
@@ -116,23 +117,9 @@
 
         closeStandardModal.click(function() {
             standardModal.css('display', 'none');
-        });
+        }); 
     });
-    
-    
-    
-    var selectedOptions = [];
 
-    $('input[type="checkbox"]').change(function() {
-        var optionValue = $(this).val();
-        if ($(this).is(':checked')) {
-            selectedOptions.push(optionValue);
-        } else {
-            selectedOptions = selectedOptions.filter(function(value) {
-                return value !== optionValue;
-            });
-        }
-    });
 </script>
 
 
