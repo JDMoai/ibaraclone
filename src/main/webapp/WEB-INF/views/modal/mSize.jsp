@@ -10,8 +10,8 @@
 <body>
 
 
-<!--모달 창 영역 -->
-<div id="standardModal" class="modal2">
+<!-- 평수 선택 모달 창 영역 -->
+<div id="sizeModal" class="modal">
     <div class="modal_content">
         <div class="modal_leftside">
             <div class=modal_leftside_progress>
@@ -54,8 +54,8 @@
                 </ul>
             </div>
             <div class="modal_leftside_content">
-                <h4>원하는 서비스 선택하기</h4>
-                <div>원하는 서비스를 클릭 해 주세요.</div>
+                <h4>어떤 서비스가 필요하신가요?</h4>
+                <div>필요한 서비스를 선택해 주세요.</div>
             </div>
             <div class="modal_leftside_question">
                 <h5>바로문의</h5>
@@ -64,25 +64,35 @@
         </div>
 			<div class="modal_center">
 				<div class="modal_center_header">
-					<h3>서비스를 선택해 주세요</h3>
-					<span id="closeStandardModal" class="close">&times;</span>
+					<h3>평수 선택</h3>
+					<span id="closeSizeModal" class="close">&times;</span>
 				</div>
-				<div class="standardModal_center_body">
+				<div class="sizeModal_center_body">
 					<div>
-						<div>					
-							<!-- db 데이터 넣는 곳 -->
+						<div>
+							<h3>평형을 알려주세요.</h3>
+							<p class="max_size">최대 평형 99</p>
 						</div>
-					
-				
+
+						<div>
+							<input type="hidden" id="sizeOption" value="">
+						</div>
+						<div class="size-control">
+							<button id="decreaseSize">-</button>
+							<input type="text" id="sizeInput" value="15" min="1" max="99"
+								readonly>
+							<button id="increaseSize">+</button>
+						</div>
 					</div>
 				</div>
+				
 				<div class="modal_center_footer">
-					<button id="privBtn">이전</button>
-					<button id="nextBtn2">다음</button>	
-					
-					
-				</div>
+					<button id="sizePrivBtn">이전</button>
+					<button id="sizeNextBtn">다음</button>	
+						
+				</div>			
 			</div>
+			
 			<div class="modal_rightside">
 				<div class="modal_rightside_header">
 				<p>요약</p>
@@ -97,29 +107,66 @@
 			</div>
 		</div>
 </div>
+<%-- <jsp:include page="mServiceCheck.jsp" /> --%>
+
 <script>
-    $(document).ready(function() {
-        var standardModal = $('#standardModal');
-        var privBtn = $('#privBtn');
-        var nextBtn2 = $('#nextBtn2');
-        var closeStandardModal = $('#closeStandardModal');
+$(document).ready(function() {
+    var sizeModal = $('#sizeModal');
+    var closeSizeModalBtn = $('.close');
+    var sizeInput = $('#sizeInput');
+    var decreaseBtn = $('#decreaseSize');
+    var increaseBtn = $('#increaseSize');
+    var privBtn = $('#sizePrivBtn');
 
-        privBtn.click(function() {
-            standardModal.css('display', 'none');
-            $('#sizeModal').css('display', 'block');
-        });
+    function openModal(modalId) {
+        $(modalId).css('display', 'block');
+    }
 
-        nextBtn2.click(function() {
-            // 다음 단계로 진행하는 로직 구현
-            // 선택한 서비스 정보를 저장하고 다음 모달 창을 표시하거나 서버로 데이터 전송
-            // ...
-        });
+    function closeModal(modalId) {
+        $(modalId).css('display', 'none');
+    }
 
-        closeStandardModal.click(function() {
-            standardModal.css('display', 'none');
-        }); 
+    closeSizeModalBtn.click(function() {
+        closeModal('#sizeModal');
     });
 
+    decreaseBtn.click(function() {
+        var currentSize = parseInt(sizeInput.val());
+        if (currentSize > 1) {
+            sizeInput.val(currentSize - 1);
+        }
+    });
+
+    increaseBtn.click(function() {
+        var currentSize = parseInt(sizeInput.val());
+        if (currentSize < 99) {
+            sizeInput.val(currentSize + 1);
+        }
+    });
+
+    $('#sizeNextBtn').click(function() {
+        var selectedSize = $('#sizeInput').val();
+        var selectedService = $('#selectedService').text();
+
+        $('.selectedSize').text(selectedSize + '평');
+        $('.selectedService').text(selectedService);
+
+        $('.selectedSize, .selectedService').show();
+        
+        localStorage.setItem('selectedSize', selectedSize);
+
+        closeModal('#sizeModal');
+        openModal('#serviceCheckModal');
+        $('#serviceCheckModal').attr('data-prev-modal', 'sizeModal');
+    });
+
+    privBtn.click(function() {
+    	
+        closeModal('#sizeModal');
+        openModal('#myModal');
+     
+    });
+});
 </script>
 
 
