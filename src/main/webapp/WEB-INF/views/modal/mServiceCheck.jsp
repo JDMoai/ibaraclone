@@ -72,11 +72,11 @@
 						<c:forEach var="item" items="${serviceItems}">
 							<div class="serviceItem">
 								<div>
-									<input type="checkbox" class="productCheckBox" data-name="${item.name}" data-emp="${item.emp}" data-price="${item.price}">
-   									 <span>${item.name}</span>
-       								 <span>${item.emp}</span>
+									<input type="checkbox" class="productCheckBox" data-name="${item.m_pname}" data-exp="${item.m_pexp}" data-price="${item.m_pprice}">
+   									 <span>${item.m_pname}</span>
+       								 <span>${item.m_pexp}</span>
 								</div>
-								<div>${item.price}만원</div>
+								<div>${item.m_pprice}만원</div>
 								<div>
 									<button class="decreaseQuantity">-</button>
 									<input type="text" class="quantity" value="1" readonly>
@@ -111,12 +111,14 @@
 				<div class="modal_rightside_footer">
 					<div class="expPrice">예상 견적</div>
 					<div>
-						<span id="selectedService"></span>													
+						<div class="selectedService">
+						<span id="selectedService"></span>	
+						</div>												
 					</div>
 					<div class>
 						<c:forEach var="item" items="${serviceItems}">
-							<div>${item.name}</div>
-							<div>${item.price}만원</div>							
+							<div>${item.m_pname}</div>
+							<div>${item.m_pprice}만원</div>							
 						</c:forEach>
 					</div>
 					<div class="totalPrice">

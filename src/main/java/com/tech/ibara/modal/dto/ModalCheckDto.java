@@ -5,7 +5,7 @@ public class ModalCheckDto {
 	private String m_type; 
 	private String m_pname; 
 	private String m_pexp; 
-	private int m_ppice;
+	private int m_pprice;
 	
 	
 	public String getM_type() {
@@ -26,11 +26,11 @@ public class ModalCheckDto {
 	public void setM_pexp(String m_pexp) {
 		this.m_pexp = m_pexp;
 	}
-	public int getM_ppice() {
-		return m_ppice;
+	public int getM_pprice() {
+		return m_pprice;
 	}
-	public void setM_ppice(int m_ppice) {
-		this.m_ppice = m_ppice;
+	public void setM_pprice(int m_pprice) {
+		this.m_pprice = m_pprice;
 	} 
 	
 

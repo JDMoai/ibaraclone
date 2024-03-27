@@ -31,9 +31,12 @@ private SqlSession sqlSession;
 		
 		ModalDao dao = sqlSession.getMapper(ModalDao.class);
 
-		String type = request.getParameter("type");
+		String m_type = request.getParameter("m_type");
+		String m_pname = request.getParameter("m_pname");
+		String m_pexp = request.getParameter("m_pexp");
+		int m_pprice = Integer.parseInt(request.getParameter("m_pprice"));
         
-        List<ModalCheckDto> serviceItems = dao.selectServiceItems(type);
+        List<ModalCheckDto> serviceItems = dao.selectServiceItems(m_type,m_pname,m_pexp,m_pprice);
         model.addAttribute("serviceItems", serviceItems);
         
         

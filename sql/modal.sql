@@ -2,7 +2,7 @@ create table modal_check(
 m_type varchar2(40),
 m_pname varchar(70),
 m_pexp varchar(100),
-m_ppice number
+m_pprice number
 );
 --스탠다드커스텀인테리어
 insert into modal_check values('스탠다드 커스텀 인테리어','철거-마루바닥(평당)','거실 및 방바닥 마루철거',3);

@@ -40,14 +40,6 @@ public class ModalController {
 		return "/modal/mSize";
 	}
 
-	/*
-	 * @RequestMapping("/modal/mServiceCheck") public String
-	 * mServiceCheck(@RequestParam(value = "type", required = false, defaultValue =
-	 * "") String type, Model model) { model.addAttribute("type", type);
-	 * modalService.execute(model);
-	 * 
-	 * return "/modal/mServiceCheck"; }
-	 */
 	@RequestMapping("/modal/mServiceCheck")
     public String mServiceCheck(HttpServletRequest request, Model model) {
 		
