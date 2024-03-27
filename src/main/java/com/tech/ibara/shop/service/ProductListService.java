@@ -32,6 +32,9 @@ public class ProductListService implements ShopService {
 		}
 		
 		CategoryDto categoryDto = dao.selectCategoryById(category_id);
+		if (categoryDto == null) {
+			return;
+		}
 		ArrayList<CategoryDto> subCategoryList = dao.selectAllSubCategoriesById(category_id);
 		
 		

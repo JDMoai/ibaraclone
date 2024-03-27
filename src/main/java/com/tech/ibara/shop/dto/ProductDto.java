@@ -10,13 +10,6 @@ public class ProductDto {
 	public ProductDto() {
 
 	}
-	
-	public ProductDto(int product_id, int category_id, int option_set_id, String name) {
-		this.product_id = product_id;
-		this.category_id = category_id;
-		this.option_set_id = option_set_id;
-		this.name = name;
-	}
 
 	public int getProduct_id() {
 		return product_id;

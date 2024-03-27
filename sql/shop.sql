@@ -25,30 +25,31 @@ where
     
 select * from shop_product;
     
-/
-begin
-    for i in 1..30000 loop
-        insert into shop_product values (
-            seq_shop_product.nextval,
-            (select
-                category_id
-            from (
-                select
-                    category_id
-                from
-                    shop_category
-                order by
-                    dbms_random.value)
-            where
-                rownum = 1),
-                6,
-                '상품 이름 ' || dbms_random.string('L', 10));
-    end loop;
-    commit;
-end;
-/
+--/
+--begin
+--    for i in 1..300 loop
+--        insert into shop_product values (
+--            seq_shop_product.nextval,
+--            (select
+--                category_id
+--            from (
+--                select
+--                    category_id
+--                from
+--                    shop_category
+--                order by
+--                    dbms_random.value)
+--            where
+--                rownum = 1),
+--            6,
+--            '상품 이름 ' || dbms_random.string('L', 10));
+--    end loop;
+--    commit;
+--end;
+--/
 
 commit;
+
 
 --insert into shop_product_data values (seq_shop_product_data.nextval, 10, 499000, 169000);
 --insert into shop_product_data values (seq_shop_product_data.nextval, 10, 619000, 209000);

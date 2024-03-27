@@ -8,11 +8,6 @@ public class LevelCategoryDto extends CategoryDto {
 		super();
 	}
 	
-	public LevelCategoryDto(int level, int category_id, int up_category_id, String name) {
-		super(category_id, up_category_id, name);
-		this.level = level;
-	}
-	
 	public int getLevel() {
 		return level;
 	}

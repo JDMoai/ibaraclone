@@ -5,23 +5,30 @@
 
 <mapper namespace="com.tech.ibara.my.dao.MyDao">
 	<insert id="join">
-		INSERT INTO ID_JOIN VALUES(IDNO_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},0)
+		INSERT INTO MY_MEMBER_INFO (MEMNO,NICKNAME,SHPWD,BCPWD,EMAIL,MAILCHECK,JOINDATE,MEMTYPE) 
+		VALUES(MEMNO_SEQ.NEXTVAL,#{param1},#{param2},#{param3},#{param4},0,SYSTIMESTAMP,'NOTMAILCHECK')
 	</insert>
 	<select id="emailCheck" resultType="Integer">
-		SELECT EMAIL FROM ID_JOIN WHERE EMAIL = #{param1}
+		SELECT COUNT(*) FROM MY_MEMBER_INFO WHERE EMAIL = #{param1}
 	</select>
 	<select id="nicknameCheck" resultType="Integer">
-		SELECT NICKNAME FROM ID_JOIN WHERE NICKNAME = #{param1}
-	</select>
-	<select id="idnoSearch" resultType="Integer">
-		SELECT IDNO FROM ID_JOIN WHERE NICKNAME = #{param1}
+		SELECT COUNT(*) FROM MY_MEMBER_INFO WHERE NICKNAME = #{param1}
 	</select>
 	<select id="getMemberEmail" resultType="string">
-		SELECT EMAIL FROM ID_JOIN WHERE IDNO = #{param1}
+		SELECT EMAIL FROM MY_MEMBER_INFO WHERE NICKNAME = #{param1}
 	</select>
 	<update id="setMemberEmailChecked">
-		UPDATE ID_JOIN SET  MAILCHECK = 1 WHERE IDNO = #{param1}
+		UPDATE MY_MEMBER_INFO SET MAILCHECK = 1, MEMTYPE='PERSON' WHERE NICKNAME = #{param1}
 	</update>
-	
-
+	<select id="getMemberFromEmail" resultType="com.tech.ibara.my.dto.MyMemberInfoDto">
+		SELECT MEMNO,NICKNAME,SHPWD,BCPWD,EMAIL,MAILCHECK,BIRTH,GENDER,PHONE,JOINDATE,MEMTYPE,PROFILEIMG
+		 FROM MY_MEMBER_INFO WHERE EMAIL= #{param1}
+	</select>
+	<select id="getMemberFromNickname" resultType="com.tech.ibara.my.dto.MyMemberInfoDto">
+		SELECT MEMNO,NICKNAME,SHPWD,BCPWD,EMAIL,MAILCHECK,BIRTH,GENDER,PHONE,JOINDATE,MEMTYPE,PROFILEIMG
+		 FROM MY_MEMBER_INFO WHERE NICKNAME = #{param1}
+	</select>
+	<update id="updateProfileimg">
+		UPDATE MY_MEMBER_INFO SET PROFILEIMG = #{param1} WHERE NICKNAME = #{param2}
+	</update>
 </mapper>

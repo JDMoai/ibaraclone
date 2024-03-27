@@ -10,13 +10,6 @@ public class CategoryDto {
 
 	}
 
-	public CategoryDto(int category_id, Integer up_category_id, String name) {
-		super();
-		this.category_id = category_id;
-		this.up_category_id = up_category_id;
-		this.name = name;
-	}
-
 	public int getCategory_id() {
 		return category_id;
 	}

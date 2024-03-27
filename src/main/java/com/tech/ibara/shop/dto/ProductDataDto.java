@@ -11,13 +11,6 @@ public class ProductDataDto {
 
 	}
 
-	public ProductDataDto(int product_data_id, int stock, int price, Integer discounted_price) {
-		this.product_data_id = product_data_id;
-		this.stock = stock;
-		this.price = price;
-		this.discounted_price = discounted_price;
-	}
-
 	public int getProduct_data_id() {
 		return product_data_id;
 	}

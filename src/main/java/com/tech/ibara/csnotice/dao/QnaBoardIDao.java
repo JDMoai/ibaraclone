@@ -6,25 +6,29 @@ import com.tech.ibara.csnotice.dto.QnaDto;
 
 public interface QnaBoardIDao {
 
-	public ArrayList<QnaDto> Qnalist(int rowStart, int rowEnd, String searchKeyword, String string);
+	public ArrayList<QnaDto> qnalist(int rowStart, int rowEnd, String searchKeyword, String string);
 
-	public QnaDto qnacontentView(String nbno);
+	public int selectBoardTotalCount1();
+	public int selectBoardTotalCount2();
+	public int selectBoardTotalCount3();
+	public int selectBoardTotalCount4();
+	public int selectBoardTotalCount5();
+	public int selectBoardTotalCount6();
 
-	public void qnauphit(String nbno);
+	public Integer selsnbno();
 
-	public void qnaEdit(String nbno, String nbtitle, String nbcontent);
+	public void qnawrite(String nbwrite, String nbtitle, String nbcontent, int snbno, String qnadiv);
 
-	public void qnaDelete(String nbno);
+	public void imgwrite(int snbno, String changeFile);
 
-	public void qnaWrite(String nbtitle, String nbcontent, String nbwriter, String nbfile);
+	public void uphit(String nbno);
 
-	public int selectBoardTotalCount1(String searchKeyword);
+	public QnaDto qnacontent(String nbno);
 
-	public int selectBoardTotalCount2(String searchKeyword);
+	public int selfilecode(String nbno);
 
-	public int selectBoardTotalCount3(String searchKeyword);
+	public void imgdelete(int filecode);
 
-	public int selectBoardTotalCount4(String searchKeyword);
-	
-	
+	public void qnadelete(String nbno);
+
 }

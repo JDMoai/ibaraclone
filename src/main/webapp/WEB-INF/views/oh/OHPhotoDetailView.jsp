@@ -90,12 +90,29 @@
 			<h3>집사진 게시글 상세</h3>
 				
 			<button><a href="OHPhotoWriteView">글쓰기</a></button>
+			
 			&nbsp;&nbsp;&nbsp;
-			<button><a href="OHPhotoEditView?">수정</a></button>
+			
+			<button><a href="OHPhotoEditView?pb_no=${pb_dto.pb_no }">수정</a></button>
+			
 			&nbsp;&nbsp;&nbsp;
-			<button><a href="#">삭제</a></button>
+			
+			<button><a href="OHPhotoDeleteExecute?pb_no=${pb_dto.pb_no }">삭제</a></button>
 				
 			<hr />				
+			
+			<!-- 게시물, 이미지 출력 Start -->
+			<c:forEach items="${pa_dto }" var="dto">			
+				<div>
+					<div>pa_no: ${dto.pa_no }</div>
+					<div>pa_attach: ${dto.pa_attach }</div>
+					<div>pb_no: ${dto.pb_no }</div>
+					<img src="../resources/upload/oh/${dto.pa_attach }" alt="해당 게시글 사진" height="300px" width="300px"/>					
+				</div>
+			</c:forEach>		
+			<!-- 게시물, 이미지 출력 End -->							
+			
+			<hr />
 			
 		</div>
 			

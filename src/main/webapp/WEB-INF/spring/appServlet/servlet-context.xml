@@ -21,6 +21,10 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
+	<!-- Main CSS mapping -->
+	<resources mapping="/mainCSS/**" location="/resources/css/main/" />
+	<!-- Main Image view Mapping -->
+	<resources mapping="/mainImagesOH/**" location="/resources/upload/oh/"/>
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -29,9 +33,15 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	 <!-- Main CSS mapping -->
+   <resources mapping="/mainCSS/**" location="/resources/css/main/" />
+   <!-- Main Image view Mapping -->
+   <resources mapping="/mainImagesOH/**" location="/resources/upload/oh/"/>
+	
 
 	<context:component-scan
 		base-package="com.tech.ibara" />
+		
 
 	<!-- mybatis setting -->
 	<beans:bean name="dataSource"

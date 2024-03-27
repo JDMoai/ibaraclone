@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @charset "UTF-8";
 
 /* ----- header ----- */
@@ -76,8 +77,13 @@ footer {
 /* ----- OHPhotoView.jsp ----- */
 
 
-
+.clear {
+	clear: both;
+}
 
 		
 		
 				
+=======
+@charset "UTF-8";
+>>>>>>> bogeun00

@@ -20,6 +20,10 @@
 		<td>${qna_content.nbhit }</td>
 	</tr>
 	<tr>
+		<td class="left">글분류</td>
+		<td>${qna_content.nbqnadiv }</td>
+	</tr>
+	<tr>
 		<td class="left">작성자</td>
 		<td>${qna_content.nbwriter }</td>
 	</tr>
@@ -37,7 +41,7 @@
 	</tr>
 	<tr>
 		<td class="left">파일</td>
-		<td><a href=""></a></td>
+		<td>${qna_content.nbfilecode }</td>
 	</tr>
 	<tr>
 		<td colspan="2">

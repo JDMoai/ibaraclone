@@ -28,6 +28,18 @@ create table shop_product_data (
     discounted_price number
 );
 
+select
+    o.option_id, o.option_set_id, o.name, d.stock, d.price, d.discounted_price
+from
+    shop_option o
+join
+    shop_product_data d
+on
+    o.product_data_id = d.product_data_id
+where
+    o.option_id = 10;
+
+
 create sequence seq_shop_option_set;
 create sequence seq_shop_option;
 create sequence seq_shop_product_data;
@@ -37,6 +49,95 @@ select * from shop_option;
 select * from shop_product_data;
 
 commit;
+
+select
+    p.name
+from
+    shop_option o
+join
+    shop_option o2
+on
+    o2.sub_option_set_id = o.option_set_id
+join
+    shop_product p
+on
+    p.option_set_id = o2.option_set_id
+where
+    o.option_id = 4;
+
+
+select
+    option_set_id
+from
+    shop_option
+where
+    option_id = 4;
+
+
+select
+    *
+from
+    shop_product
+where
+    option_set_id = (
+    select
+        option_set_id
+    from
+        shop_option
+    where
+        option_id = 4);
+
+select
+    name
+from
+    shop_option_set
+where
+    option_set_id = (
+    select
+        option_set_id
+    from
+        shop_option
+    where
+        sub_option_set_id = (
+            select
+                option_set_id
+            from
+                shop_option
+            where
+                option_id = 4));
+
+select
+    name
+from
+    shop_option
+where
+    sub_option_set_id = (
+        select
+            option_set_id
+        from
+            shop_option
+        where
+            option_id = 4);
+
+select
+    name
+from
+    shop_option_set
+where option_set_id = (
+    select
+        option_set_id
+    from
+        shop_option
+    where
+        option_id = 4);
+    
+
+select
+    name
+from
+    shop_option
+where
+    option_id = 4;
 
 select
     *
@@ -173,6 +274,128 @@ from
 --where
 --    product_id = 2;
 
+select
+    min(d.price)
+from
+    shop_option o
+join
+    shop_product_data d
+on
+    o.product_data_id = d.product_data_id
+where
+    o.option_set_id in (
+    select
+        option_set_id
+    from
+        shop_option_set
+    where
+        option_set_id in (
+        select
+            sub_option_set_id
+        from
+            shop_option
+        where
+            option_set_id = 1));
+
+select
+    min(price)
+from
+    (select
+        product_data_id, stock, price, discounted_price
+    from
+        shop_product_data
+    where
+        product_data_id in (
+        select
+            product_data_id
+        from
+            shop_option
+        where
+            option_set_id in (
+            select
+                option_set_id
+            from
+                shop_option_set
+            where
+                option_set_id in (
+                select
+                    sub_option_set_id
+                from
+                    shop_option
+                where
+                    option_set_id = 1))));
+
+select
+    *
+from
+    shop_option
+where
+    option_set_id in (
+    select
+        option_set_id
+    from
+        shop_option_set
+    where
+        option_set_id in (
+        select
+            sub_option_set_id
+        from
+            shop_option
+        where
+            option_set_id = 1));
+
+
+select
+    *
+from
+    shop_option_set
+where
+    option_set_id in (
+    select
+        sub_option_set_id
+    from
+        shop_option
+    where
+        option_set_id = (
+        select
+            option_set_id
+        from
+            shop_option_set
+        where
+            option_set_id = 1));
+
+
+select
+    *
+from
+    shop_option
+where
+    option_set_id = (
+    select
+        option_set_id
+    from
+        shop_option_set
+    where
+        option_set_id = 1);
+    
+    
+select
+    option_set_id
+from
+    shop_option_set
+where
+    option_set_id = 1;
+
+select
+    o.option_id, o.option_set_id, o.name, d.stock, d.price, d.discounted_price
+from
+    shop_option o
+join
+    shop_product_data d
+on
+    o.product_data_id = d.product_data_id
+where
+    o.option_id = 10;
 
 commit;
 

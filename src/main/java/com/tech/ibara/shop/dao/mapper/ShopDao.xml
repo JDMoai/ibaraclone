@@ -5,7 +5,7 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tech.ibara.shop.dao.ShopDao">
-
+	
 	<select id="selectProductsByCategory" resultType="com.tech.ibara.shop.dto.ProductDto">
 		SELECT
 			PRODUCT_ID, CATEGORY_ID, OPTION_SET_ID, NAME
@@ -31,22 +31,13 @@
 			PRODUCT_ID	
 	</select>
 	
-	<select id="selectSubCategoriesById" resultType="com.tech.ibara.shop.dto.CategoryDto">
+	<select id="selectCategoriesByUp" resultType="com.tech.ibara.shop.dto.CategoryDto">
 		SELECT
 			CATEGORY_ID, UP_CATEGORY_ID, NAME
 		FROM
 			SHOP_CATEGORY
 		WHERE
 			UP_CATEGORY_ID = #{param1}
-	</select>
-	
-	<select id="selectUpCategoryById" resultType="com.tech.ibara.shop.dto.CategoryDto">
-		SELECT
-			CATEGORY_ID, UP_CATEGORY_ID, NAME
-		FROM
-			SHOP_CATEGORY
-		WHERE
-			CATEGORY_ID = #{param1}
 	</select>
 	
 	<select id="selectCategoryById" resultType="com.tech.ibara.shop.dto.CategoryDto">
@@ -105,6 +96,15 @@
 		    PRIOR CATEGORY_ID = UP_CATEGORY_ID
 	</select>
 	
+	<select id="selectLv1Categories" resultType="com.tech.ibara.shop.dto.LevelCategoryDto" >
+		SELECT
+		    CATEGORY_ID, UP_CATEGORY_ID, NAME
+		FROM
+		    SHOP_CATEGORY
+		WHERE
+		    UP_CATEGORY_ID IS NULL
+	</select>
+	
 	<select id="selectProductById" resultType="com.tech.ibara.shop.dto.ProductDto">
 		SELECT
 			PRODUCT_ID, CATEGORY_ID, OPTION_SET_ID, NAME
@@ -114,7 +114,7 @@
 			PRODUCT_ID = #{param1}
 	</select>
 	
-	<select id="selectOptionSetByProductId" resultType="com.tech.ibara.shop.dto.OptionSetDto">
+	<select id="selectOptionSetByProduct" resultType="com.tech.ibara.shop.dto.OptionSetDto">
 		SELECT
 		    OPTION_SET_ID, NAME
 		FROM
@@ -138,7 +138,7 @@
 		    OPTION_SET_ID = #{param1}
 	</select>
 	
-	<select id="selectOptionsByOptionSetId" resultType="com.tech.ibara.shop.dto.OptionDto">
+	<select id="selectOptionsBySet" resultType="com.tech.ibara.shop.dto.OptionDto">
 		SELECT
 		    OPTION_ID, OPTION_SET_ID, SUB_OPTION_SET_ID, PRODUCT_DATA_ID, NAME
 		FROM
@@ -181,7 +181,7 @@
 		<collection property="product_data_dto" resultMap="ProductDataDto"></collection>
 	</resultMap>
 	
-	<select id="selectOptionJoinProductDataByOptionSetId" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
+	<select id="selectJoinOptionBySet" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
 		SELECT
 			O.OPTION_ID, O.OPTION_SET_ID, O.NAME, D.STOCK, D.PRICE, D.DISCOUNTED_PRICE
 		FROM
@@ -194,7 +194,7 @@
 			O.OPTION_SET_ID = #{param1}
 	</select>
 	
-	<select id="selectOptionsJoinProductDataByOptionSetId" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
+	<select id="selectJoinOptionsBySet" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
 		SELECT
 			O.OPTION_ID, O.OPTION_SET_ID, O.NAME, D.STOCK, D.PRICE, D.DISCOUNTED_PRICE
 		FROM
@@ -207,4 +207,76 @@
 			O.OPTION_SET_ID = #{param1}
 	</select>
 	
+	<select id="selectJoinOptionById" parameterType="com.tech.ibara.shop.dto.OptionDto" resultMap="OptionDto">
+		SELECT
+			O.OPTION_ID, O.OPTION_SET_ID, O.NAME, D.STOCK, D.PRICE, D.DISCOUNTED_PRICE
+		FROM
+			SHOP_OPTION O
+		JOIN
+			SHOP_PRODUCT_DATA D
+		ON
+			O.PRODUCT_DATA_ID = D.PRODUCT_DATA_ID
+		WHERE
+			O.OPTION_ID = #{param1}
+	</select>
+	
+	<select id="selectProductImgsByProduct" resultType="com.tech.ibara.shop.dto.ProductImgDto">
+		SELECT
+		    PRODUCT_IMG_ID, PRODUCT_ID, FILE_SRC
+		FROM
+		    SHOP_PRODUCT_IMG
+		WHERE
+		    PRODUCT_ID = #{param1}
+		ORDER BY
+			PRODUCT_IMG_ID
+	</select>
+	
+	<resultMap type="com.tech.ibara.shop.dto.OptionSetDto" id="OptionSetDto">
+		<result column="OPTION_SET_ID" property="option_set_id" />
+		<result column="NAME" property="name" />
+	</resultMap>
+	
+	<resultMap type="com.tech.ibara.shop.dto.BasketDto" id="BasketDto">
+		<result column="BASKET_ID" property="basket_id" />
+		<result column="USER_ID" property="user_id" />
+		<result column="PRODUCT_ID" property="product_id" />
+		<result column="OPTION_ID" property="option_id" />
+		<result column="QUANTITY" property="quantity" />
+		<collection columnPrefix="first_" property="option_dto" resultMap="OptionDto"></collection>
+		<collection columnPrefix="final_" property="final_option_dto" resultMap="OptionDto"></collection>
+		<collection columnPrefix="firstset_" property="option_set_dto" resultMap="OptionSetDto"></collection>
+		<collection columnPrefix="finalset_" property="final_option_set_dto" resultMap="OptionSetDto"></collection>
+		<collection property="product_data_dto" resultMap="ProductDataDto"></collection>
+	</resultMap>
+	
+	<select id="selectBasketsByUser" parameterType="com.tech.ibara.shop.dto.BasketDto" resultMap="BasketDto">
+		SELECT
+		    B.BASKET_ID, B.USER_ID, B.PRODUCT_ID, B.OPTION_ID, B.QUANTITY,
+		    S2.NAME FIRSTSET_NAME, O2.NAME FIRST_NAME,
+		    S.NAME FINALSET_NAME, O.NAME FINAL_NAME, D.PRICE
+		FROM
+		    SHOP_BASKET B
+		JOIN
+		    SHOP_OPTION O
+		ON
+		    B.OPTION_ID = O.OPTION_ID
+		JOIN
+		    SHOP_PRODUCT_DATA D
+		ON
+		    O.PRODUCT_DATA_ID = D.PRODUCT_DATA_ID
+		JOIN
+		    SHOP_OPTION_SET S
+		ON
+		    O.OPTION_SET_ID = S.OPTION_SET_ID
+		LEFT OUTER JOIN
+		    SHOP_OPTION O2
+		ON
+		    S.OPTION_SET_ID = O2.SUB_OPTION_SET_ID
+		LEFT OUTER JOIN
+		    SHOP_OPTION_SET S2
+		ON
+		    O2.OPTION_SET_ID = S2.OPTION_SET_ID
+		WHERE
+			USER_ID = #{param1}
+	</select>
 </mapper>

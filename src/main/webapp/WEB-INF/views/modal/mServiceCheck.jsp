@@ -69,7 +69,14 @@
 				<div class="serviceCheckModal_center_body">
 					<div>
 						<div class="serviceCheckBox">
-							<%-- ${db데이터 } --%>
+							<div>
+								<div>
+									<div><!-- 자재 --></div>
+									<div><!-- 자재설명 --></div>
+								</div>
+								<div><!-- 가격 --></div>
+								<div><!-- 수량 --></div>
+							</div>
 						</div>	
 					</div>
 				</div>

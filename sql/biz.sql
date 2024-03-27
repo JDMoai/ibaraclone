@@ -47,20 +47,20 @@ CREATE TABLE BIZ_RV_IMG (
 
 create sequence biz_rv_img_seq;
 
-insert into biz_rv_img values(biz_rv_img_seq.nextval, 'orifile','chfile', biz_rv_img_seq.nextval);
-insert into biz_rv_img values(biz_rv_img_seq.nextval, 'orifile','chfile', biz_rv_img_seq.nextval);
-insert into biz_rv_img values(biz_rv_img_seq.nextval, 'orifile','chfile', biz_rv_img_seq.nextval);
-insert into biz_rv_img values(biz_rv_img_seq.nextval, 'orifile','chfile', biz_rv_img_seq.nextval);
-insert into biz_rv_img values(biz_rv_img_seq.nextval, 'orifile','chfile', biz_rv_img_seq.nextval);
+insert into biz_rv_img values(biz_rv_img_seq.nextval, 'orifile.png','chfile.png', biz_rv_img_seq.nextval);
+insert into biz_rv_img values(biz_rv_img_seq.nextval, 'orifile.png','chfile.png', biz_rv_img_seq.nextval);
+insert into biz_rv_img values(biz_rv_img_seq.nextval, 'orifile.png','chfile.png', biz_rv_img_seq.nextval);
+insert into biz_rv_img values(biz_rv_img_seq.nextval, 'orifile.png','chfile.png', biz_rv_img_seq.nextval);
+insert into biz_rv_img values(biz_rv_img_seq.nextval, 'orifile.png','chfile.png', biz_rv_img_seq.nextval);
 
 CREATE TABLE BIZ_MGZ (
 	BM_NO number,
 	BM_TITLE varchar2(100),
 	BM_CONTENT varchar2(3000),
-	BM_IMG varchar2(300),
 	BM_DATE timestamp,
 	BM_HIT number,
-	USER_IDNO number
+	USER_IDNO number,
+    BM_IMG varchar2(300)
 );
 
 create sequence biz_mgz_seq;
@@ -75,6 +75,23 @@ Baby let us just take our chance.',
 insert into biz_mgz values(biz_mgz_seq.nextval, '이건 광고입니다. 사주세요',
 '비틀비틀 거리다가 떠난 이들의 뒤를 따를 수도 굳이 피를 안 봐도 되는 현실에 감사를, 뒤를 잇는 것이 아닌 그저 잊는 힘을 기른 나는 기를 쓰지 않고 만들어 믿음뿐인 길을. 그리고 지금 나의 비밀을 아는 너는 웃지도 울지도 아리송한 표정을 하고 있군. 검은 줄들의 모양은 다 다르긴 해도 삑소리 나면 우리 모두를 빛으로 비추겠지 eh 난 늪에 빠진 기분이 어떤진 모르겠으나 넌 갈 수 있어 지평선 너머의 미지의 곳으로, 삶이란 흐르는 오케스트라, 우리는 마에스트로 yah',
 'mgz_dummy.png', systimestamp, 0, 3000);
+
+
+CREATE TABLE BIZ_MGZ_IMG (
+	BMIMG_NO number,
+	BMIMG_OGN varchar2(300),
+	BMIMG_CGN varchar2(300),
+	BM_NO number
+);
+
+create sequence BIZ_MGZ_img_seq;
+
+insert into biz_mgz_img values(biz_mgz_img_seq.nextval, 'orifile.png','chfile.png', biz_mgz_img_seq.nextval);
+insert into biz_mgz_img values(biz_mgz_img_seq.nextval, 'orifile.png','chfile.png', biz_mgz_img_seq.nextval);
+insert into biz_mgz_img values(biz_mgz_img_seq.nextval, 'orifile.png','chfile.png', biz_mgz_img_seq.nextval);
+insert into biz_mgz_img values(biz_mgz_img_seq.nextval, 'orifile.png','chfile.png', biz_mgz_img_seq.nextval);
+insert into biz_mgz_img values(biz_mgz_img_seq.nextval, 'orifile.png','chfile.png', biz_mgz_img_seq.nextval);
+
 
 CREATE TABLE BIZ_ESTI (
 	BE_NO number,
@@ -140,11 +157,11 @@ CREATE TABLE BIZ_CASES_IMG (
 
 create sequence BIZ_CASES_img_seq;
 
-insert into biz_cases_img values(biz_cases_img_seq.nextval, 'orifile','chfile', biz_cases_img_seq.nextval);
-insert into biz_cases_img values(biz_cases_img_seq.nextval, 'orifile','chfile', biz_cases_img_seq.nextval);
-insert into biz_cases_img values(biz_cases_img_seq.nextval, 'orifile','chfile', biz_cases_img_seq.nextval);
-insert into biz_cases_img values(biz_cases_img_seq.nextval, 'orifile','chfile', biz_cases_img_seq.nextval);
-insert into biz_cases_img values(biz_cases_img_seq.nextval, 'orifile','chfile', biz_cases_img_seq.nextval);
+insert into biz_cases_img values(biz_cases_img_seq.nextval, 'orifile.png','chfile.png', biz_cases_img_seq.nextval);
+insert into biz_cases_img values(biz_cases_img_seq.nextval, 'orifile.png','chfile.png', biz_cases_img_seq.nextval);
+insert into biz_cases_img values(biz_cases_img_seq.nextval, 'orifile.png','chfile.png', biz_cases_img_seq.nextval);
+insert into biz_cases_img values(biz_cases_img_seq.nextval, 'orifile.png','chfile.png', biz_cases_img_seq.nextval);
+insert into biz_cases_img values(biz_cases_img_seq.nextval, 'orifile.png','chfile.png', biz_cases_img_seq.nextval);
 
 CREATE TABLE BIZ_RV_LIKE (
 	BR_LIKE_NO number,
