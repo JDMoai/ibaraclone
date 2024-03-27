@@ -6,6 +6,9 @@
 
 <mapper namespace="com.tech.ibara.modal.dao.mapper.ModalDao">
 
-	
+	 <select id="selectServiceItems" resultType="com.tech.ibara.modal.dto.ModalCheckDto">
+        SELECT m_pname as name, m_pexp as emp, m_ppice as price
+        FROM modal_check
+    </select>
 	
 </mapper>

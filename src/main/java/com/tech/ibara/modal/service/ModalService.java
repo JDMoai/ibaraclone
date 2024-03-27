@@ -4,7 +4,7 @@ import org.springframework.ui.Model;
 
 public interface ModalService {
 	
-	void processModalData(String selectedSize, String selectedService);
+	void getServiceItems(Model model);
 	//public void execute(Model model);
 
 }

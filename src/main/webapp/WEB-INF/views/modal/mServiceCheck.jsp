@@ -68,15 +68,22 @@
 				</div>
 				<div class="serviceCheckModal_center_body">
 					<div>
-						<div class="serviceCheckBox">
-							<div>
+						<div class="productCheckBox">
+						<c:forEach var="item" items="${serviceItems}">
+							<div class="serviceItem">
 								<div>
-									<div><!-- 자재 --></div>
-									<div><!-- 자재설명 --></div>
+									<input type="checkbox" class="productCheckBox" data-name="${item.name}" data-emp="${item.emp}" data-price="${item.price}">
+   									 <span>${item.name}</span>
+       								 <span>${item.emp}</span>
 								</div>
-								<div><!-- 가격 --></div>
-								<div><!-- 수량 --></div>
+								<div>${item.price}만원</div>
+								<div>
+									<button class="decreaseQuantity">-</button>
+									<input type="text" class="quantity" value="1" readonly>
+									<button class="increaseQuantity">+</button>
+								</div>
 							</div>
+						 </c:forEach>
 						</div>	
 					</div>
 				</div>
@@ -92,13 +99,31 @@
 				<div class="modal_rightside_header">
 				<p>요약</p>
 				</div>
-				<div class="service_box">
-				<div class="selectedSize" ></div>
-				<div class="selectedService" >
-					<span id="selectedService"></span>
+				<div class="modal_rightside_body">
+					<div class="service_box">
+						<div class="selectedSize"></div>
+						<div class="selectedService">
+							<span id="selectedService"></span>
+							<div>추가:${serviceItems}</div>
+						</div>
+					</div>
 				</div>
+				<div class="modal_rightside_footer">
+					<div class="expPrice">예상 견적</div>
+					<div>
+						<span id="selectedService"></span>													
+					</div>
+					<div class>
+						<c:forEach var="item" items="${serviceItems}">
+							<div>${item.name}</div>
+							<div>${item.price}만원</div>							
+						</c:forEach>
+					</div>
+					<div class="totalPrice">
+						<div>합계</div>
+						<div>원</div>
+					</div>
 				</div>
-				
 			</div>
 		</div>
 </div>
