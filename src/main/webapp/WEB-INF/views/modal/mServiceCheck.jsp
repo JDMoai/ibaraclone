@@ -5,7 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>상품체크창</title>
+ <link rel="stylesheet" href="resources/css/modal.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 
@@ -69,21 +71,22 @@
 				<div class="serviceCheckModal_center_body">
 					<div>
 						<div class="productCheckBox">
-						<c:forEach var="item" items="${serviceItems}">
-							<div class="serviceItem">
-								<div>
-									<input type="checkbox" class="productCheckBox" data-name="${item.m_pname}" data-exp="${item.m_pexp}" data-price="${item.m_pprice}">
-   									 <span>${item.m_pname}</span>
-       								 <span>${item.m_pexp}</span>
+							<c:forEach var="item" items="${serviceItems}">
+								<div class="serviceItem">
+									<div>
+										<input type="checkbox" class="productCheckBox"
+											data-name="${item.m_pname}" data-exp="${item.m_pexp}"
+											data-price="${item.m_pprice}"> <span>${item.m_pname}</span>
+										<span>${item.m_pexp}</span>
+									</div>
+									<div>${item.m_pprice}만원</div>
+									<div>
+										<button class="decreaseQuantity">-</button>
+										<input type="text" class="quantity" value="1" readonly>
+										<button class="increaseQuantity">+</button>
+									</div>
 								</div>
-								<div class="pricePerItem">${item.m_pprice}만원</div>
-								<div>
-									<button class="decreaseQuantity">-</button>
-									<input type="text" class="quantity" value="1" readonly>
-									<button class="increaseQuantity">+</button>
-								</div>
-							</div>
-						 </c:forEach>
+							</c:forEach>
 						</div>	
 					</div>
 				</div>
