@@ -12,14 +12,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tech.ibara.modal.dao.mapper.ModalDao;
+import com.tech.ibara.modal.dto.ModalCheckDto;
+import com.tech.ibara.modal.service.ModalCheckService;
 import com.tech.ibara.modal.service.ModalService;
 
 @Controller
 public class ModalController {
 	
-	@Autowired
+	
 	private ModalService modalService;
+	
+	@Autowired
+	private SqlSession sqlSession;
 
+	
+	
 	@RequestMapping("/modal/mMain")
 	public String mMain(Model model) {
 
@@ -33,16 +41,24 @@ public class ModalController {
 	}
 
 	/*
-	 * @RequestMapping("/modal/mServiceCheck") public String mServiceCheck(Model
-	 * model) {
+	 * @RequestMapping("/modal/mServiceCheck") public String
+	 * mServiceCheck(@RequestParam(value = "type", required = false, defaultValue =
+	 * "") String type, Model model) { model.addAttribute("type", type);
+	 * modalService.execute(model);
 	 * 
-	 * return "/modal/mServiceCheck";
-	 * 
-	 * }
+	 * return "/modal/mServiceCheck"; }
 	 */
 	@RequestMapping("/modal/mServiceCheck")
     public String mServiceCheck(HttpServletRequest request, Model model) {
-        modalService.getServiceItems(model);
+		
+		model.addAttribute("sqlSession",sqlSession);
+		model.addAttribute("request",request);
+		
+		modalService = new ModalCheckService(sqlSession);
+		modalService.execute(model);
+		
+        
         return "/modal/mServiceCheck";
- }
+    }
+ 
 }

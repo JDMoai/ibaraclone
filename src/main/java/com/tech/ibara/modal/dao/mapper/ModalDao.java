@@ -6,5 +6,5 @@ import com.tech.ibara.modal.dto.ModalCheckDto;
 
 
 public interface ModalDao {
-	List<ModalCheckDto> selectServiceItems();
+	List<ModalCheckDto> selectServiceItems(String type);
 }
