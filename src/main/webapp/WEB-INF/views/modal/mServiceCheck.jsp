@@ -4,10 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+String path=request.getContextPath();
+%>
 <meta charset="UTF-8">
 <title>상품체크창</title>
  <link rel="stylesheet" href="resources/css/modal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -108,7 +112,7 @@
 					</div>
 					<div class="totalPrice">
 						<div>합계</div>
-						<div id="totalPriceValue">원</div>
+						<div id="totalPriceValue">만원</div>
 					</div>
 				</div>
 			</div>
@@ -123,11 +127,12 @@ $(document).ready(function() {
     var selectedOption = localStorage.getItem('selectedOption');
 
     $.ajax({
-        url: "/modal/getServiceItems",
         type: "GET",
+        async: true,
+    	url: "<%= path %>/modal/getServiceItems",
         data: { m_type: selectedOption },
-        success: function(response) {
-            var serviceItems = response;
+        success: function(result) {
+            var serviceItems = result;
             var productCheckbox = $(".productCheckBox");
             productCheckbox.empty();
             
@@ -236,7 +241,7 @@ $(document).ready(function() {
                 totalPrice += itemPrice * itemQuantity;
             }
         }
-        $('#totalPriceValue').text(totalPrice + ' 원');
+        $('#totalPriceValue').text(totalPrice + ' 만원');
     }
 
     function openModal(modalId) {

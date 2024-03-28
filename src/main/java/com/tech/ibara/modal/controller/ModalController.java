@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tech.ibara.modal.dao.mapper.ModalDao;
 import com.tech.ibara.modal.dto.ModalCheckDto;
@@ -62,6 +63,7 @@ public class ModalController {
     }
 
 	@GetMapping("/modal/getServiceItems")
+	@ResponseBody
 	public List<ModalCheckDto> getServiceItems(@RequestParam("m_type") String m_type) {
 		System.out.println("getServiceItems");
 	    return modalService.getServiceItems(m_type);
