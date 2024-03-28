@@ -68,10 +68,11 @@ String path=request.getContextPath();
             </div>
         </div>
 			<div class="modal_center">
-				<div class="modal_center_header">
+				<div class="serviceCheckModal_center_header">
 					<h3>서비스를 선택해주세요.</h3>
 					<span id="closeServiceCheckModal" class="close">&times;</span>
 				</div>
+				<div class="serviceCheckModal_center">
 				<div class="serviceCheckModal_center_body">
 					<div>
 						<div class="productCheckBox">
@@ -79,8 +80,9 @@ String path=request.getContextPath();
 						</div>	
 					</div>
 				</div>
+				</div>
 				
-				<div class="modal_center_footer">
+				<div class="serviceCheckModal_center_footer">
 					<button id="SCPrivBtn">이전</button>
 					<button id="SCNextBtn">다음</button>	
 						
@@ -142,13 +144,13 @@ $(document).ready(function() {
                                   '<input type="checkbox" class="productCheckBox" ' +
                                   'data-name="' + item.m_pname + '" data-exp="' + item.m_pexp + '" ' +
                                   'data-price="' + item.m_pprice + '">' +
-                                  '<span>' + item.m_pname + '</span>' +
+                                  '<span>' + item.m_pname + '</span><br/>' +
                                   '<span>' + item.m_pexp + '</span>' +
                                   '</div>' +
                                   '<div>' + item.m_pprice + '만원</div>' +
                                   '<div>' +
                                   '<button class="decreaseQuantity">-</button>' +
-                                  '<input type="text" class="quantity" value="1" readonly>' +
+                                  '<input type="text" class="quantity" value="0" readonly>' +
                                   '<button class="increaseQuantity">+</button>' +
                                   '</div>' +
                                   '</div>';
