@@ -18,7 +18,7 @@ public class ModalCheckService implements ModalService{
 			
 	private ModalDao modalDao;
 	
-	public ModalCheckService(SqlSession sqlSession) {
+	public ModalCheckService(ModalDao modalDao) {
 		this.modalDao = modalDao;
 	}
 
@@ -44,9 +44,5 @@ public class ModalCheckService implements ModalService{
         return modalDao.selectServiceItems(m_type);
     }
 
-	@Override
-	public void execute(Model model) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }
