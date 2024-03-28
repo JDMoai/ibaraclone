@@ -71,22 +71,7 @@
 				<div class="serviceCheckModal_center_body">
 					<div>
 						<div class="productCheckBox">
-							<c:forEach var="item" items="${serviceItems}">
-								<div class="serviceItem">
-									<div>
-										<input type="checkbox" class="productCheckBox"
-											data-name="${item.m_pname}" data-exp="${item.m_pexp}"
-											data-price="${item.m_pprice}"> <span>${item.m_pname}</span>
-										<span>${item.m_pexp}</span>
-									</div>
-									<div>${item.m_pprice}만원</div>
-									<div>
-										<button class="decreaseQuantity">-</button>
-										<input type="text" class="quantity" value="1" readonly>
-										<button class="increaseQuantity">+</button>
-									</div>
-								</div>
-							</c:forEach>
+					
 						</div>	
 					</div>
 				</div>
@@ -135,6 +120,40 @@
 $(document).ready(function() {
     var serviceCheckModal = $('#serviceCheckModal');
     var selectedItems = {};
+    var selectedOption = localStorage.getItem('selectedOption');
+
+    $.ajax({
+        url: "/modal/getServiceItems",
+        type: "GET",
+        data: { m_type: selectedOption },
+        success: function(response) {
+            var serviceItems = response;
+            var productCheckbox = $(".productCheckBox");
+            productCheckbox.empty();
+            
+            $.each(serviceItems, function(index, item) {
+                var serviceItem = '<div class="serviceItem">' +
+                                  '<div>' +
+                                  '<input type="checkbox" class="productCheckBox" ' +
+                                  'data-name="' + item.m_pname + '" data-exp="' + item.m_pexp + '" ' +
+                                  'data-price="' + item.m_pprice + '">' +
+                                  '<span>' + item.m_pname + '</span>' +
+                                  '<span>' + item.m_pexp + '</span>' +
+                                  '</div>' +
+                                  '<div>' + item.m_pprice + '만원</div>' +
+                                  '<div>' +
+                                  '<button class="decreaseQuantity">-</button>' +
+                                  '<input type="text" class="quantity" value="1" readonly>' +
+                                  '<button class="increaseQuantity">+</button>' +
+                                  '</div>' +
+                                  '</div>';
+                productCheckbox.append(serviceItem);
+            });
+        },
+        error: function(xhr, status, error) {
+            console.log(error);
+        }
+    });
  // 상품 체크박스 클릭 이벤트 처리
     $('.productCheckBox').on('change', function() {
       var itemName = $(this).data('name');
