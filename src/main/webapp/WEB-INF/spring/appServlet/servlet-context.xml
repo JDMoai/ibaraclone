@@ -68,13 +68,13 @@
 		</beans:constructor-arg>
 	</beans:bean>
 	
-	 <beans:bean
+	<beans:bean
 		class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<beans:property name="basePackage"
 			value="com.tech.ibara.*.dao.mapper" />
 		<beans:property name="sqlSessionFactoryBeanName"
 			value="sqlSessionFactory" />
-	</beans:bean> 
+	</beans:bean>
 
 	<aop:aspectj-autoproxy />
 

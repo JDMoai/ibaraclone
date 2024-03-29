@@ -156,9 +156,12 @@ $(document).ready(function() {
         var service = $(this).data('service');
         var option = $(this).data('option');
         updateSelectedService(service);
-        $('#serviceCheckModal').attr('data-prev-modal', option === 'kitchen' || option === 'bath' ? 'myModal' : 'sizeModal');
+        localStorage.setItem('selectedService', service);
+        localStorage.setItem('selectedOption', option);
+        $('#serviceCheckModal').attr('data-prev-modal', option === 'kitchen' || option === 'bath' ? 'myModal' : 'sizeModal');//의심
         closeModal('#myModal');
         openModal('#serviceCheckModal');
+        loadServiceItems(option);
     });
 });
      
