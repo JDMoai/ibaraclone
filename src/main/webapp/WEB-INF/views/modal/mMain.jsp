@@ -158,7 +158,7 @@ $(document).ready(function() {
         updateSelectedService(service);
         localStorage.setItem('selectedService', service);
         localStorage.setItem('selectedOption', option);
-        $('#serviceCheckModal').attr('data-prev-modal', option === 'kitchen' || option === 'bath' ? 'myModal' : 'sizeModal');//의심
+        $('#serviceCheckModal').attr('data-prev-modal', option === 'kitchen' || option === 'bath' ? 'myModal' : 'sizeModal');//의심중
         closeModal('#myModal');
         openModal('#serviceCheckModal');
         loadServiceItems(option);
