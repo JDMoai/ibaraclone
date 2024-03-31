@@ -127,14 +127,16 @@ $(document).ready(function() {
     var serviceCheckModal = $('#serviceCheckModal');
     var selectedItems = {};
     var selectedOption = localStorage.getItem('selectedOption');
-
-    $.ajax({
+    var serviceItems = JSON.parse(localStorage.getItem('serviceItems'));
+    console.log(serviceItems);
+     $.ajax({
         type: "GET",
         async: true,
     	url: "<%= path %>/modal/getServiceItems",
         data: { m_type: selectedOption },
         success: function(result) {
             var serviceItems = result;
+            
             var productCheckbox = $(".productCheckBox");
             productCheckbox.empty();
             
@@ -160,8 +162,8 @@ $(document).ready(function() {
         error: function(xhr, status, error) {
             console.log(error);
         }
-    });
-
+    }); 
+     console.log(serviceItems);
     // 상품 체크박스 클릭 이벤트 처리 (이벤트 위임 사용)
     $(document).on('change', '.productCheckBox', function() {
         var itemName = $(this).data('name');
@@ -260,7 +262,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '#SCPrivBtn', function() {
-    	localStorage.clear();
+    	
         var prevModal = serviceCheckModal.attr('data-prev-modal');
         closeModal('#serviceCheckModal');
         openModal('#' + prevModal);

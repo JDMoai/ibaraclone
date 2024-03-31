@@ -146,29 +146,66 @@ $(document).ready(function() {
             sizeInput.val(currentSize + 1);
         }
     });
+    privBtn.click(function() {
+        closeModal('#sizeModal');
+        openModal('#myModal');
+    });
 
     $('#sizeNextBtn').click(function() {
         var selectedSize = $('#sizeInput').val();
         var selectedService = $('#selectedService').text();
+        var selectedOption = localStorage.getItem('selectedOption');
 
         $('.selectedSize').text(selectedSize + '평');
         $('.selectedService').text(selectedService);
 
         $('.selectedSize, .selectedService').show();
         
-        localStorage.setItem('selectedSize', selectedSize);
+        
+        
+        // Ajax 요청을 보내어 데이터 가져오기
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "<%= path %>/modal/getServiceItems",
+            data: { m_type: selectedOption },
+            success: function(result) {
+                var serviceItems = result;
+                
+                var productCheckbox = $(".productCheckBox");
+                productCheckbox.empty();
+                
+                $.each(serviceItems, function(index, item) {
+                    var serviceItem = '<div class="serviceItem">' +
+                                      '<div>' +
+                                      '<input type="checkbox" class="productCheckBox" ' +
+                                      'data-name="' + item.m_pname + '" data-exp="' + item.m_pexp + '" ' +
+                                      'data-price="' + item.m_pprice + '">' +
+                                      '<span>' + item.m_pname + '</span><br/>' +
+                                      '<span>' + item.m_pexp + '</span>' +
+                                      '</div>' +
+                                      '<div>' + item.m_pprice + '만원</div>' +
+                                      '<div>' +
+                                      '<button class="decreaseQuantity">-</button>' +
+                                      '<input type="text" class="quantity" value="0" readonly>' +
+                                      '<button class="increaseQuantity">+</button>' +
+                                      '</div>' +
+                                      '</div>';
+                    productCheckbox.append(serviceItem);
+                    localStorage.setItem('selectedOption', option);
+                });
 
-        closeModal('#sizeModal');
-        openModal('#serviceCheckModal');
-        $('#serviceCheckModal').attr('data-prev-modal', 'sizeModal');
+                closeModal('#sizeModal');
+                openModal('#serviceCheckModal');
+                $('#serviceCheckModal').attr('data-prev-modal', 'sizeModal');
+                
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+        });
     });
-
-    privBtn.click(function() {
-    	localStorage.clear();
-        closeModal('#sizeModal');
-        openModal('#myModal');
-     
-    });
+    
 });
 </script>
 
