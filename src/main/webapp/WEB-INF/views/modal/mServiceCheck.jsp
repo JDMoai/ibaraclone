@@ -252,6 +252,7 @@ $(document).ready(function() {
 
     function closeModal(modalId) {
         $(modalId).css('display', 'none');
+        localStorage.clear();
     }
 
     $(document).on('click', '.close', function() {
@@ -259,6 +260,7 @@ $(document).ready(function() {
     });
 
     $(document).on('click', '#SCPrivBtn', function() {
+    	localStorage.clear();
         var prevModal = serviceCheckModal.attr('data-prev-modal');
         closeModal('#serviceCheckModal');
         openModal('#' + prevModal);

@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+String path=request.getContextPath();
+%>
     <title>mStandard.jsp</title>
     <link rel="stylesheet" href="resources/css/modal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -161,7 +164,7 @@ $(document).ready(function() {
     });
 
     privBtn.click(function() {
-    	
+    	localStorage.clear();
         closeModal('#sizeModal');
         openModal('#myModal');
      
