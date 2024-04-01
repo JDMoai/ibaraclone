@@ -125,63 +125,8 @@ String path=request.getContextPath();
 <script>
 $(document).ready(function() {
     var askModal = $('#askModal');
-  
-    updateSelectedItems();
-    updateTotalPrice();
+
     
- // 선택한 상품들을 업데이트하는 함수
-    function updateSelectedItems() {
-        var selectedItemsDiv = $('#selectedItems');
-        selectedItemsDiv.empty();
-
-        for (var itemName in selectedItems) {
-            if (selectedItems.hasOwnProperty(itemName)) {
-                var item = selectedItems[itemName];
-                var itemPrice = item.price;
-                var itemQuantity = item.quantity;
-                var totalPrice = itemPrice * itemQuantity;
-                var itemDiv = $('<div>').text(itemName);
-                var priceDiv = $('<div>').text(totalPrice + '만원');
-                selectedItemsDiv.append(itemDiv).append(priceDiv);
-            }
-        }
-
-        var checkedItemsDiv = $('#checkedItems');
-        checkedItemsDiv.empty();
-
-        var isFirst = true;
-
-        for (var itemName in checkedItems) {
-            if (checkedItems.hasOwnProperty(itemName)) {
-                var item = checkedItems[itemName];
-
-                var itemText = itemName;
-                if (isFirst) {
-                    itemText = '추가 ' + itemText;
-                    isFirst = false;
-                }
-
-                var itemDiv = $('<div id="itemText">').text(itemText);
-                checkedItemsDiv.append(itemDiv);
-            }
-        }
-    }
-
-    // 총 가격을 업데이트하는 함수
-    function updateTotalPrice() {
-        var totalPrice = 0;
-        for (var itemName in selectedItems) {
-            if (selectedItems.hasOwnProperty(itemName)) {
-                var item = selectedItems[itemName];
-                var itemPrice = item.price;
-                var itemQuantity = item.quantity;
-                totalPrice += itemPrice * itemQuantity;
-            }
-        }
-        $('#totalPriceValue').text(totalPrice + ' 만원');
-    }
-    
-
     function openModal(modalId) {
         $(modalId).css('display', 'block');
     }

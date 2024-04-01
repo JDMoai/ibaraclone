@@ -107,7 +107,7 @@ String path=request.getContextPath();
 
 <jsp:include page="mSize.jsp" />
 <jsp:include page="mServiceCheck.jsp" />
-<jsp:include page="mAsk.jsp" />
+
 
 <script>
 $(document).ready(function() {

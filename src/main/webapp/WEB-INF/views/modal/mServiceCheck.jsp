@@ -122,7 +122,7 @@ String path=request.getContextPath();
 			</div>
 		</div>
 </div>
-
+<jsp:include page="mAsk.jsp" />
 <!-- 이전버튼했을때 사이즈나 서비스입력이 업데이트 되게 만들어야함 -->
 <script>
 
@@ -266,7 +266,9 @@ $(document).ready(function() {
         openModal('#' + prevModal);
     });
 	$(document).on('click', '#SCNextBtn', function() {
-		
+		updateSelectedItems();
+	    updateTotalPrice();
+
         closeModal('#serviceCheckModal');
         openModal('#askModal');
     });
