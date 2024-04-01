@@ -158,9 +158,6 @@ $(document).ready(function() {
         $('#serviceCheckModal').attr('data-prev-modal', 'sizeModal');
 
          $('.selectedSize').text(selectedSize + '평');
-      //  $('.selectedService').text(selectedService);
-      //  $('.selectedSize, .selectedService').show(); 
-
 
         closeModal('#sizeModal');
         openModal('#serviceCheckModal');
