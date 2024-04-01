@@ -120,8 +120,7 @@ $(document).ready(function() {
     var decreaseBtn = $('#decreaseSize');
     var increaseBtn = $('#increaseSize');
     var privBtn = $('#sizePrivBtn');
-    var selectedOption = localStorage.getItem('selectedOption');
-
+   
     function openModal(modalId) {
         $(modalId).css('display', 'block');
     }

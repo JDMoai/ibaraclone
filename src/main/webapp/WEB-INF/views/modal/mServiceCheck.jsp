@@ -82,7 +82,7 @@ String path=request.getContextPath();
 				</div>
 				</div>
 				
-				<div class="serviceCheckModal_center_footer">
+				<div class="modal_center_footer">
 					<button id="SCPrivBtn">이전</button>
 					<button id="SCNextBtn">다음</button>	
 						
@@ -125,11 +125,15 @@ String path=request.getContextPath();
 
 <!-- 이전버튼했을때 사이즈나 서비스입력이 업데이트 되게 만들어야함 -->
 <script>
+
+
+var selectedItems = {};
+var checkedItems = {};
+
 $(document).ready(function() {
     var serviceCheckModal = $('#serviceCheckModal');
-    var selectedItems = {};
-    var selectedOption = localStorage.getItem('selectedOption');
-    var serviceItems = JSON.parse(localStorage.getItem('serviceItems'));
+    
+   
 
     // 상품 체크박스 클릭 이벤트 처리 (이벤트 위임 사용)
     $(document).on('change', '.productCheckBox', function() {
@@ -248,7 +252,7 @@ $(document).ready(function() {
 
     function closeModal(modalId) {
         $(modalId).css('display', 'none');
-        localStorage.clear();
+        
     }
 
     $(document).on('click', '.close', function() {
@@ -260,6 +264,11 @@ $(document).ready(function() {
         var prevModal = serviceCheckModal.attr('data-prev-modal');
         closeModal('#serviceCheckModal');
         openModal('#' + prevModal);
+    });
+	$(document).on('click', '#SCNextBtn', function() {
+		
+        closeModal('#serviceCheckModal');
+        openModal('#askModal');
     });
 });
 </script>
