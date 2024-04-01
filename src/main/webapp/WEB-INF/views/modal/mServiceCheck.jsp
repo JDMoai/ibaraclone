@@ -128,8 +128,8 @@ $(document).ready(function() {
     var selectedItems = {};
     var selectedOption = localStorage.getItem('selectedOption');
     var serviceItems = JSON.parse(localStorage.getItem('serviceItems'));
-    console.log(serviceItems);
-     $.ajax({
+    
+     <%-- $.ajax({
         type: "GET",
         async: true,
     	url: "<%= path %>/modal/getServiceItems",
@@ -139,7 +139,7 @@ $(document).ready(function() {
             
             var productCheckbox = $(".productCheckBox");
             productCheckbox.empty();
-            
+            console.log(serviceItems);
             $.each(serviceItems, function(index, item) {
                 var serviceItem = '<div class="serviceItem">' +
                                   '<div>' +
@@ -162,8 +162,8 @@ $(document).ready(function() {
         error: function(xhr, status, error) {
             console.log(error);
         }
-    }); 
-     console.log(serviceItems);
+    });  --%>
+  
     // 상품 체크박스 클릭 이벤트 처리 (이벤트 위임 사용)
     $(document).on('change', '.productCheckBox', function() {
         var itemName = $(this).data('name');

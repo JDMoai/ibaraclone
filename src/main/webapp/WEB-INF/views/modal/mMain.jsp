@@ -155,8 +155,43 @@ $(document).ready(function() {
         updateSelectedService(service);
         localStorage.setItem('selectedService', service);
         localStorage.setItem('selectedOption', option);
-        closeModal('#myModal');
-        openModal('#sizeModal');
+        
+        $.ajax({
+            type: "GET",
+            async: true,
+            url: "<%= path %>/modal/getServiceItems",
+            data: { m_type: option },
+            success: function(result) {
+                var serviceItems = result;
+                var productCheckbox = $(".productCheckBox");
+                productCheckbox.empty();
+                
+                $.each(serviceItems, function(index, item) {
+                    var serviceItem = '<div class="serviceItem">' +
+                                      '<div>' +
+                                      '<input type="checkbox" class="productCheckBox" ' +
+                                      'data-name="' + item.m_pname + '" data-exp="' + item.m_pexp + '" ' +
+                                      'data-price="' + item.m_pprice + '">' +
+                                      '<span>' + item.m_pname + '</span><br/>' +
+                                      '<span>' + item.m_pexp + '</span>' +
+                                      '</div>' +
+                                      '<div>' + item.m_pprice + '만원</div>' +
+                                      '<div>' +
+                                      '<button class="decreaseQuantity">-</button>' +
+                                      '<input type="text" class="quantity" value="0" readonly>' +
+                                      '<button class="increaseQuantity">+</button>' +
+                                      '</div>' +
+                                      '</div>';
+                    productCheckbox.append(serviceItem);
+                });
+                
+                closeModal('#myModal');
+                openModal('#sizeModal');
+            },
+            error: function(xhr, status, error) {
+                console.log(error);
+            }
+    });
     });
 
     openServiceCheckModalBtn.click(function() {
