@@ -98,11 +98,11 @@ String path=request.getContextPath();
 						<div class="selectedSize"></div>
 						<div class="selectedService">
 							<span id="selectedService"></span>
-							<div class="checkedItems">
-								<span id="checkedItems">
+							
+								<div id="checkedItems">
 									<!-- 선택한 상품들을 동적으로 생성 -->
-								</span>
-							</div>
+								</div>
+							
 						</div>
 					</div>
 				</div>
@@ -113,11 +113,11 @@ String path=request.getContextPath();
 						<span id="selectedService"></span>	
 						</div>												
 					</div>
-					<div class="selectedItems">
-						<span id="selectedItems">
+					
+						<div id="selectedItems">
 							<!-- 선택한 상품들을 동적으로 생성 -->
-						</span>
-					</div>
+						</div>
+					
 					<div class="totalPrice">
 						<div>합계</div>
 						<div id="totalPriceValue">만원</div>
@@ -126,7 +126,7 @@ String path=request.getContextPath();
 			</div>
 		</div>
 </div>
-<jsp:include page="mAsk.jsp" />
+
 <!-- 이전버튼했을때 사이즈나 서비스입력이 업데이트 되게 만들어야함 -->
 <script>
 

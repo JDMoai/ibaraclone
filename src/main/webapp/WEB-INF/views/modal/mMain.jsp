@@ -108,7 +108,7 @@ String path=request.getContextPath();
 
 <jsp:include page="mSize.jsp" />
 <jsp:include page="mServiceCheck.jsp" />
-
+<jsp:include page="mAsk.jsp" />
 
 <script>
 $(document).ready(function() {
@@ -147,8 +147,8 @@ $(document).ready(function() {
     });
 
     function updateSelectedService(service) {
-        $('#selectedService').text(service);
         $('.selectedService span').text(service);
+      	$('#selectedService').text(service);
         $('.selectedService').show();
     }
     

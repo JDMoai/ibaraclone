@@ -98,7 +98,9 @@ String path=request.getContextPath();
 						<div class="selectedSize"></div>
 						<div class="selectedService">
 							<span id="selectedService"></span>
-							<div id="checkedItems"></div>
+							<div class="checkedItems" id="checkedItems">
+									<!-- 선택한 상품들을 동적으로 생성 -->
+							</div>
 						</div>
 					</div>
 				</div>
@@ -109,7 +111,7 @@ String path=request.getContextPath();
 							<span id="selectedService"></span>
 						</div>
 					</div>
-					<div id="selectedItems">
+					<div class="selectedItems" id="selectedItems">
 						<!-- 선택한 상품들을 동적으로 생성 -->
 					</div>
 					<div class="totalPrice">
