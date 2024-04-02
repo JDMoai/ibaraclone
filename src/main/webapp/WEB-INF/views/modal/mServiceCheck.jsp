@@ -99,7 +99,7 @@ String path=request.getContextPath();
 						<div class="selectedService">
 							<span id="selectedService"></span>
 							
-								<div id="checkedItems">
+								<div class="checkedItems" id="checkedItems">
 									<!-- 선택한 상품들을 동적으로 생성 -->
 								</div>
 							
@@ -114,7 +114,7 @@ String path=request.getContextPath();
 						</div>												
 					</div>
 					
-						<div id="selectedItems">
+						<div class="selectedItems" id="selectedItems">
 							<!-- 선택한 상품들을 동적으로 생성 -->
 						</div>
 					
@@ -129,7 +129,8 @@ String path=request.getContextPath();
 
 <!-- 이전버튼했을때 사이즈나 서비스입력이 업데이트 되게 만들어야함 -->
 <script>
-
+var selectedItems = {};
+var checkedItems = {};
 $(document).ready(function() {
     var serviceCheckModal = $('#serviceCheckModal');
     
@@ -191,7 +192,7 @@ $(document).ready(function() {
 
  // 선택한 상품들을 업데이트하는 함수
     function updateSelectedItems() {
-        var selectedItemsDiv = $('#selectedItems');
+        var selectedItemsDiv = $('.selectedItems');
         selectedItemsDiv.empty();
 
         for (var itemName in selectedItems) {
@@ -206,7 +207,7 @@ $(document).ready(function() {
             }
         }
 
-        var checkedItemsDiv = $('#checkedItems');
+        var checkedItemsDiv = $('.checkedItems');
         checkedItemsDiv.empty();
 
         var isFirst = true;
@@ -241,10 +242,12 @@ $(document).ready(function() {
 
     $(document).on('click', '#SCNextBtn', function() {
     	
-   
         updateSelectedItems();
         updateTotalPrice();
-        
+     // 선택한 item 정보를 sessionStorage에 저장
+        sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
+        sessionStorage.setItem('checkedItems', JSON.stringify(checkedItems));
+       // console.log(selectedItems);
         closeModal('#serviceCheckModal');
         openModal('#askModal');
     });
