@@ -88,17 +88,17 @@ String path=request.getContextPath();
 						
 				</div>			
 			</div>
-			
-			 <div class="modal_rightside">
+
+			<div class="modal_rightside">
 				<div class="modal_rightside_header">
-				<p>요약</p>
+					<p>요약</p>
 				</div>
 				<div class="modal_rightside_body">
 					<div class="service_box">
 						<div class="selectedSize"></div>
 						<div class="selectedService">
 							<span id="selectedService"></span>
-							
+							<div id="checkedItems"></div>
 						</div>
 					</div>
 				</div>
@@ -106,15 +106,15 @@ String path=request.getContextPath();
 					<div class="expPrice">예상 견적</div>
 					<div>
 						<div class="selectedService">
-						<span id="selectedService"></span>	
-						</div>												
+							<span id="selectedService"></span>
+						</div>
 					</div>
 					<div id="selectedItems">
 						<!-- 선택한 상품들을 동적으로 생성 -->
 					</div>
 					<div class="totalPrice">
 						<div>합계</div>
-						<div id="totalPriceValue">만원</div>
+						<div id="totalPriceValue">0 만원</div>
 					</div>
 				</div>
 			</div>
@@ -123,38 +123,123 @@ String path=request.getContextPath();
 
 
 <script>
-    window.selectedItems = {};
-    window.checkedItems = {};
-$(document).ready(function() {
-    var askModal = $('#askModal');
-    
-    askModal.on('show', function() {
-        updateSelectedItems();
-        updateTotalPrice();
-    });
+var selectedItems = {};
+var checkedItems = {};
+	$(document).ready(function() {
+				var askModal = $('#askModal');
+				
+				
 
-    
-    
-    function openModal(modalId) {
-        $(modalId).css('display', 'block');
-    }
+				function openModal(modalId) {
+					$(modalId).css('display', 'block');
+					if (modalId === '#askModal') {
+				        setTimeout(function() {
+				            updateSelectedItems();
+				            updateTotalPrice();
+				        }, 0);
+				    }
+				}
 
-    function closeModal(modalId) {
-        $(modalId).css('display', 'none');
-    }
+				function closeModal(modalId) {
+					$(modalId).css('display', 'none');
+				}
 
-    $(document).on('click', '.close', function() {
-        closeModal('#askModal');
-    });
+				$(document).on('click', '.close', function() {
+					closeModal('#askModal');
+				});
 
-    $(document).on('click', '#askPrivBtn', function() {
-    	
-        //var prevModal2 = askModal.attr('data-prev-modal');
-        closeModal('#askModal');
-        openModal('#serviceCheckModal');
-        
-    });
-});
+				$(document).on('click', '#askPrivBtn', function() {
+					closeModal('#askModal');
+					openModal('#serviceCheckModal');
+				});
+				// 선택한 상품들을 업데이트하는 함수
+			    function updateSelectedItems() {
+			    	console.log('Updating Selected Items...');
+			        var selectedItemsDiv = $('#selectedItems');
+			        selectedItemsDiv.empty();
+
+			        for (var itemName in selectedItems) {
+			            if (selectedItems.hasOwnProperty(itemName)) {
+			                var item = selectedItems[itemName];
+			                var itemPrice = item.price;
+			                var itemQuantity = item.quantity;
+			                var totalPrice = itemPrice * itemQuantity;
+			                var itemDiv = $('<div>').text(itemName);
+			                var priceDiv = $('<div>').text(totalPrice + '만원');
+			                selectedItemsDiv.append(itemDiv).append(priceDiv);
+			            }
+			        }
+
+			        var checkedItemsDiv = $('#checkedItems');
+			        checkedItemsDiv.empty();
+
+			        var isFirst = true;
+
+			        for (var itemName in checkedItems) {
+			            if (checkedItems.hasOwnProperty(itemName)) {
+			                var itemText = itemName;
+			                if (isFirst) {
+			                    itemText = '추가 ' + itemText;
+			                    isFirst = false;
+			                }
+			                
+			                var itemDiv = $('<div id="itemText">').text(itemText);
+			                checkedItemsDiv.append(itemDiv);
+			            }
+			        }
+			    }
+
+			    // 총 가격을 업데이트하는 함수
+			    function updateTotalPrice() {
+			    	console.log('Updating Total Price...');
+			        var totalPrice = 0;
+			        for (var itemName in selectedItems) {
+			            if (selectedItems.hasOwnProperty(itemName)) {
+			                var item = selectedItems[itemName];
+			                var itemPrice = item.price;
+			                var itemQuantity = item.quantity;
+			                totalPrice += itemPrice * itemQuantity;
+			            }
+			        }
+			        $('#totalPriceValue').text(totalPrice + ' 만원');
+			    }
+
+				askModal.on('show', function() {
+				    // 세션에서 선택한 상품 정보와 체크된 항목 정보를 가져옴
+				    var selectedItems = '${sessionScope.selectedItems}';
+			        var checkedItems = '${sessionScope.checkedItems}';
+
+			        console.log('Selected Items from Session:', selectedItems);
+			        console.log('Checked Items from Session:', checkedItems);
+			        
+			        if (selectedItems && checkedItems) {
+			        	console.log('Selected Items:', selectedItems);
+			            console.log('Checked Items:', checkedItems);
+			            
+			            selectedItems = JSON.parse(selectedItems);
+			            checkedItems = JSON.parse(checkedItems);
+			            
+				        window.selectedItems = selectedItems;
+				        window.checkedItems = checkedItems;
+				        
+				        updateSelectedItems();
+				        updateTotalPrice();
+				        
+				        // 체크된 항목 표시
+				        var checkedItemsDiv = $('#checkedItems');
+				        checkedItemsDiv.empty();
+				        
+				        for (var itemName in checkedItems) {
+				            if (checkedItems.hasOwnProperty(itemName)) {
+				                var itemDiv = $('<div>').text(itemName);
+				                checkedItemsDiv.append(itemDiv);
+				            }
+				        }
+				       
+				    }
+				});
+				
+			});
 </script>
 
 </body>

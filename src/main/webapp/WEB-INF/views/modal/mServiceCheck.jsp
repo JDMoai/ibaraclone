@@ -189,56 +189,81 @@ $(document).ready(function() {
         }
     });
 
-    // 선택한 상품들을 업데이트하는 함수
-    // 선택한 상품들을 업데이트하는 함수
-window.updateSelectedItems = function() {
-    var selectedItemsDiv = $('#selectedItems');
-    selectedItemsDiv.empty();
+ // 선택한 상품들을 업데이트하는 함수
+    window.updateSelectedItems = function() {
+        var selectedItemsDiv = $('#selectedItems');
+        selectedItemsDiv.empty();
 
-    for (var itemName in selectedItems) {
-        if (selectedItems.hasOwnProperty(itemName)) {
-            var item = selectedItems[itemName];
-            var itemPrice = item.price;
-            var itemQuantity = item.quantity;
-            var totalPrice = itemPrice * itemQuantity;
-            var itemDiv = $('<div>').text(itemName);
-            var priceDiv = $('<div>').text(totalPrice + '만원');
-            selectedItemsDiv.append(itemDiv).append(priceDiv);
-        }
-    }
-
-    var checkedItemsDiv = $('#checkedItems');
-    checkedItemsDiv.empty();
-
-    var isFirst = true;
-
-    for (var itemName in checkedItems) {
-        if (checkedItems.hasOwnProperty(itemName)) {
-            var itemText = itemName;
-            if (isFirst) {
-                itemText = '추가 ' + itemText;
-                isFirst = false;
+        for (var itemName in selectedItems) {
+            if (selectedItems.hasOwnProperty(itemName)) {
+                var item = selectedItems[itemName];
+                var itemPrice = item.price;
+                var itemQuantity = item.quantity;
+                var totalPrice = itemPrice * itemQuantity;
+                var itemDiv = $('<div>').text(itemName);
+                var priceDiv = $('<div>').text(totalPrice + '만원');
+                selectedItemsDiv.append(itemDiv).append(priceDiv);
             }
-            
-            var itemDiv = $('<div id="itemText">').text(itemText);
-            checkedItemsDiv.append(itemDiv);
         }
-    }
-}
 
-// 총 가격을 업데이트하는 함수
-window.updateTotalPrice = function() {
-    var totalPrice = 0;
-    for (var itemName in selectedItems) {
-        if (selectedItems.hasOwnProperty(itemName)) {
-            var item = selectedItems[itemName];
-            var itemPrice = item.price;
-            var itemQuantity = item.quantity;
-            totalPrice += itemPrice * itemQuantity;
+        var checkedItemsDiv = $('#checkedItems');
+        checkedItemsDiv.empty();
+
+        var isFirst = true;
+
+        for (var itemName in checkedItems) {
+            if (checkedItems.hasOwnProperty(itemName)) {
+                var itemText = itemName;
+                if (isFirst) {
+                    itemText = '추가 ' + itemText;
+                    isFirst = false;
+                }
+                
+                var itemDiv = $('<div id="itemText">').text(itemText);
+                checkedItemsDiv.append(itemDiv);
+            }
         }
     }
-    $('#totalPriceValue').text(totalPrice + ' 만원');
-}
+
+    // 총 가격을 업데이트하는 함수
+    window.updateTotalPrice = function() {
+        var totalPrice = 0;
+        for (var itemName in selectedItems) {
+            if (selectedItems.hasOwnProperty(itemName)) {
+                var item = selectedItems[itemName];
+                var itemPrice = item.price;
+                var itemQuantity = item.quantity;
+                totalPrice += itemPrice * itemQuantity;
+            }
+        }
+        $('#totalPriceValue').text(totalPrice + ' 만원');
+    }
+
+    $(document).on('click', '#SCNextBtn', function() {
+        updateSelectedItems();
+        updateTotalPrice();
+        
+        // AJAX를 사용하여 데이터 전송
+        $.ajax({
+            url: "<%= path %>/modal/modalData",
+            method: 'POST',
+            data: {
+                selectedItems: JSON.stringify(selectedItems),
+                checkedItems: JSON.stringify(checkedItems)
+            },
+            success: function(response) {
+                closeModal('#serviceCheckModal');
+                
+                // AJAX 요청이 완료된 후 모달창 열기
+                setTimeout(function() {
+                    openModal('#askModal');
+                }, 0);
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', error);
+            }
+        });
+    });
 
     function openModal(modalId) {
         $(modalId).css('display', 'block');
@@ -259,20 +284,7 @@ window.updateTotalPrice = function() {
         closeModal('#serviceCheckModal');
         openModal('#' + prevModal);
     });
-	$(document).on('click', '#SCNextBtn', function() {
-		//var selectedItems = $(this).data('#selectedItems');
-		//var checkedItems = $(this).data('#checkedItems');
-		//$('#selectedItems').text(selectedItems);
-		//$('#checkedItems').text(checkedItems);
-		updateSelectedItems();
-	    updateTotalPrice();
-	    
-	    $('#askModal').data('selectedItems', selectedItems);
-	    $('#askModal').data('checkedItems', checkedItems);
-		
-        closeModal('#serviceCheckModal');
-        openModal('#askModal');
-    });
+	
 });
 </script>
 
