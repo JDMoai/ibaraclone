@@ -9,6 +9,7 @@ String path=request.getContextPath();
    
     <link rel="stylesheet" href="resources/css/modal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
    
 </head> 
 <body>

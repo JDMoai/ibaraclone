@@ -123,9 +123,17 @@ String path=request.getContextPath();
 
 
 <script>
+    window.selectedItems = {};
+    window.checkedItems = {};
 $(document).ready(function() {
     var askModal = $('#askModal');
+    
+    askModal.on('show', function() {
+        updateSelectedItems();
+        updateTotalPrice();
+    });
 
+    
     
     function openModal(modalId) {
         $(modalId).css('display', 'block');

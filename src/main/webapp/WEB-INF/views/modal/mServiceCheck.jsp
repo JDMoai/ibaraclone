@@ -146,14 +146,9 @@ $(document).ready(function() {
                 price: itemPrice,
                 quantity: itemQuantity
             };
+            checkedItems[itemName] = {};
         } else {
             delete selectedItems[itemName];
-        }
-        if ($(this).is(':checked')) {
-        	checkedItems[itemName] = {
-
-            };
-        } else {
             delete checkedItems[itemName];
         }
         
@@ -195,56 +190,55 @@ $(document).ready(function() {
     });
 
     // 선택한 상품들을 업데이트하는 함수
-    function updateSelectedItems() {
-  var selectedItemsDiv = $('#selectedItems');
-  selectedItemsDiv.empty();
+    // 선택한 상품들을 업데이트하는 함수
+window.updateSelectedItems = function() {
+    var selectedItemsDiv = $('#selectedItems');
+    selectedItemsDiv.empty();
 
-  for (var itemName in selectedItems) {
-    if (selectedItems.hasOwnProperty(itemName)) {
-      var item = selectedItems[itemName];
-      var itemPrice = item.price;
-      var itemQuantity = item.quantity;
-      var totalPrice = itemPrice * itemQuantity;
-      var itemDiv = $('<div>').text(itemName);
-      var priceDiv = $('<div>').text(totalPrice + '만원');
-      selectedItemsDiv.append(itemDiv).append(priceDiv);
+    for (var itemName in selectedItems) {
+        if (selectedItems.hasOwnProperty(itemName)) {
+            var item = selectedItems[itemName];
+            var itemPrice = item.price;
+            var itemQuantity = item.quantity;
+            var totalPrice = itemPrice * itemQuantity;
+            var itemDiv = $('<div>').text(itemName);
+            var priceDiv = $('<div>').text(totalPrice + '만원');
+            selectedItemsDiv.append(itemDiv).append(priceDiv);
+        }
     }
-  }
 
-  var checkedItemsDiv = $('#checkedItems');
-  checkedItemsDiv.empty();
+    var checkedItemsDiv = $('#checkedItems');
+    checkedItemsDiv.empty();
 
-  var isFirst = true; // 첫 번째 아이템인지 체크하기 위한 변수
+    var isFirst = true;
 
-  for (var itemName in checkedItems) {
-    if (checkedItems.hasOwnProperty(itemName)) {
-      var item = checkedItems[itemName];
-      
-      var itemText = itemName;
-      if (isFirst) {
-        itemText = '추가 ' + itemText; // 첫 번째 아이템일 때만 '추가 '를 앞에 붙임
-        isFirst = false; // 첫 번째 아이템 처리 후 false로 설정
-      }
-      
-      var itemDiv = $('<div id="itemText">').text(itemText);
-      checkedItemsDiv.append(itemDiv);
+    for (var itemName in checkedItems) {
+        if (checkedItems.hasOwnProperty(itemName)) {
+            var itemText = itemName;
+            if (isFirst) {
+                itemText = '추가 ' + itemText;
+                isFirst = false;
+            }
+            
+            var itemDiv = $('<div id="itemText">').text(itemText);
+            checkedItemsDiv.append(itemDiv);
+        }
     }
-  }
 }
 
-    // 총 가격을 업데이트하는 함수
-    function updateTotalPrice() {
-        var totalPrice = 0;
-        for (var itemName in selectedItems) {
-            if (selectedItems.hasOwnProperty(itemName)) {
-                var item = selectedItems[itemName];
-                var itemPrice = item.price;
-                var itemQuantity = item.quantity;
-                totalPrice += itemPrice * itemQuantity;
-            }
+// 총 가격을 업데이트하는 함수
+window.updateTotalPrice = function() {
+    var totalPrice = 0;
+    for (var itemName in selectedItems) {
+        if (selectedItems.hasOwnProperty(itemName)) {
+            var item = selectedItems[itemName];
+            var itemPrice = item.price;
+            var itemQuantity = item.quantity;
+            totalPrice += itemPrice * itemQuantity;
         }
-        $('#totalPriceValue').text(totalPrice + ' 만원');
     }
+    $('#totalPriceValue').text(totalPrice + ' 만원');
+}
 
     function openModal(modalId) {
         $(modalId).css('display', 'block');
@@ -266,9 +260,16 @@ $(document).ready(function() {
         openModal('#' + prevModal);
     });
 	$(document).on('click', '#SCNextBtn', function() {
+		//var selectedItems = $(this).data('#selectedItems');
+		//var checkedItems = $(this).data('#checkedItems');
+		//$('#selectedItems').text(selectedItems);
+		//$('#checkedItems').text(checkedItems);
 		updateSelectedItems();
 	    updateTotalPrice();
-
+	    
+	    $('#askModal').data('selectedItems', selectedItems);
+	    $('#askModal').data('checkedItems', checkedItems);
+		
         closeModal('#serviceCheckModal');
         openModal('#askModal');
     });
