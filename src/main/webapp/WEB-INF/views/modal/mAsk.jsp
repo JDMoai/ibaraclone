@@ -129,28 +129,6 @@ var selectedItems = {};
 var checkedItems = {};
 $(document).ready(function() {
 				var askModal = $('#askModal');
-				 
-				 var checkModalInterval = setInterval(function() {
-				        if (askModal.css('display') === 'block') {
-				            // 세션스토리지에서 데이터 불러오기
-				            var storedSelectedItems = sessionStorage.getItem('selectedItems');
-				            var storedCheckedItems = sessionStorage.getItem('checkedItems');
-				            
-				            console.log('Stored Selected Items:', storedSelectedItems);
-				            console.log('Stored Checked Items:', storedCheckedItems);
-				            
-				            if (storedSelectedItems && storedCheckedItems) {
-				                selectedItems = JSON.parse(storedSelectedItems);
-				                checkedItems = JSON.parse(storedCheckedItems);
-				                
-				                console.log('Parsed Selected Items:', selectedItems);
-				                console.log('Parsed Checked Items:', checkedItems);
-				                
-				            }
-				            
-				            clearInterval(checkModalInterval);
-				        }
-				    }, 100);
 				
 				function openModal(modalId) {
 					$(modalId).css('display', 'block');	
