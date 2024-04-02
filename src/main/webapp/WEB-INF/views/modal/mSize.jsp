@@ -153,10 +153,8 @@ $(document).ready(function() {
 
     $('#sizeNextBtn').click(function() {
         var selectedSize = $('#sizeInput').val();
-        var selectedService = $('#selectedService').text();
+        $('.selectedSize').text(selectedSize + '평');
         $('#serviceCheckModal').attr('data-prev-modal', 'sizeModal');
-
-         $('.selectedSize').text(selectedSize + '평');
 
         closeModal('#sizeModal');
         openModal('#serviceCheckModal');

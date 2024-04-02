@@ -60,18 +60,19 @@ public class ModalController {
 	    return modalService.getServiceItems(m_type);
 	}
 	
-	@PostMapping("/modal/modalData")
-	@ResponseBody
-    public void modalData(HttpServletRequest request, HttpSession session) {
-        String selectedItems = request.getParameter("selectedItems");
-        String checkedItems = request.getParameter("checkedItems");
-        
-        
-        //System.out.println("Selected Items: " + selectedItems);
-       // System.out.println("Checked Items: " + checkedItems);
-        
-        session.setAttribute("selectedItems", selectedItems);
-        session.setAttribute("checkedItems", checkedItems);
-    }
+	/*
+	 * @PostMapping("/modal/modalData")
+	 * 
+	 * @ResponseBody public void modalData(HttpServletRequest request, HttpSession
+	 * session) { String selectedItems = request.getParameter("selectedItems");
+	 * String checkedItems = request.getParameter("checkedItems");
+	 * 
+	 * 
+	 * //System.out.println("Selected Items: " + selectedItems); //
+	 * System.out.println("Checked Items: " + checkedItems);
+	 * 
+	 * session.setAttribute("selectedItems", selectedItems);
+	 * session.setAttribute("checkedItems", checkedItems); }
+	 */
  
 }

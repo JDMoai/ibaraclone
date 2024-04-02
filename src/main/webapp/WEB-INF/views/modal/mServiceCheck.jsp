@@ -98,8 +98,10 @@ String path=request.getContextPath();
 						<div class="selectedSize"></div>
 						<div class="selectedService">
 							<span id="selectedService"></span>
-							<div id="checkedItems">
-								
+							<div class="checkedItems">
+								<span id="checkedItems">
+									<!-- 선택한 상품들을 동적으로 생성 -->
+								</span>
 							</div>
 						</div>
 					</div>
@@ -111,8 +113,10 @@ String path=request.getContextPath();
 						<span id="selectedService"></span>	
 						</div>												
 					</div>
-					<div id="selectedItems">
-						<!-- 선택한 상품들을 동적으로 생성 -->
+					<div class="selectedItems">
+						<span id="selectedItems">
+							<!-- 선택한 상품들을 동적으로 생성 -->
+						</span>
 					</div>
 					<div class="totalPrice">
 						<div>합계</div>
@@ -125,10 +129,6 @@ String path=request.getContextPath();
 <jsp:include page="mAsk.jsp" />
 <!-- 이전버튼했을때 사이즈나 서비스입력이 업데이트 되게 만들어야함 -->
 <script>
-
-
-var selectedItems = {};
-var checkedItems = {};
 
 $(document).ready(function() {
     var serviceCheckModal = $('#serviceCheckModal');
@@ -190,7 +190,7 @@ $(document).ready(function() {
     });
 
  // 선택한 상품들을 업데이트하는 함수
-    window.updateSelectedItems = function() {
+    function updateSelectedItems() {
         var selectedItemsDiv = $('#selectedItems');
         selectedItemsDiv.empty();
 
@@ -226,7 +226,7 @@ $(document).ready(function() {
     }
 
     // 총 가격을 업데이트하는 함수
-    window.updateTotalPrice = function() {
+    function updateTotalPrice() {
         var totalPrice = 0;
         for (var itemName in selectedItems) {
             if (selectedItems.hasOwnProperty(itemName)) {
@@ -240,31 +240,14 @@ $(document).ready(function() {
     }
 
     $(document).on('click', '#SCNextBtn', function() {
+    	
+   
         updateSelectedItems();
         updateTotalPrice();
         
-        // AJAX를 사용하여 데이터 전송
-        $.ajax({
-            url: "<%= path %>/modal/modalData",
-            method: 'POST',
-            data: {
-                selectedItems: JSON.stringify(selectedItems),
-                checkedItems: JSON.stringify(checkedItems)
-            },
-            success: function(response) {
-                closeModal('#serviceCheckModal');
-                
-                // AJAX 요청이 완료된 후 모달창 열기
-                setTimeout(function() {
-                    openModal('#askModal');
-                }, 0);
-            },
-            error: function(xhr, status, error) {
-                console.error('AJAX Error:', error);
-            }
-        });
+        closeModal('#serviceCheckModal');
+        openModal('#askModal');
     });
-
     function openModal(modalId) {
         $(modalId).css('display', 'block');
     }
