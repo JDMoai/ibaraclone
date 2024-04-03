@@ -126,7 +126,7 @@ String path=request.getContextPath();
 					</div>
 					<div class="totalPrice">
 						<div>합계</div>
-						<div id="totalPriceValue">0 만원</div>
+						<div class="totalPriceValue">0 만원</div>
 					</div>
 				</div>
 			</div>

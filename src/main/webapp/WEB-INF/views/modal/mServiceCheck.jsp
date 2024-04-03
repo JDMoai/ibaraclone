@@ -120,7 +120,7 @@ String path=request.getContextPath();
 					
 					<div class="totalPrice">
 						<div>합계</div>
-						<div id="totalPriceValue">만원</div>
+						<div class="totalPriceValue">0 만원</div>
 					</div>
 				</div>
 			</div>
@@ -129,8 +129,7 @@ String path=request.getContextPath();
 
 <!-- 이전버튼했을때 사이즈나 서비스입력이 업데이트 되게 만들어야함 -->
 <script>
-var selectedItems = {};
-var checkedItems = {};
+
 $(document).ready(function() {
     var serviceCheckModal = $('#serviceCheckModal');
     
@@ -237,16 +236,16 @@ $(document).ready(function() {
                 totalPrice += itemPrice * itemQuantity;
             }
         }
-        $('#totalPriceValue').text(totalPrice + ' 만원');
+        $('.totalPriceValue').text(totalPrice + ' 만원');
     }
 
     $(document).on('click', '#SCNextBtn', function() {
     	
-        updateSelectedItems();
-        updateTotalPrice();
      // 선택한 item 정보를 sessionStorage에 저장
         sessionStorage.setItem('selectedItems', JSON.stringify(selectedItems));
         sessionStorage.setItem('checkedItems', JSON.stringify(checkedItems));
+        updateSelectedItems();
+        updateTotalPrice(); 
        // console.log(selectedItems);
         closeModal('#serviceCheckModal');
         openModal('#askModal');
