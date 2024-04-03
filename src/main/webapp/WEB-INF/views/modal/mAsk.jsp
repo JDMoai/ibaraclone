@@ -166,15 +166,7 @@ String path=request.getContextPath();
 							<div class="checkedItems" id="checkedItems">
 									<!-- 선택한 상품들을 동적으로 생성 -->
 							</div>						
-						</div>
-						<div class="questionAsk" id="questionAsk">
-								<div>시공공간종류: <span id="place_result"></span></div>
-							    <div>시공환경: <span id="circs_result"></span></div>
-							    <div>시공주소: <span id="addr_result"></span></div>
-							    <div>희망시공일자: <span id="wantdate_result"></span></div>
-							    <div>희망상담시간: <span id="wanttime_result"></span></div>
-							    <div>추가요청사항: <span id="request_result"></span></div>
-							</div>
+						</div>						
 					</div>
 				</div>
 				<div class="modal_rightside_footer">
@@ -222,26 +214,29 @@ $(document).ready(function() {
 				});
 				
 				$(document).on('click', '#askNextBtn', function() {
+					
+					
+					
 					closeModal('#askModal');
-					openModal('#serviceCheckModal');
+					openModal('#infoModal');
 				});
 				
 				// 시공공간종류 선택 시
 			    $(".place_s").change(function() {
 			        var selectedPlace = $(this).val();
-			        $("#place_result").text(selectedPlace);
+			        $(".place_result").text(selectedPlace);
 			    });
 
 			    // 시공환경 선택 시
 			    $(".circs_s").change(function() {
 			        var selectedCircs = $(this).val();
-			        $("#circs_result").text(selectedCircs);
+			        $(".circs_result").text(selectedCircs);
 			    });
 
 			    // 시공주소 입력 시
 			    $("#sample5_address").on("input", function() {
 			        var enteredAddr = $(this).val();
-			        $("#addr_result").text(enteredAddr);
+			        $(".addr_result").text(enteredAddr);
 			    });
 			 // 주소 검색 버튼 클릭 시
 			    $("#sample5_address2").click(function() {
@@ -249,14 +244,14 @@ $(document).ready(function() {
 			            oncomplete: function(data) {
 			                var addr = data.address;
 			                $("#sample5_address").val(addr);
-			                $("#addr_result").text(addr);
+			                $(".addr_result").text(addr);
 			            },
 			            onclose: function(state) {
 			                if (state === 'FORCE_CLOSE') {
 			                    // 주소 검색창이 닫힐 때 실행되는 콜백 함수
 			                    // 선택된 주소가 입력 필드에 유지되도록 함
 			                    var selectedAddr = $("#sample5_address").val();
-			                    $("#addr_result").text(selectedAddr);
+			                    $(".addr_result").text(selectedAddr);
 			                }
 			            }
 			        }).open();
@@ -265,19 +260,19 @@ $(document).ready(function() {
 			    // 희망시공일자 선택 시
 			    $(".wantdate_s").change(function() {
 			        var selectedWantdate = $(this).val();
-			        $("#wantdate_result").text(selectedWantdate);
+			        $(".wantdate_result").text(selectedWantdate);
 			    });
 
 			    // 희망상담시간 선택 시
 			    $(".wanttime_s").change(function() {
 			        var selectedWanttime = $(this).val();
-			        $("#wanttime_result").text(selectedWanttime);
+			        $(".wanttime_result").text(selectedWanttime);
 			    });
 
 			    // 추가요청사항 입력 시
 			    $(".request_ta").on("input", function() {
 			        var enteredRequest = $(this).val();
-			        $("#request_result").text(enteredRequest);
+			        $(".request_result").text(enteredRequest);
 			    });
 				
 			});

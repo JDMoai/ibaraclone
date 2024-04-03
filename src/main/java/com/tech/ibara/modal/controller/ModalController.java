@@ -43,10 +43,22 @@ public class ModalController {
 
 	@RequestMapping("/modal/mServiceCheck")
     public String mServiceCheck(HttpServletRequest request, Model model) {
-		System.out.println("mServiceCheck컨트롤러");
+	
    
         return "/modal/mServiceCheck";
     }
+	@RequestMapping("/modal/mAsk")
+	public String mAsk(HttpServletRequest request, Model model) {
+		
+		
+		return "/modal/mAsk";
+	}
+	@RequestMapping("/modal/mInfo")
+	public String mInfo(HttpServletRequest request, Model model) {
+		
+		
+		return "/modal/mInfo";
+	}
 	
 	@Autowired
     public ModalController(ModalService modalService) {
