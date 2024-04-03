@@ -74,25 +74,34 @@ String path=request.getContextPath();
 					<span id="closeaskModal" class="close">&times;</span>
 				</div>
 				<div class="Modal_center">
-				<div class="modal_center_body">
-                <div class="row">      
-                        
-                    <div class="item12">  
-	                    item12
-                    </div>
-                    <div class="item13">
-                       	item13
-                    </div>
-                    <div class="item14">
-                    	item14
-                    </div>
-                    <div class="item15">  
-	                    item15
-                    </div>   
-                                         
-                </div>
-                	
-            </div>
+					<div class="modal_center_body">
+					  <div class="infoRow">
+					  	<div class="users">
+							<div class="non-member">비회원 견적</div>  	
+							<div class="member">기존 고객 로그인하기</div>
+					  	</div>
+					    <div class="item12">
+					      <label for="name">성함</label>
+					      <input type="text" id="name" name="name" required>
+					    </div>
+					    <div class="item13">
+					      <label for="email">이메일</label>
+					      <input type="email" id="email" name="email" required>
+					    </div>
+					    <div class="item14">
+					      <label for="phone">전화번호</label>
+					      <input type="tel" id="phone" name="phone" required>
+					    </div>
+					    <div class="item15">
+					      <label for="password">비밀번호</label>
+					      <input type="password" id="password" name="password" required>
+					    </div>
+					    <div class="item16">
+					      <label for="confirmPassword">비밀번호확인</label>
+					      <input type="password" id="confirmPassword" name="confirmPassword" required>
+					    </div>
+					  </div>
+					</div>
 				</div>
 				
 				<div class="modal_center_footer">

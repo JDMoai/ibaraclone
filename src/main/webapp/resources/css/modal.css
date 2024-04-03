@@ -445,6 +445,36 @@ a {
 	width: 450px;
 }
 
+/* ----------------info--------------- */
+.infoRow > div {
+  margin-bottom: 15px;
+}
+
+/* .item12 label,
+.item13 label,
+.item14 label,
+.item15 label,
+.item16 label{
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
+}  */
+
+.item12,
+.item13,
+.item14,
+.item15,
+.item16{
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.users{
+	display: flex;
+	justify-content: space-between;
+}
 
 
 
