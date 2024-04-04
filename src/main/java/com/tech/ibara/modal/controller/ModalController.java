@@ -74,7 +74,10 @@ public class ModalController {
 	}
 	@PostMapping("/modal/insertNonMember")
 	@ResponseBody
-	public String insertNonMember(NonMemberDto nonMemberDto) {
-	    return modalService.insertNonMember(nonMemberDto);
+	public void insertNonMember(NonMemberDto nonMemberDto) {
+		
+		System.out.println("insertNonMember");
+	    modalService.insertNonMember(nonMemberDto);
+	    // 리다이렉트 또는 다른 처리 로직 추가
 	}
 }

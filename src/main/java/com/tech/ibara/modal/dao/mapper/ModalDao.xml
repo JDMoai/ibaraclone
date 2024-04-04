@@ -22,7 +22,7 @@
             #{name},
             #{phone},
             #{email},
-            #{pw},
+            #{pw, jdbcType=VARCHAR},
             SYSDATE
         )
     </insert>

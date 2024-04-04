@@ -2,11 +2,14 @@ package com.tech.ibara.modal.dto;
 
 import java.sql.Date;
 
+import lombok.NonNull;
+
 public class NonMemberDto {
 	private String estino;
 	private String name;
 	private String phone;
-	private String email;
+	private String email;	
+	@NonNull
 	private String pw;
 	private Date created_at;
 	

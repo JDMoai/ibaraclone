@@ -11,6 +11,6 @@ public interface ModalService {
 
 	public List<ModalCheckDto> getServiceItems(String m_type);
 
-	String insertNonMember(NonMemberDto nonMemberDto);
+	void insertNonMember(NonMemberDto nonMemberDto);
 
 }

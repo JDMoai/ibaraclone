@@ -30,9 +30,8 @@ public class ModalCheckService implements ModalService{
     }
 
 	@Override
-    public String insertNonMember(NonMemberDto nonMemberDto) {
+    public void insertNonMember(NonMemberDto nonMemberDto) {
         modalDao.insertNonMember(nonMemberDto);
-        return "redirect:/modal/mComplete";
     }
 
 }

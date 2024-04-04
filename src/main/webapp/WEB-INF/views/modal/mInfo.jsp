@@ -87,7 +87,7 @@ String path=request.getContextPath();
 						    </div>
 						    <div class="item15">
 						      <label for="password">비밀번호</label>
-						      <input type="password" id="password" name="password" required>
+						      <input type="password" id="password" name="pw" required>
 						    </div>
 						    <div class="item16">
 						      <label for="confirmPassword">비밀번호확인</label>
@@ -172,7 +172,7 @@ $(document).ready(function() {
 					openModal('#askModal');
 				});
 				
-				<%-- $(document).on('click', '#infoNextBtn', function() {
+				$(document).on('click', '#infoNextBtn', function() {
 					 var password = $('#password').val();
 					    var confirmPassword = $('#confirmPassword').val();
 					    
@@ -195,7 +195,7 @@ $(document).ready(function() {
 					    });
 					closeModal('#infoModal');
 					openModal('#completeModal');
-				}); --%>
+				});
 				
 			});
 </script>
