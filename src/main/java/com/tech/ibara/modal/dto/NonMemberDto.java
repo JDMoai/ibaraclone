@@ -1,11 +1,16 @@
 package com.tech.ibara.modal.dto;
 
+import java.sql.Date;
+
 public class NonMemberDto {
 	private String estino;
 	private String name;
 	private String phone;
 	private String email;
 	private String pw;
+	private Date created_at;
+	
+	
 	public String getEstino() {
 		return estino;
 	}
@@ -35,6 +40,12 @@ public class NonMemberDto {
 	}
 	public void setPw(String pw) {
 		this.pw = pw;
+	}
+	public Date getCreated_at() {
+		return created_at;
+	}
+	public void setCreated_at(Date created_at) {
+		this.created_at = created_at;
 	}
 	
 	}

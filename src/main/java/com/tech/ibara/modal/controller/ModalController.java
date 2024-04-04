@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tech.ibara.modal.dao.mapper.ModalDao;
 import com.tech.ibara.modal.dto.ModalCheckDto;
+import com.tech.ibara.modal.dto.NonMemberDto;
 import com.tech.ibara.modal.service.ModalCheckService;
 import com.tech.ibara.modal.service.ModalService;
 
@@ -71,5 +72,12 @@ public class ModalController {
 		System.out.println("getServiceItems");
 	    return modalService.getServiceItems(m_type);
 	}
- 
+	@PostMapping("/modal/insertNonMember")
+	@ResponseBody
+	public String insertNonMember(NonMemberDto nonMemberDto) {
+	    // NonMemberDto를 이용하여 my_nonmember 테이블에 insert 처리
+	    // ...
+	    
+	    return "redirect:/modal/mComplete"; // 다음 페이지로 리다이렉트
+	}
 }
