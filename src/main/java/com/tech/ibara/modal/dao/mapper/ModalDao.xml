@@ -26,6 +26,11 @@
             SYSDATE
         )
     </insert>
+    
+    <insert id="insertModalComplete" parameterType="com.tech.ibara.modal.dto.ModalCompleteDto">
+    INSERT INTO modal_complete (ESTINO, M_ADDR,M_TEL,M_CONTENT,M_SIZE,M_REQUEST,M_PRICE,M_WANTTIME,M_WANTDATE,M_CIRCS,M_PLACE) 
+    VALUES (#{필드1}, #{필드2}, ...)
+</insert>
 	
 	
 </mapper>

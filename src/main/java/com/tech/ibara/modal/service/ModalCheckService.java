@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 
 import com.tech.ibara.modal.dao.mapper.ModalDao;
 import com.tech.ibara.modal.dto.ModalCheckDto;
+import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
 
 @Service
@@ -33,5 +34,10 @@ public class ModalCheckService implements ModalService{
     public void insertNonMember(NonMemberDto nonMemberDto) {
         modalDao.insertNonMember(nonMemberDto);
     }
+	
 
+	@Override
+    public void insertModalComplete(ModalCompleteDto modalCompleteDto) {
+        modalDao.insertModalComplete(modalCompleteDto);
+    }
 }

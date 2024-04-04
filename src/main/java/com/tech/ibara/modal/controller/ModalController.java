@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tech.ibara.modal.dao.mapper.ModalDao;
 import com.tech.ibara.modal.dto.ModalCheckDto;
+import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
 import com.tech.ibara.modal.service.ModalCheckService;
 import com.tech.ibara.modal.service.ModalService;
@@ -79,5 +80,13 @@ public class ModalController {
 		System.out.println("insertNonMember");
 	    modalService.insertNonMember(nonMemberDto);
 	    // 리다이렉트 또는 다른 처리 로직 추가
+	}
+	
+	@PostMapping("/modal/insertModalComplete")
+	@ResponseBody
+	public void insertModalComplete(ModalCompleteDto modalCompleteDto) {
+		
+		System.out.println("insertModalComplete");
+	    modalService.insertModalComplete(modalCompleteDto);
 	}
 }

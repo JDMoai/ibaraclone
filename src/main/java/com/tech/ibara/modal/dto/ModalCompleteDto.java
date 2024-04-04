@@ -1,7 +1,5 @@
 package com.tech.ibara.modal.dto;
 
-import java.sql.Date;
-
 public class ModalCompleteDto {
 
 	
@@ -12,7 +10,6 @@ public class ModalCompleteDto {
 	private String m_size;
 	private String m_request;
 	private String m_price;
-	private Date m_date;
 	private String m_wanttime;
 	private String m_wantdate;
 	private String m_circs;
@@ -60,12 +57,7 @@ public class ModalCompleteDto {
 	public void setM_price(String m_price) {
 		this.m_price = m_price;
 	}
-	public Date getM_date() {
-		return m_date;
-	}
-	public void setM_date(Date m_date) {
-		this.m_date = m_date;
-	}
+	
 	public String getM_wanttime() {
 		return m_wanttime;
 	}
