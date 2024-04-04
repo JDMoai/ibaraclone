@@ -204,19 +204,19 @@ $(document).ready(function() {
 					        success: function(response) {
 					            // 응답으로 받은 estino 값을 사용하여 ModalCompleteDto 객체 생성
 					            var modalCompleteDto = {
-					                estino: response,
-					                m_addr: $('.addr_result').text(),
-					                m_tel: $('#phone').val(),
-					                m_content: $('.selectedItems').text(),
-					                m_size: $('.selectedSize').text(),
-					                m_request: $('.request_result').text(),
-					                m_price: $('.totalPriceValue').text(),
-					                m_wanttime: $('.wanttime_result').text(),
-					                m_wantdate: $('.wantdate_result').text(),
-					                m_circs: $('.circs_result').text(),
-					                m_place: $('.place_result').text()
+					            		estino: response,
+					            	    m_addr: $('.addr_result').text().trim(),
+					            	    m_tel: $('#phone').val().trim(),
+					            	    m_content: $('.selectedService').text().trim(),
+					            	    m_size: $('.selectedSize').text().trim(),
+					            	    m_request: $('.request_result').text().trim(),
+					            	    m_price: $('.totalPriceValue').text().trim(),
+					            	    m_wanttime: $('.wanttime_result').text().trim(),
+					            	    m_wantdate: $('.wantdate_result').text().trim(),
+					            	    m_circs: $('.circs_result').text().trim(),
+					            	    m_place: $('.place_result').text().trim()
 					            };
-
+					            console.log("modalCompleteDto:", modalCompleteDto);
 					            // updateModalComplete 메서드 호출
 					            $.ajax({
 					                type: 'POST',
