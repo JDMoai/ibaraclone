@@ -72,26 +72,28 @@ String path=request.getContextPath();
 							<div class="non-member">비회원 견적</div>  	
 							<div class="member">기존 고객 로그인하기</div>
 					  	</div>
-					    <div class="item12">
-					      <label for="name">성함</label>
-					      <input type="text" id="name" name="name" required>
-					    </div>
-					    <div class="item13">
-					      <label for="email">이메일</label>
-					      <input type="email" id="email" name="email" required>
-					    </div>
-					    <div class="item14">
-					      <label for="phone">전화번호</label>
-					      <input type="tel" id="phone" name="phone" required>
-					    </div>
-					    <div class="item15">
-					      <label for="password">비밀번호</label>
-					      <input type="password" id="password" name="password" required>
-					    </div>
-					    <div class="item16">
-					      <label for="confirmPassword">비밀번호확인</label>
-					      <input type="password" id="confirmPassword" name="confirmPassword" required>
-					    </div>
+					  	<form id="nonMemberForm" action="<%= request.getContextPath() %>/modal/insertNonMember" method="post">
+						    <div class="item12">
+						      <label for="name">성함</label>
+						      <input type="text" id="name" name="name" required>
+						    </div>
+						    <div class="item13">
+						      <label for="email">이메일</label>
+						      <input type="email" id="email" name="email" required>
+						    </div>
+						    <div class="item14">
+						      <label for="phone">전화번호</label>
+						      <input type="tel" id="phone" name="phone" required>
+						    </div>
+						    <div class="item15">
+						      <label for="password">비밀번호</label>
+						      <input type="password" id="password" name="password" required>
+						    </div>
+						    <div class="item16">
+						      <label for="confirmPassword">비밀번호확인</label>
+						      <input type="password" id="confirmPassword" name="confirmPassword" required>
+						    </div>
+					    </form>
 					  </div>
 					</div>
 				</div>
@@ -171,8 +173,17 @@ $(document).ready(function() {
 				});
 				
 				$(document).on('click', '#infoNextBtn', function() {
-					closeModal('#');
-					openModal('#');
+					 var password = $('#password').val();
+					    var confirmPassword = $('#confirmPassword').val();
+					    
+					    if (password !== confirmPassword) {
+					        alert('비밀번호가 일치하지 않습니다.');
+					        return;
+					    }
+					    
+					    $('#nonMemberForm').submit();
+					closeModal('#infoModal');
+					openModal('#completeModal');
 				});
 				
 			});
