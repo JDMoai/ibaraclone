@@ -14,18 +14,16 @@
     
 	<insert id="insertNonMember" parameterType="com.tech.ibara.modal.dto.NonMemberDto">
         INSERT INTO MY_NONMEMBER (ESTINO, NAME, PHONE, EMAIL, PW, CREATED_AT)
-        VALUES (
-            CONCAT(
-                'M',
-                DATE_FORMAT(NOW(), '%Y%M%D'),
-                LPAD(COALESCE((SELECT MAX(SUBSTR(ESTINO, 10, 4)) FROM MY_NONMEMBER WHERE DATE(CREATED_AT) = CURDATE()), 0) + 1, 4, '0'),
-                LPAD(FLOOR(RAND() * 100), 2, '0')
-            ),
+		VALUES (
+		    'M' || 
+		    TO_CHAR(SYSDATE, 'YYYYMMDD') ||
+		    LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(ESTINO, 10, 4)) FROM MY_NONMEMBER WHERE TRUNC(CREATED_AT) = TRUNC(SYSDATE))), 0) + 1, 4, '0') ||
+		    LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
             #{name},
             #{phone},
             #{email},
             #{pw},
-            NOW()
+            SYSDATE
         )
     </insert>
 	

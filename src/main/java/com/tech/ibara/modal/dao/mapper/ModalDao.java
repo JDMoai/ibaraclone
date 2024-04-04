@@ -8,5 +8,5 @@ import com.tech.ibara.modal.dto.NonMemberDto;
 
 public interface ModalDao {
 	List<ModalCheckDto> selectServiceItems(String m_type);
-	void insertNonMember(NonMemberDto nonMemberDto);
+	String insertNonMember(NonMemberDto nonMemberDto);
 }

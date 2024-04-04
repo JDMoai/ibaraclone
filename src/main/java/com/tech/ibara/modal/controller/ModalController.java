@@ -75,9 +75,6 @@ public class ModalController {
 	@PostMapping("/modal/insertNonMember")
 	@ResponseBody
 	public String insertNonMember(NonMemberDto nonMemberDto) {
-	    // NonMemberDto를 이용하여 my_nonmember 테이블에 insert 처리
-	    // ...
-	    
-	    return "redirect:/modal/mComplete"; // 다음 페이지로 리다이렉트
+	    return modalService.insertNonMember(nonMemberDto);
 	}
 }

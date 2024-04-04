@@ -404,12 +404,12 @@ a {
 }
 
 /* -------------mAsk------------------ */
-#sample5_address{
+#sample5_address1{
 	border: none;
 	outline: none;
 	width: 400px;
 }
-#sample5_address2{
+.sample5_address2{
 	border-radius: 8px;
 	background: #555;
 	color: #fff;

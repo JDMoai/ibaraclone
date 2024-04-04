@@ -12,7 +12,7 @@ String path=request.getContextPath();
  	<link rel="stylesheet" href="resources/css/modal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
+   
 </head>
 <body>
 <!-- mInfo.jsp -->
@@ -172,7 +172,7 @@ $(document).ready(function() {
 					openModal('#askModal');
 				});
 				
-				$(document).on('click', '#infoNextBtn', function() {
+				<%-- $(document).on('click', '#infoNextBtn', function() {
 					 var password = $('#password').val();
 					    var confirmPassword = $('#confirmPassword').val();
 					    
@@ -181,10 +181,21 @@ $(document).ready(function() {
 					        return;
 					    }
 					    
-					    $('#nonMemberForm').submit();
+					    $.ajax({
+					        type: 'POST',
+					        url: '<%= path %>/modal/insertNonMember',
+					        data: $('#nonMemberForm').serialize(),
+					        success: function(response) {
+					            // 응답으로 받은 리다이렉트 URL을 사용하여 모달창 띄우기
+					            openModal(response);
+					        },
+					        error: function() {
+					            alert('오류가 발생했습니다.');
+					        }
+					    });
 					closeModal('#infoModal');
 					openModal('#completeModal');
-				});
+				}); --%>
 				
 			});
 </script>

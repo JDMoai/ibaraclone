@@ -12,12 +12,14 @@ import org.springframework.ui.Model;
 
 import com.tech.ibara.modal.dao.mapper.ModalDao;
 import com.tech.ibara.modal.dto.ModalCheckDto;
+import com.tech.ibara.modal.dto.NonMemberDto;
 
 @Service
 public class ModalCheckService implements ModalService{
 			
 	private ModalDao modalDao;
 	
+	@Autowired
 	public ModalCheckService(ModalDao modalDao) {
 		this.modalDao = modalDao;
 	}
@@ -27,5 +29,10 @@ public class ModalCheckService implements ModalService{
         return modalDao.selectServiceItems(m_type);
     }
 
+	@Override
+    public String insertNonMember(NonMemberDto nonMemberDto) {
+        modalDao.insertNonMember(nonMemberDto);
+        return "redirect:/modal/mComplete";
+    }
 
 }
