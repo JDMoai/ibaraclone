@@ -82,11 +82,11 @@ public class ModalController {
 	    // 리다이렉트 또는 다른 처리 로직 추가
 	}
 	
-	@PostMapping("/modal/insertModalComplete")
+	@PostMapping("/modal/updateModalComplete")
 	@ResponseBody
-	public void insertModalComplete(ModalCompleteDto modalCompleteDto) {
+	public void updateModalComplete(ModalCompleteDto modalCompleteDto) {
 		
-		System.out.println("insertModalComplete");
-	    modalService.insertModalComplete(modalCompleteDto);
+		System.out.println("updateModalComplete");
+	    modalService.updateModalComplete(modalCompleteDto);
 	}
 }

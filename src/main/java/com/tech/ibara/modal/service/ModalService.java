@@ -14,6 +14,6 @@ public interface ModalService {
 
 	void insertNonMember(NonMemberDto nonMemberDto);
 	
-	void insertModalComplete(ModalCompleteDto modalCompleteDto);
+	void updateModalComplete(ModalCompleteDto modalCompleteDto);
 
 }

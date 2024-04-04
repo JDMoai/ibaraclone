@@ -1,65 +1,66 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <%
-String path=request.getContextPath();
+	String path = request.getContextPath();
 %>
 <meta charset="UTF-8">
 <title>고객정보창</title>
- 	<link rel="stylesheet" href="resources/css/modal.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-   
+<link rel="stylesheet" href="resources/css/modal.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 </head>
 <body>
-<!-- mInfo.jsp -->
-<!-- 평수 선택 모달 창 영역 -->
-<div id="infoModal" class="modal" data-prev-modal="">
-    <div class="modal_content">
-        <div class="modal_leftside">
-            <div class=modal_leftside_progress>
-                <ul>
-                    <li data-step-name="services" class="">
-                        <div>
-                            <span>어떤 서비스가 필요하신가요?</span>
-                        </div>
-                    </li>
-                    <li data-step-name="service_select" class="">
-                        <div>
-                            <span>원하는 서비스 선택하기</span>
-                        </div>
-                    </li>
-                    <li data-step-name="ask" class="">
-                        <div>
-                            <span>추가질문</span>
-                        </div>
-                    </li>
-                    
-                    <li data-step-name="info" class="">
-                        <div>
-                            <span>정보입력</span>
-                        </div>
-                    </li>
-                    
-                    <li data-step-name="complete" class="">
-                        <div>
-                            <span>견적완료</span>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="modal_leftside_content">
-                <h4>정보 입력</h4>
-                <div>연락을 드릴 수 있는 고객님의 정보를 입력해 주세요!</div>
-            </div>
-            <div class="modal_leftside_question">
-                <h5>바로문의</h5>
-                123-456-7890
-            </div>
-        </div>
+	<!-- mInfo.jsp -->
+	<!-- 평수 선택 모달 창 영역 -->
+	<div id="infoModal" class="modal" data-prev-modal="">
+		<div class="modal_content">
+			<div class="modal_leftside">
+				<div class=modal_leftside_progress>
+					<ul>
+						<li data-step-name="services" class="">
+							<div>
+								<span>어떤 서비스가 필요하신가요?</span>
+							</div>
+						</li>
+						<li data-step-name="service_select" class="">
+							<div>
+								<span>원하는 서비스 선택하기</span>
+							</div>
+						</li>
+						<li data-step-name="ask" class="">
+							<div>
+								<span>추가질문</span>
+							</div>
+						</li>
+
+						<li data-step-name="info" class="">
+							<div>
+								<span>정보입력</span>
+							</div>
+						</li>
+
+						<li data-step-name="complete" class="">
+							<div>
+								<span>견적완료</span>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<div class="modal_leftside_content">
+					<h4>정보 입력</h4>
+					<div>연락을 드릴 수 있는 고객님의 정보를 입력해 주세요!</div>
+				</div>
+				<div class="modal_leftside_question">
+					<h5>바로문의</h5>
+					123-456-7890
+				</div>
+			</div>
 			<div class="modal_center">
 				<div class="modal_center_header">
 					<h3>고객 정보 입력</h3>
@@ -67,42 +68,45 @@ String path=request.getContextPath();
 				</div>
 				<div class="Modal_center">
 					<div class="modal_center_body">
-					  <div class="infoRow">
-					  	<div class="users">
-							<div class="non-member">비회원 견적</div>  	
-							<div class="member">기존 고객 로그인하기</div>
-					  	</div>
-					  	<form id="nonMemberForm" action="<%= request.getContextPath() %>/modal/insertNonMember" method="post">
-						    <div class="item12">
-						      <label for="name">성함</label>
-						      <input type="text" id="name" name="name" required>
-						    </div>
-						    <div class="item13">
-						      <label for="email">이메일</label>
-						      <input type="email" id="email" name="email" required>
-						    </div>
-						    <div class="item14">
-						      <label for="phone">전화번호</label>
-						      <input type="tel" id="phone" name="phone" required>
-						    </div>
-						    <div class="item15">
-						      <label for="password">비밀번호</label>
-						      <input type="password" id="password" name="pw" required>
-						    </div>
-						    <div class="item16">
-						      <label for="confirmPassword">비밀번호확인</label>
-						      <input type="password" id="confirmPassword" name="confirmPassword" required>
-						    </div>
-					    </form>
-					  </div>
+						<div class="infoRow">
+							<div class="users">
+								<div class="non-member">비회원 견적</div>
+								<div class="member">기존 고객 로그인하기</div>
+							</div>
+							<form id="nonMemberForm"
+								action="<%=request.getContextPath()%>/modal/insertNonMember"
+								method="post">
+								<div class="item12">
+									<label for="name">성함</label> <input type="text" id="name"
+										name="name" required>
+								</div>
+								<div class="item13">
+									<label for="email">이메일</label> <input type="email" id="email"
+										name="email" required>
+								</div>
+								<div class="item14">
+									<label for="phone">전화번호</label> <input type="tel" id="phone"
+										name="phone" required>
+								</div>
+								<div class="item15">
+									<label for="password">비밀번호</label> <input type="password"
+										id="password" name="pw" required>
+								</div>
+								<div class="item16">
+									<label for="confirmPassword">비밀번호확인</label> <input
+										type="password" id="confirmPassword" name="confirmPassword"
+										required>
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
-				
+
 				<div class="modal_center_footer">
 					<button id="infoPrivBtn">이전</button>
-					<button id="infoNextBtn">다음</button>	
-						
-				</div>			
+					<button id="infoNextBtn">다음</button>
+
+				</div>
 			</div>
 
 			<div class="modal_rightside">
@@ -115,17 +119,29 @@ String path=request.getContextPath();
 						<div class="selectedService">
 							<span id="selectedService"></span>
 							<div class="checkedItems" id="checkedItems">
-									<!-- 선택한 상품들을 동적으로 생성 -->
-							</div>						
+								<!-- 선택한 상품들을 동적으로 생성 -->
+							</div>
 						</div>
 						<div class="questionAsk" id="questionAsk">
-								<div>시공공간종류: <span class="place_result" id="place_result"></span></div>
-							    <div>시공환경: <span class="circs_result" id="circs_result"></span></div>
-							    <div>시공주소: <span class="addr_result" id="addr_result"></span></div>
-							    <div>희망시공일자: <span class="wantdate_result" id="wantdate_result"></span></div>
-							    <div>희망상담시간: <span class="wanttime_result" id="wanttime_result"></span></div>
-							    <div>추가요청사항: <span class="request_result" id="request_result"></span></div>
+							<div>
+								시공공간종류: <span class="place_result" id="place_result"></span>
 							</div>
+							<div>
+								시공환경: <span class="circs_result" id="circs_result"></span>
+							</div>
+							<div>
+								시공주소: <span class="addr_result" id="addr_result"></span>
+							</div>
+							<div>
+								희망시공일자: <span class="wantdate_result" id="wantdate_result"></span>
+							</div>
+							<div>
+								희망상담시간: <span class="wanttime_result" id="wanttime_result"></span>
+							</div>
+							<div>
+								추가요청사항: <span class="request_result" id="request_result"></span>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="modal_rightside_footer">
@@ -145,10 +161,10 @@ String path=request.getContextPath();
 				</div>
 			</div>
 		</div>
-</div>
+	</div>
 
 
-<script>
+	<script>
 var selectedItems = {};
 var checkedItems = {};
 $(document).ready(function() {
@@ -183,21 +199,48 @@ $(document).ready(function() {
 					    
 					    $.ajax({
 					        type: 'POST',
-					        url: '<%= path %>/modal/insertNonMember',
+					        url: '<%=path%>/modal/insertNonMember',
 					        data: $('#nonMemberForm').serialize(),
 					        success: function(response) {
-					            // 응답으로 받은 리다이렉트 URL을 사용하여 모달창 띄우기
-					            openModal(response);
+					            // 응답으로 받은 estino 값을 사용하여 ModalCompleteDto 객체 생성
+					            var modalCompleteDto = {
+					                estino: response,
+					                m_addr: $('.addr_result').text(),
+					                m_tel: $('#phone').val(),
+					                m_content: $('.selectedItems').text(),
+					                m_size: $('.selectedSize').text(),
+					                m_request: $('.request_result').text(),
+					                m_price: $('.totalPriceValue').text(),
+					                m_wanttime: $('.wanttime_result').text(),
+					                m_wantdate: $('.wantdate_result').text(),
+					                m_circs: $('.circs_result').text(),
+					                m_place: $('.place_result').text()
+					            };
+
+					            // updateModalComplete 메서드 호출
+					            $.ajax({
+					                type: 'POST',
+					                url: '<%=path%>/modal/updateModalComplete',
+					                contentType: 'application/json',
+					                data: JSON.stringify(modalCompleteDto),
+					                success: function() {
+					                    // 업데이트 성공 시 처리할 로직
+					                    alert('견적이 완료되었습니다.');
+					                    closeModal('#infoModal');
+					                    openModal('#completeModal');
+					                },
+					                error: function() {
+					                    alert('updateModalComplete = 오류가 발생했습니다.');
+					                }
+					            });
 					        },
 					        error: function() {
-					            alert('오류가 발생했습니다.');
+					            alert('insertNonMember = 오류가 발생했습니다.');
 					        }
-					    });
-					closeModal('#infoModal');
-					openModal('#completeModal');
-				});
 				
+				});
 			});
+});
 </script>
 
 </body>

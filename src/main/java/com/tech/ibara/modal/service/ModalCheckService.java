@@ -37,7 +37,7 @@ public class ModalCheckService implements ModalService{
 	
 
 	@Override
-    public void insertModalComplete(ModalCompleteDto modalCompleteDto) {
-        modalDao.insertModalComplete(modalCompleteDto);
+    public void updateModalComplete(ModalCompleteDto modalCompleteDto) {
+        modalDao.updateModalComplete(modalCompleteDto);
     }
 }
