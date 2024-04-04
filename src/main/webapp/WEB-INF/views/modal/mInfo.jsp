@@ -15,7 +15,7 @@ String path=request.getContextPath();
     
 </head>
 <body>
-
+<!-- mInfo.jsp -->
 <!-- 평수 선택 모달 창 영역 -->
 <div id="infoModal" class="modal" data-prev-modal="">
     <div class="modal_content">
@@ -37,21 +37,13 @@ String path=request.getContextPath();
                             <span>추가질문</span>
                         </div>
                     </li>
-                    <li data-step-name="biz" class="">
-                        <div>
-                            <span>업체추천</span>
-                        </div>
-                    </li>
+                    
                     <li data-step-name="info" class="">
                         <div>
                             <span>정보입력</span>
                         </div>
                     </li>
-                    <li data-step-name="date" class="">
-                        <div>
-                            <span>날짜선택</span>
-                        </div>
-                    </li>
+                    
                     <li data-step-name="complete" class="">
                         <div>
                             <span>견적완료</span>
