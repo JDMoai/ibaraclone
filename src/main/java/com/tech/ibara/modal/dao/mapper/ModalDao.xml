@@ -21,23 +21,24 @@
             #{pw, jdbcType=VARCHAR})
     </insert>
     
-   <!--  <update id="updateModalComplete" parameterType="com.tech.ibara.modal.dto.ModalCompleteDto">
-   	 UPDATE modal_complete
-   	 SET m_addr = #{m_addr},
-        m_tel = #{m_tel},
-        m_content = #{m_content},
-        m_size = #{m_size},
-        m_request = #{m_request},
-        m_price = #{m_price},
-        m_wanttime = #{m_wanttime},
-        m_wantdate = #{m_wantdate},
-        m_circs = #{m_circs},
-        m_place = #{m_place},
-        m_type = #{m_type}
-    	WHERE estino = #{estino}
-	</update> -->
-	
-	
+   <insert id="updateModalComplete" parameterType="com.tech.ibara.modal.dto.ModalCompleteDto">
+    INSERT INTO MODAL_COMPLETE (ESTINO, M_DATE, M_ADDR, M_TEL, M_CONTENT, M_SIZE, M_REQUEST, M_PRICE, M_WANTTIME, M_WANTDATE, M_CIRCS, M_PLACE, M_TYPE)
+    VALUES (
+        'M' || TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(ESTINO, 10, 4)) FROM MY_NONMEMBER WHERE TRUNC(CREATED_AT) = TRUNC(SYSDATE))), 0) + 1, 4, '0') || LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
+        SYSDATE,
+        #{m_addr},
+        #{m_tel},
+        #{m_content},
+        #{m_size},
+        #{m_request},
+        #{m_price},
+        #{m_wanttime},
+        #{m_wantdate},
+        #{m_circs},
+        #{m_place},
+        #{m_type}
+    )
+</insert>
 </mapper>
 
 

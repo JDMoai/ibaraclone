@@ -194,24 +194,53 @@ $(document).ready(function() {
 					        return;
 					    }
 					    
+					    
+					    var modalCompleteDto = {
+					            m_addr: $('.addr_result').text(),
+					            m_tel: $('.phone').val(),
+					            m_content: $('.selectedService').text(),
+					            m_size: $('.selectedSize').text(),
+					            m_request: $('.request_result').text(),
+					            m_price: $('.totalPriceValue').text(),
+					            m_wanttime: $('.wanttime_result').text(),
+					            m_wantdate: $('.wantdate_result').text(),
+					            m_circs: $('.circs_result').text(),
+					            m_place: $('.place_result').text(),
+					            m_type: $('#selectedService').text()
+					        };
+					    
+					    
 					    $.ajax({
 					        type: 'POST',
 					        url: '<%=path%>/modal/insertNonMember',
 					        data: $('#nonMemberForm').serialize(),
 					        success: function(response) {
-					          
-	                                openModal(response);
-	                            },
-	                            error: function() {
-	                                alert('오류가 발생했습니다.');
-	                            }
-	                        });
-	                    closeModal('#infoModal');
-	                    openModal('#completeModal');
-					            console.log("modalCompleteDto:", modalCompleteDto);
+					            openModal(response);
+
+					            $.ajax({
+					                type: 'POST',
+					                url: '<%=path%>/modal/updateModalComplete',
+					                data: JSON.stringify(modalCompleteDto),
+					                contentType: 'application/json',
+					                success: function() {
+					                    // 업데이트 성공 시 처리할 로직
+					                    alert('견적이 완료되었습니다.');
+					                    closeModal('#infoModal');
+					                    openModal('#completeModal');
+					                },
+					                error: function() {
+					                    alert('AJAX updateModalComplete = 오류가 발생했습니다.');
+					                }
+					            });
+					        },
+					        error: function() {
+					            alert('AJAX insertNonMember = 오류가 발생했습니다.');
+					        }
+					   
 					           
 				});
 			});
+});
 
 // updateModalComplete 메서드 호출
 <%-- $.ajax({

@@ -81,25 +81,14 @@ public class ModalController {
 	    
 	    // 리다이렉트 또는 다른 처리 로직 추가
 	}
-	
 	@PostMapping("/modal/updateModalComplete")
 	@ResponseBody
-	public void updateModalComplete(@ModelAttribute  ModalCompleteDto modalCompleteDto) {
+	public void updateModalComplete(ModalCompleteDto modalCompleteDto) {
+		
 		System.out.println("updateModalComplete컨트롤러");
-		System.out.println("========================");		
-		System.out.println("Received modalCompleteDto: " + modalCompleteDto);
-	    System.out.println("Estino: " + modalCompleteDto.getEstino());
-	    System.out.println("M_addr: " + modalCompleteDto.getM_addr());
-	    System.out.println("M_tel: " + modalCompleteDto.getM_tel());
-	    System.out.println("m_content: " + modalCompleteDto.getM_content());
-	    System.out.println("m_size: " + modalCompleteDto.getM_size());
-	    System.out.println("m_request: " + modalCompleteDto.getM_request());
-	    System.out.println("m_price: " + modalCompleteDto.getM_price());
-	    System.out.println("m_wanttime: " + modalCompleteDto.getM_wanttime());
-	    System.out.println("m_wantdate: " + modalCompleteDto.getM_wantdate());
-	    System.out.println("m_circs: " + modalCompleteDto.getM_circs());
-	    System.out.println("m_place: " + modalCompleteDto.getM_place());
-	    System.out.println("m_type: " + modalCompleteDto.getM_type());
+		
 	    modalService.updateModalComplete(modalCompleteDto);
+
 	}
+	
 }
