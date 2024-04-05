@@ -69,9 +69,7 @@
 				<div class="Modal_center">
 					<div class="modal_center_body">
 						<div class="infoRow">
-							<div class="users">
-								
-							</div>
+							<div class="users"></div>
 							<form id="nonMemberForm"
 								action="<%=request.getContextPath()%>/modal/insertNonMember"
 								method="post">
@@ -201,46 +199,40 @@ $(document).ready(function() {
 					        url: '<%=path%>/modal/insertNonMember',
 					        data: $('#nonMemberForm').serialize(),
 					        success: function(response) {
-					            // 응답으로 받은 estino 값을 사용하여 ModalCompleteDto 객체 생성
-					            var modalCompleteDto = {
-					            		estino: response,
-					            	    m_addr: $('.addr_result').text().trim(),
-					            	    m_tel: $('.phone').val().trim(),
-					            	    m_content: $('.selectedItems').text().trim(),
-					            	    m_size: $('.selectedSize').text().trim(),
-					            	    m_request: $('.request_result').text().trim(),
-					            	    m_price: $('.totalPriceValue').text().trim(),
-					            	    m_wanttime: $('.wanttime_result').text().trim(),
-					            	    m_wantdate: $('.wantdate_result').text().trim(),
-					            	    m_circs: $('.circs_result').text().trim(),
-					            	    m_place: $('.place_result').text().trim(),
-					            	    m_type: $('#selectedService').text().trim()
-					            	    
-					            };
+					          
+	                                openModal(response);
+	                            },
+	                            error: function() {
+	                                alert('오류가 발생했습니다.');
+	                            }
+	                        });
+	                    closeModal('#infoModal');
+	                    openModal('#completeModal');
 					            console.log("modalCompleteDto:", modalCompleteDto);
-					            // updateModalComplete 메서드 호출
-					            $.ajax({
-					                type: 'POST',
-					                url: '<%=path%>/modal/updateModalComplete',
-					                data: JSON.stringify(modalCompleteDto),
-					                success: function() {
-					                    // 업데이트 성공 시 처리할 로직
-					                    alert('견적이 완료되었습니다.');
-					                    closeModal('#infoModal');
-					                    openModal('#completeModal');
-					                },
-					                error: function() {
-					                    alert('updateModalComplete = 오류가 발생했습니다.');
-					                }
-					            });
-					        },
-					        error: function() {
-					            alert('insertNonMember = 오류가 발생했습니다.');
-					        }
-				
+					           
 				});
 			});
+
+// updateModalComplete 메서드 호출
+<%-- $.ajax({
+    type: 'POST',
+    url: '<%=path%>/modal/updateModalComplete',
+    data: JSON.stringify(modalCompleteDto),
+    success: function() {
+        // 업데이트 성공 시 처리할 로직
+        alert('견적이 완료되었습니다.');
+        closeModal('#infoModal');
+        openModal('#completeModal');
+    },
+    error: function() {
+        alert('updateModalComplete = 오류가 발생했습니다.');
+    }
 });
+},
+error: function() {
+alert('insertNonMember = 오류가 발생했습니다.');
+} --%>
+
 </script>
 
 </body>

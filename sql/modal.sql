@@ -143,8 +143,7 @@ CREATE TABLE my_nonmember (
     name VARCHAR2(30),
     phone VARCHAR2(30),
     email VARCHAR2(100),
-    pw VARCHAR2(20),
-    created_at DATE DEFAULT SYSDATE
+    pw VARCHAR2(20)
 );
 
 select * from my_nonmember;

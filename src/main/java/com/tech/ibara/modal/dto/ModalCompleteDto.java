@@ -1,9 +1,12 @@
 package com.tech.ibara.modal.dto;
 
+import java.sql.Date;
+
 public class ModalCompleteDto {
 
 	
 	private String estino;
+	private Date m_date;
 	private String m_addr;
 	private String m_tel;
 	private String m_content;
@@ -23,6 +26,12 @@ public class ModalCompleteDto {
 	}
 	public void setEstino(String estino) {
 		this.estino = estino;
+	}
+	public Date getM_date() {
+		return m_date;
+	}
+	public void setM_date(Date m_date) {
+		this.m_date = m_date;
 	}
 	public String getM_addr() {
 		return m_addr;

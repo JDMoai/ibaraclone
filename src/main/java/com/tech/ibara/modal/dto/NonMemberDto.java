@@ -5,21 +5,16 @@ import java.sql.Date;
 import lombok.NonNull;
 
 public class NonMemberDto {
-	private String estino;
+	
 	private String name;
 	private String phone;
 	private String email;	
 	@NonNull
 	private String pw;
-	private Date created_at;
 	
 	
-	public String getEstino() {
-		return estino;
-	}
-	public void setEstino(String estino) {
-		this.estino = estino;
-	}
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -44,11 +39,6 @@ public class NonMemberDto {
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
-	public Date getCreated_at() {
-		return created_at;
-	}
-	public void setCreated_at(Date created_at) {
-		this.created_at = created_at;
-	}
+	
 	
 	}

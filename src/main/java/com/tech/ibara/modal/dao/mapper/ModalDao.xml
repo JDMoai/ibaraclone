@@ -12,23 +12,16 @@
    		 WHERE M_TYPE = #{m_type}
     </select>
     
-	<insert id="insertNonMember" parameterType="com.tech.ibara.modal.dto.NonMemberDto"
-			useGeneratedKeys="true" keyProperty="estino" keyColumn="estino">
-        INSERT INTO MY_NONMEMBER (ESTINO, NAME, PHONE, EMAIL, PW, CREATED_AT)
+	<insert id="insertNonMember" parameterType="com.tech.ibara.modal.dto.NonMemberDto">
+        INSERT INTO MY_NONMEMBER (NAME, PHONE, EMAIL, PW)
 		VALUES (
-		    'N' || 
-		    TO_CHAR(SYSDATE, 'YYYYMMDD') ||
-		    LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(ESTINO, 10, 4)) FROM MY_NONMEMBER WHERE TRUNC(CREATED_AT) = TRUNC(SYSDATE))), 0) + 1, 4, '0') ||
-		    LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
             #{name},
             #{phone},
             #{email},
-            #{pw, jdbcType=VARCHAR},
-            SYSDATE
-        )
+            #{pw, jdbcType=VARCHAR})
     </insert>
     
-    <update id="updateModalComplete" parameterType="com.tech.ibara.modal.dto.ModalCompleteDto">
+   <!--  <update id="updateModalComplete" parameterType="com.tech.ibara.modal.dto.ModalCompleteDto">
    	 UPDATE modal_complete
    	 SET m_addr = #{m_addr},
         m_tel = #{m_tel},
@@ -42,7 +35,7 @@
         m_place = #{m_place},
         m_type = #{m_type}
     	WHERE estino = #{estino}
-	</update>
+	</update> -->
 	
 	
 </mapper>
