@@ -160,7 +160,7 @@ $(document).ready(function() {
 				}
 
 				$(document).on('click', '.close', function() {
-					closeModal('#askModal');
+					closeModal('#completeModal');
 				});
 
 				

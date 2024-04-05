@@ -14,7 +14,10 @@ public class ModalCompleteDto {
 	private String m_wantdate;
 	private String m_circs;
 	private String m_place;
+	private String m_type;
 	
+	
+
 	public String getEstino() {
 		return estino;
 	}
@@ -82,6 +85,11 @@ public class ModalCompleteDto {
 	public void setM_place(String m_place) {
 		this.m_place = m_place;
 	}
-	
+	public String getM_type() {
+		return m_type;
+	}
+	public void setM_type(String m_type) {
+		this.m_type = m_type;
+	}
 }
 	

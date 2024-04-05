@@ -95,26 +95,51 @@ commit;
 ---------------------------------------------------------
 
 create table modal_complete(
-estino varchar(30),
+estino varchar(30) primary key,
+m_date DATE DEFAULT SYSDATE,
 m_addr varchar(100),
 m_tel varchar(60),
 m_content varchar(300),
 m_size varchar(20),
-m_request varchar(200),
+m_request varchar(300),
 m_price varchar(20),
 m_wanttime varchar(30),
 m_wantdate varchar(50),
 m_circs varchar(20),
-m_place varchar(30)
+m_place varchar(30),
+m_type varchar(40)
 );
+
+INSERT INTO modal_complete (estino, m_date, m_addr, m_tel, m_content, m_size,m_request,m_price,m_wanttime,m_wantdate,m_circs,m_place,m_type)
+VALUES (
+    'M' || 
+    TO_CHAR(SYSDATE, 'YYYYMMDD') ||
+    LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(estino, 10, 4)) FROM my_nonmember WHERE TRUNC(created_at) = TRUNC(SYSDATE))), 0) + 1, 4, '0') ||
+    LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
+    SYSDATE,
+    '안산시 상록구 수암동',
+    '010-9544-9544',
+    '자재상품내용 블라블라블라블라',
+    '평수',
+    '추가내용',
+    '총합가격',
+    '희망상담시간',
+    '희망시공일자',
+    '시공환경',
+    '시공공간종류',
+    '프리미엄 인테리어'   
+);
+
 
 select * from modal_complete;
 delete from modal_complete;
 drop sequence m_no_seq;
 drop table modal_complete;
 
+
+--------------------------------
+
 CREATE TABLE my_nonmember (
-    estino VARCHAR2(30) PRIMARY KEY,
     name VARCHAR2(30),
     phone VARCHAR2(30),
     email VARCHAR2(100),
@@ -123,34 +148,22 @@ CREATE TABLE my_nonmember (
 );
 
 select * from my_nonmember;
-drop table my_nonmember;
+--drop table my_nonmember;
 delete from my_nonmember;
-
-INSERT INTO my_nonmember (estino, name, phone, email, pw, created_at)
-VALUES (
-    'M' || 
-    TO_CHAR(SYSDATE, 'YYYYMMDD') ||
-    LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(estino, 10, 4)) FROM my_nonmember WHERE TRUNC(created_at) = TRUNC(SYSDATE))), 0) + 1, 4, '0') ||
-    LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
-    '홍길',
-    '010-1234-4948',
-    'te2323st@example.com',
-    'passwd',
-    SYSDATE
-);
+drop table my_nonmember;
 
 select * from modal_complete;
 
 commit;
---트리거--------------
-CREATE OR REPLACE TRIGGER my_nonmember_insert_trigger
-AFTER INSERT ON my_nonmember
-FOR EACH ROW
-BEGIN
-    INSERT INTO modal_complete (estino)
-    VALUES (:NEW.estino);
-END;
-/
+----트리거--------------
+--CREATE OR REPLACE TRIGGER my_nonmember_insert_trigger
+--AFTER INSERT ON my_nonmember
+--FOR EACH ROW
+--BEGIN
+--    INSERT INTO modal_complete (estino)
+--    VALUES (:NEW.estino);
+--END;
+--/
 --INSERT INTO my_nonmember (estino, name, phone, email, pw, created_at)
 --VALUES (
 --    'M' || TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(estino, 10, 4)) FROM my_nonmember WHERE TRUNC(created_at) = TRUNC(SYSDATE))), 0) + 1, 4, '0') || LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
@@ -162,5 +175,7 @@ END;
 --);
 
 ------------------------
-
-
+select * from modal_complete;
+select * from my_nonmember;
+delete from my_nonmember;
+delete from modal_complete;

@@ -12,10 +12,11 @@
    		 WHERE M_TYPE = #{m_type}
     </select>
     
-	<insert id="insertNonMember" parameterType="com.tech.ibara.modal.dto.NonMemberDto">
+	<insert id="insertNonMember" parameterType="com.tech.ibara.modal.dto.NonMemberDto"
+			useGeneratedKeys="true" keyProperty="estino" keyColumn="estino">
         INSERT INTO MY_NONMEMBER (ESTINO, NAME, PHONE, EMAIL, PW, CREATED_AT)
 		VALUES (
-		    'M' || 
+		    'N' || 
 		    TO_CHAR(SYSDATE, 'YYYYMMDD') ||
 		    LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(ESTINO, 10, 4)) FROM MY_NONMEMBER WHERE TRUNC(CREATED_AT) = TRUNC(SYSDATE))), 0) + 1, 4, '0') ||
 		    LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
@@ -38,7 +39,8 @@
         m_wanttime = #{m_wanttime},
         m_wantdate = #{m_wantdate},
         m_circs = #{m_circs},
-        m_place = #{m_place}
+        m_place = #{m_place},
+        m_type = #{m_type}
     	WHERE estino = #{estino}
 	</update>
 	

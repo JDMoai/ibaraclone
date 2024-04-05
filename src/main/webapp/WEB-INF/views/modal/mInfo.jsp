@@ -70,8 +70,7 @@
 					<div class="modal_center_body">
 						<div class="infoRow">
 							<div class="users">
-								<div class="non-member">비회원 견적</div>
-								<div class="member">기존 고객 로그인하기</div>
+								
 							</div>
 							<form id="nonMemberForm"
 								action="<%=request.getContextPath()%>/modal/insertNonMember"
@@ -86,7 +85,7 @@
 								</div>
 								<div class="item14">
 									<label for="phone">전화번호</label> <input type="tel" id="phone"
-										name="phone" required>
+										name="phone" class="phone" required>
 								</div>
 								<div class="item15">
 									<label for="password">비밀번호</label> <input type="password"
@@ -180,7 +179,7 @@ $(document).ready(function() {
 				}
 
 				$(document).on('click', '.close', function() {
-					closeModal('#askModal');
+					closeModal('#infoModal');
 				});
 
 				$(document).on('click', '#infoPrivBtn', function() {
@@ -206,22 +205,23 @@ $(document).ready(function() {
 					            var modalCompleteDto = {
 					            		estino: response,
 					            	    m_addr: $('.addr_result').text().trim(),
-					            	    m_tel: $('#phone').val().trim(),
-					            	    m_content: $('.selectedService').text().trim(),
+					            	    m_tel: $('.phone').val().trim(),
+					            	    m_content: $('.selectedItems').text().trim(),
 					            	    m_size: $('.selectedSize').text().trim(),
 					            	    m_request: $('.request_result').text().trim(),
 					            	    m_price: $('.totalPriceValue').text().trim(),
 					            	    m_wanttime: $('.wanttime_result').text().trim(),
 					            	    m_wantdate: $('.wantdate_result').text().trim(),
 					            	    m_circs: $('.circs_result').text().trim(),
-					            	    m_place: $('.place_result').text().trim()
+					            	    m_place: $('.place_result').text().trim(),
+					            	    m_type: $('#selectedService').text().trim()
+					            	    
 					            };
 					            console.log("modalCompleteDto:", modalCompleteDto);
 					            // updateModalComplete 메서드 호출
 					            $.ajax({
 					                type: 'POST',
 					                url: '<%=path%>/modal/updateModalComplete',
-					                contentType: 'application/json',
 					                data: JSON.stringify(modalCompleteDto),
 					                success: function() {
 					                    // 업데이트 성공 시 처리할 로직
