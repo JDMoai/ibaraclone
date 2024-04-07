@@ -68,73 +68,23 @@ String path=request.getContextPath();
 				<div class="Modal_center">
 					<div class="modal_center_body">
 						<div class="row">
-
-							<div class="item6">
-								<div class="place">
-									<label for="place_l">시공공간종류</label> <select
-										placeholder="선택해주세요" class="place_s">
-										<option value>선택해주세요</option>
-										<option value="아파트">아파트</option>
-										<option value="빌라">빌라</option>
-										<option value="오피스텔">오피스텔</option>
-										<option value="단독주택">단독주택</option>
-									</select>
-								</div>
+							<div class="estino">
+								<div>주문번호</div>
 							</div>
-							<div class="item7">
-								<div class="circs">
-									<label for="circs_l">시공환경</label> <select placeholder="선택해주세요"
-										class="circs_s">
-										<option value>선택해주세요</option>
-										<option value="신축(5년 미만)">신축(5년 미만)</option>
-										<option value="구축(10년 이상)">구축(10년 이상)</option>
-									</select>
-								</div>
+							<div class="completeItems">
+								<div class="selectedService">선택서비스</div>
+								<div class="wantdate">희망시공일자</div>
+								<div class="wanttime">희망상담시간</div>
+								<div class="selectedItems">견적내용</div>
 							</div>
-							<div class="item8">
-								<div class="addr">
-									<label for="sample5_address"></label> <input type="text"
-										id="sample5_address" placeholder="시공하실 주소를 입력해주세요"> <input
-										type="button" id="sample5_address2"
-										onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
-								</div>
+							<div class="completeInfo">
+								<div>고객</div>
+								<div class="">고객정보</div>
 							</div>
-							<div class="item9">
-								<div class="wantdate">
-									<label for="wantdate_l">희망시공일자</label> <select
-										placeholder="선택해주세요" class="wantdate_s">
-										<option value>선택해주세요</option>
-										<option value="1달 이내">1달 이내</option>
-										<option value="1달~2달 이내">1달~2달 이내</option>
-										<option value="2달~3달 이내">2달~3달 이내</option>
-										<option value="3달 이후">3달 이후</option>
-									</select>
-								</div>
-							</div>
-							<div class="item10">
-								<div class="wanttime">
-									<label for="wanttime_l">희망상담시간</label> <select
-										placeholder="선택해주세요" class="wanttime_s">
-										<option value>선택해주세요</option>
-										<option value="09:00~10:00">09:00~10:00</option>
-										<option value="10:00~11:00">10:00~11:00</option>
-										<option value="11:00~12:00">11:00~12:00</option>
-										<option value="12:00~13:00">12:00~13:00</option>
-										<option value="13:00~14:00">13:00~14:00</option>
-										<option value="14:00~15:00">14:00~15:00</option>
-										<option value="15:00~16:00">15:00~16:00</option>
-										<option value="16:00~17:00">16:00~17:00</option>
-										<option value="17:00~18:00">17:00~18:00</option>
-									</select>
-								</div>
-							</div>
-							<div class="item11">
-								<div class="request">
-									<label for="request_id"></label>
-									<textarea placeholder="추가로 요청하실 사항이 있으시면 적어주세요!"
-										class="request_ta" id="request_id" cols="60" rows="3"></textarea>
-								</div>
-							</div>
+							
+							
+							
+							
 						</div>
 
 					</div>
