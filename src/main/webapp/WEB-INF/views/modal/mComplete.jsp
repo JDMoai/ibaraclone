@@ -81,9 +81,14 @@ String path=request.getContextPath();
 								<div>고객</div>
 								<div class="">고객정보</div>
 							</div>
-							
-							
-							
+							<div class="completeService">
+								<div>서비스</div>
+								<div class="selectedService"></div>
+							</div>
+							<div class="completeCheck">
+								<div>추가</div>
+								<div class="checkedItems"></div>
+							</div>
 							
 						</div>
 
