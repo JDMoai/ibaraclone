@@ -87,6 +87,8 @@ public class ModalController {
 		
 		System.out.println("updateModalComplete컨트롤러");
 		
+		System.out.println("modalCompleteDto확이:"+modalCompleteDto);
+		
 	    modalService.updateModalComplete(modalCompleteDto);
 
 	}

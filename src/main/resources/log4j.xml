@@ -23,6 +23,10 @@
     	<level value="DEBUG"/>
 	</logger>
 
+	<logger name="com.tech.ibara.modal.dao.mapper.ModalDao">
+	    <level value="DEBUG" />
+	</logger>
+	
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />

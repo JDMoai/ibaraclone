@@ -235,10 +235,12 @@ $(document).ready(function() {
 					        },
 					        error: function() {
 					            alert('AJAX insertNonMember = 오류가 발생했습니다.');
+					            
 					        }
-					   
+					        
 					           
 				});
+					    console.log(modalCompleteDto);
 			});
 });
 
