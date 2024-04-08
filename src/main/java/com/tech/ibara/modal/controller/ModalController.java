@@ -1,10 +1,13 @@
 package com.tech.ibara.modal.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tech.ibara.modal.dao.mapper.ModalDao;
 import com.tech.ibara.modal.dto.ModalCheckDto;
 import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
@@ -26,7 +30,8 @@ public class ModalController {
 	
 	
 	private ModalService modalService;
-	
+	@Autowired
+	private SqlSession sqlSession;
 	
 	
 	@RequestMapping("/modal/mMain")
@@ -98,25 +103,21 @@ public class ModalController {
 	    }
 	}
 	
-	@RequestMapping("/modal/mComplete")
-	public String mComplete(Model model, HttpSession session) {
-	    // 세션에서 estino 값을 가져옵니다.
-	    String estino = (String) session.getAttribute("estino");
-	    
-	    // estino를 사용하여 modal_complete 테이블에서 데이터를 조회합니다.
-	    ModalCompleteDto modalCompleteDto = modalService.getModalCompleteByEstino(estino);
-	    
-	    // name, email, phone 정보를 조회하기 위해 modalCompleteDto에서 m_tel 값을 가져옵니다.
-	    String mTel = modalCompleteDto.getM_tel();
-	    
-	    // m_tel을 사용하여 my_nonmember 테이블에서 데이터를 조회합니다.
-	    NonMemberDto nonMemberDto = modalService.getNonMemberByPhone(mTel);
-	    
-	    // 조회한 데이터를 모델에 추가합니다.
-	    model.addAttribute("modalComplete", modalCompleteDto);
-	    model.addAttribute("nonMember", nonMemberDto);
-	    
-	    return "/modal/mComplete";
-	}
+	/*
+	 * @GetMapping("/modal/getModalComplete")
+	 * 
+	 * @ResponseBody public List<ModalCompleteDto>
+	 * getModalComplete(@RequestParam("estino") String estino) {
+	 * System.out.println("getModalComplete컨트롤러"); return
+	 * modalService.getModalComplete(estino); }
+	 * 
+	 * @GetMapping("/modal/getModalComplete")
+	 * 
+	 * @ResponseBody public List<NonMemberDto> getNonMember(@RequestParam("phone")
+	 * String phone) { System.out.println("getgetNonMember컨트롤러"); return
+	 * modalService.getNonMember(phone); }
+	 */
+	
+	
 	
 }

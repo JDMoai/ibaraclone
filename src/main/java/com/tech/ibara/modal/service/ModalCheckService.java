@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -45,14 +44,14 @@ public class ModalCheckService implements ModalService{
     }
 
 	@Override
-	public ModalCompleteDto getModalCompleteByEstino(String estino) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+    public List<ModalCompleteDto> getModalComplete(String estino) {
+        return modalDao.selectModalComplete(estino);
+    }
+	
 	@Override
-	public NonMemberDto getNonMemberByPhone(String phone) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public List<NonMemberDto> getNonMember(String phone) {
+        return modalDao.selectNonMember(phone);
+    }
+	
+
 }

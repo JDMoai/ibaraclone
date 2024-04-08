@@ -63,35 +63,61 @@ String path=request.getContextPath();
 			<div class="modal_center">
 				<div class="modal_center_header">
 					<h3>견적 완료</h3>
-					<span id="closeaskModal" class="close">&times;</span>
+					<span id="closeCompleteModal" class="close">&times;</span>
 				</div>
 				<div class="Modal_center">
 					<div class="modal_center_body">
-						<div class="row">
+						<div class="row">		
 							<div class="estino">
-								<div>${modalComplete.estino}</div>
+							    <div>${mComplete.estino}</div>
 							</div>
-							<div class="completeItems">
-								<div class="">${modalComplete.m_type}</div>
-								<div class="">${modalComplete.m_wantdate}</div>
-								<div class="">${modalComplete.m_wanttime}</div>
-								<div class="">${modalComplete.m_content}</div>
+							<div class="service_box">
+						
+							<div class="selectedService">
+								<span id="selectedService"></span>
 							</div>
+							<div class="checkedItems complete-checkedItems" id="complete-checkedItems">
+								<!-- 선택한 상품들을 동적으로 생성 -->
+							</div>
+						
+						<div class="questionAsk" id="questionAsk">
+							<div>
+								시공공간종류: <span class="place_result" id="place_result"></span>
+							</div>
+							<div>
+								시공환경: <span class="circs_result" id="circs_result"></span>
+							</div>
+							<div>
+								시공주소: <span class="addr_result" id="addr_result"></span>
+							</div>
+							<div>
+								희망시공일자: <span class="wantdate_result" id="wantdate_result"></span>
+							</div>
+							<div>
+								희망상담시간: <span class="wanttime_result" id="wanttime_result"></span>
+							</div>
+							<div>
+								추가요청사항: <span class="request_result" id="request_result"></span>
+							</div>
+						</div>
+					</div>
 							<div class="completeInfo">
-								<div>고객</div>
-								<div>${modalComplete.m_addr}</div>
-								<div>${nonMember.name}</div>
-								<div>${nonMember.email}</div>
-								<div>${nonMember.phone}</div>
+							    <div>고객</div>
+							    <div id="name" name="name"></div>
+							    <div id="email" name="email"></div>
+							    <div id="phone" name="phone"></div> 
+
 							</div>
 							<div class="completeService">
-								<div>서비스</div>
-								<div class="selectedService">${modalComplete.m_type}</div>
-								<div>${modalComplete.m_size}</div>
+							    <div>서비스</div>
+							    <div class="selectedService">
+									<span id="selectedService"></span>
+								</div>
+							    <div class="selectedSize complete-selectedSize"></div>
 							</div>
 							<div class="completeSelectedItems">
-								<div>추가</div>
-								<div class="">${modalComplete.m_contentprice}</div>
+							    <div>추가</div>
+							    <div class="selectedItems complete-selectedItems" id="complete-selectedItems"></div>
 							</div>
 						</div>
 					</div>
@@ -120,6 +146,7 @@ String path=request.getContextPath();
 				closeModal('.completeModal');
 			});
 
+			
 		});
 	</script>
 
