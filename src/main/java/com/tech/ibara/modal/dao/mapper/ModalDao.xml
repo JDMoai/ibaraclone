@@ -36,7 +36,8 @@
         #{m_wantdate},
         #{m_circs},
         #{m_place},
-        #{m_type}
+        #{m_type},
+        #{m_contentprice}
     )
     <!-- (ESTINO, M_DATE, M_ADDR, M_TEL, M_CONTENT, M_SIZE, M_REQUEST, M_PRICE, M_WANTTIME, M_WANTDATE, M_CIRCS, M_PLACE, M_TYPE) -->
 </insert>

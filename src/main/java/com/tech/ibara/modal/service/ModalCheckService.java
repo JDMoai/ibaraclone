@@ -38,8 +38,8 @@ public class ModalCheckService implements ModalService{
 
 	@Override
     public void updateModalComplete(ModalCompleteDto modalCompleteDto) {
-		System.out.println("서비스m_addr: " + modalCompleteDto.getM_addr());
-	    System.out.println("서비스m_tel: " + modalCompleteDto.getM_tel());
+		//System.out.println("서비스m_addr: " + modalCompleteDto.getM_addr());
+	    //System.out.println("서비스m_tel: " + modalCompleteDto.getM_tel());
 		
         modalDao.updateModalComplete(modalCompleteDto);
     }

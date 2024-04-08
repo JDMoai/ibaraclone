@@ -206,7 +206,8 @@ $(document).ready(function() {
 				        m_wantdate: $('.wantdate_result').text(),
 				        m_circs: $('.circs_result').text(),
 				        m_place: $('.place_result').text(),
-				        m_type: $('#selectedService').text()
+				        m_type: $('#selectedService').text(),
+				        m_contentprice: $('.complete-selectedItems').text()
 				    };
 
 				    $.ajax({

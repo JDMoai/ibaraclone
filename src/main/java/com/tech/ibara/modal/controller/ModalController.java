@@ -87,8 +87,8 @@ public class ModalController {
 	public void updateModalComplete(@RequestBody ModalCompleteDto modalCompleteDto) {
 	    System.out.println("updateModalComplete컨트롤러");
 	    
-	    System.out.println("컨트롤러m_addr: " + modalCompleteDto.getM_addr());
-	    System.out.println("컨트롤러m_tel: " + modalCompleteDto.getM_tel());
+	   // System.out.println("컨트롤러m_addr: " + modalCompleteDto.getM_addr());
+	   // System.out.println("컨트롤러m_tel: " + modalCompleteDto.getM_tel());
 	    try {
 	        modalService.updateModalComplete(modalCompleteDto);
 	    } catch (Exception e) {

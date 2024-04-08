@@ -19,8 +19,10 @@ public class ModalCompleteDto {
 	private String m_circs;
 	private String m_place;
 	private String m_type;
+	private String m_contentprice;
 	
 	
+
 
 	public String getEstino() {
 		return estino;
@@ -100,6 +102,12 @@ public class ModalCompleteDto {
 	}
 	public void setM_type(String m_type) {
 		this.m_type = m_type;
+	}
+	public String getM_contentprice() {
+		return m_contentprice;
+	}
+	public void setM_contentprice(String m_contentprice) {
+		this.m_contentprice = m_contentprice;
 	}
 }
 	
