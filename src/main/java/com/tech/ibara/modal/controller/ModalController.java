@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -83,14 +84,17 @@ public class ModalController {
 	}
 	@PostMapping("/modal/updateModalComplete")
 	@ResponseBody
-	public void updateModalComplete(ModalCompleteDto modalCompleteDto) {
-		
-		System.out.println("updateModalComplete컨트롤러");
-		
-		System.out.println("modalCompleteDto확이:"+modalCompleteDto);
-		
-	    modalService.updateModalComplete(modalCompleteDto);
-
+	public void updateModalComplete(@RequestBody ModalCompleteDto modalCompleteDto) {
+	    System.out.println("updateModalComplete컨트롤러");
+	    
+	    System.out.println("컨트롤러m_addr: " + modalCompleteDto.getM_addr());
+	    System.out.println("컨트롤러m_tel: " + modalCompleteDto.getM_tel());
+	    try {
+	        modalService.updateModalComplete(modalCompleteDto);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("modalCompleteDto컨트롤러 오류");
+	    }
 	}
 	
 }

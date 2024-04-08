@@ -2,6 +2,7 @@ package com.tech.ibara.modal.dto;
 
 import java.sql.Date;
 
+
 public class ModalCompleteDto {
 
 	
