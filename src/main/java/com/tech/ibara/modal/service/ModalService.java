@@ -16,4 +16,7 @@ public interface ModalService {
 	
 	void updateModalComplete(ModalCompleteDto modalCompleteDto);
 
+	public ModalCompleteDto getModalCompleteByEstino(String estino);
+	
+	public NonMemberDto getNonMemberByPhone(String phone);
 }

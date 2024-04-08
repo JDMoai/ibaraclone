@@ -43,4 +43,16 @@ public class ModalCheckService implements ModalService{
 		
         modalDao.updateModalComplete(modalCompleteDto);
     }
+
+	@Override
+	public ModalCompleteDto getModalCompleteByEstino(String estino) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public NonMemberDto getNonMemberByPhone(String phone) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

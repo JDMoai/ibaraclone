@@ -69,29 +69,31 @@ String path=request.getContextPath();
 					<div class="modal_center_body">
 						<div class="row">
 							<div class="estino">
-								<div>주문번호</div>
+								<div>${modalComplete.estino}</div>
 							</div>
 							<div class="completeItems">
-								<div class="selectedService"><span id="selectedService"></span></div>
-								<div class="wantdate_result">희망시공일자</div>
-								<div class="wanttime_result">희망상담시간</div>
-								<div class="checkedItems">견적내용</div>
+								<div class="">${modalComplete.m_type}</div>
+								<div class="">${modalComplete.m_wantdate}</div>
+								<div class="">${modalComplete.m_wanttime}</div>
+								<div class="">${modalComplete.m_content}</div>
 							</div>
 							<div class="completeInfo">
 								<div>고객</div>
-								<div class="">고객정보</div>
+								<div>${modalComplete.m_addr}</div>
+								<div>${nonMember.name}</div>
+								<div>${nonMember.email}</div>
+								<div>${nonMember.phone}</div>
 							</div>
 							<div class="completeService">
 								<div>서비스</div>
-								<div class="selectedService"></div>
+								<div class="selectedService">${modalComplete.m_type}</div>
+								<div>${modalComplete.m_size}</div>
 							</div>
 							<div class="completeSelectedItems">
 								<div>추가</div>
-								<div class="selectedItems"></div>
+								<div class="">${modalComplete.m_contentprice}</div>
 							</div>
-							
 						</div>
-
 					</div>
 				</div>
 			</div>
@@ -100,30 +102,26 @@ String path=request.getContextPath();
 
 
 	<script>
-var selectedItems = {};
-var checkedItems = {};
-$(document).ready(function() {
-				var completeModal = $('.completeModal');
-				
-				function openModal(modalId) {
-					$(modalId).css('display', 'block');	
+		var selectedItems = {};
+		var checkedItems = {};
+		$(document).ready(function() {
+			var completeModal = $('.completeModal');
 
-				}
+			function openModal(modalId) {
+				$(modalId).css('display', 'block');
 
-				function closeModal(modalId) {
-					$(modalId).css('display', 'none');
-				}
+			}
 
-				$(document).on('click', '.close', function() {
-					closeModal('.completeModal');
-				});
+			function closeModal(modalId) {
+				$(modalId).css('display', 'none');
+			}
 
-				
-				
-				
-				
+			$(document).on('click', '.close', function() {
+				closeModal('.completeModal');
 			});
-</script>
+
+		});
+	</script>
 
 </body>
 </html>

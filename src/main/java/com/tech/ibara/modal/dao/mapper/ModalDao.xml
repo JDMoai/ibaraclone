@@ -38,7 +38,16 @@
         #{m_place},
         #{m_type},
         #{m_contentprice}
-    )
-    <!-- (ESTINO, M_DATE, M_ADDR, M_TEL, M_CONTENT, M_SIZE, M_REQUEST, M_PRICE, M_WANTTIME, M_WANTDATE, M_CIRCS, M_PLACE, M_TYPE) -->
-</insert>
+    	)
+	</insert>
+
+	<select id="selectModalCompleteByEstino" parameterType="String" resultType="com.tech.ibara.modal.dto.ModalCompleteDto">
+		SELECT * FROM MODAL_COMPLETE WHERE ESTINO = #{estino}
+	</select>
+
+	<select id="selectNonMemberByPhone" parameterType="String" resultType="com.tech.ibara.modal.dto.NonMemberDto">
+		SELECT * FROM MY_NONMEMBER WHERE PHONE = #{phone}
+	</select>
+
+
 </mapper>

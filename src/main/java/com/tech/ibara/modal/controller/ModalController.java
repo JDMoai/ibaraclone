@@ -3,6 +3,7 @@ package com.tech.ibara.modal.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -95,6 +96,27 @@ public class ModalController {
 	        e.printStackTrace();
 	        System.out.println("modalCompleteDto컨트롤러 오류");
 	    }
+	}
+	
+	@RequestMapping("/modal/mComplete")
+	public String mComplete(Model model, HttpSession session) {
+	    // 세션에서 estino 값을 가져옵니다.
+	    String estino = (String) session.getAttribute("estino");
+	    
+	    // estino를 사용하여 modal_complete 테이블에서 데이터를 조회합니다.
+	    ModalCompleteDto modalCompleteDto = modalService.getModalCompleteByEstino(estino);
+	    
+	    // name, email, phone 정보를 조회하기 위해 modalCompleteDto에서 m_tel 값을 가져옵니다.
+	    String mTel = modalCompleteDto.getM_tel();
+	    
+	    // m_tel을 사용하여 my_nonmember 테이블에서 데이터를 조회합니다.
+	    NonMemberDto nonMemberDto = modalService.getNonMemberByPhone(mTel);
+	    
+	    // 조회한 데이터를 모델에 추가합니다.
+	    model.addAttribute("modalComplete", modalCompleteDto);
+	    model.addAttribute("nonMember", nonMemberDto);
+	    
+	    return "/modal/mComplete";
 	}
 	
 }
