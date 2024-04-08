@@ -112,10 +112,10 @@
 				</div>
 				<div class="modal_rightside_body">
 					<div class="service_box">
-						<div class="selectedSize"></div>
+						<div class="selectedSize complete-selectedSize"></div>
 						<div class="selectedService">
 							<span id="selectedService"></span>
-							<div class="checkedItems" id="checkedItems">
+							<div class="checkedItems complete-checkedItems" id="complete-checkedItems">
 								<!-- 선택한 상품들을 동적으로 생성 -->
 							</div>
 						</div>
@@ -148,12 +148,12 @@
 							<span id="selectedService"></span>
 						</div>
 					</div>
-					<div class="selectedItems" id="selectedItems">
+					<div class="selectedItems complete-selectedItems" id="complete-selectedItems">
 						<!-- 선택한 상품들을 동적으로 생성 -->
 					</div>
 					<div class="totalPrice">
 						<div>합계</div>
-						<div class="totalPriceValue">0 만원</div>
+						<div class="totalPriceValue complete-totalPriceValue">0 만원</div>
 					</div>
 				</div>
 			</div>
@@ -198,10 +198,10 @@ $(document).ready(function() {
 				    var modalCompleteDto = {
 				        m_addr: $('.addr_result').text(),
 				        m_tel: $('.phone').val(),
-				        m_content: $('.selectedService').text(),
-				        m_size: $('.selectedSize').text(),
+				        m_content: $('.complete-checkedItems').text(),
+				        m_size: $('.complete-selectedSize').text(),
 				        m_request: $('.request_result').text(),
-				        m_price: $('.totalPriceValue').text(),
+				        m_price: $('.complete-totalPriceValue').text(),
 				        m_wanttime: $('.wanttime_result').text(),
 				        m_wantdate: $('.wantdate_result').text(),
 				        m_circs: $('.circs_result').text(),
