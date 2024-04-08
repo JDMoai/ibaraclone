@@ -72,10 +72,10 @@ String path=request.getContextPath();
 								<div>주문번호</div>
 							</div>
 							<div class="completeItems">
-								<div class="selectedService">선택서비스</div>
-								<div class="wantdate">희망시공일자</div>
-								<div class="wanttime">희망상담시간</div>
-								<div class="selectedItems">견적내용</div>
+								<div class="selectedService"><span id="selectedService"></span></div>
+								<div class="wantdate_result">희망시공일자</div>
+								<div class="wanttime_result">희망상담시간</div>
+								<div class="checkedItems">견적내용</div>
 							</div>
 							<div class="completeInfo">
 								<div>고객</div>
@@ -85,9 +85,9 @@ String path=request.getContextPath();
 								<div>서비스</div>
 								<div class="selectedService"></div>
 							</div>
-							<div class="completeCheck">
+							<div class="completeSelectedItems">
 								<div>추가</div>
-								<div class="checkedItems"></div>
+								<div class="selectedItems"></div>
 							</div>
 							
 						</div>

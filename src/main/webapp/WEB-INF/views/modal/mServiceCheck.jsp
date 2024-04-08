@@ -90,7 +90,7 @@ String path=request.getContextPath();
 						<div class="selectedSize"></div>
 						<div class="selectedService">
 							<span id="selectedService"></span>
-							
+								<div>추가 :</div>
 								<div class="checkedItems" id="checkedItems">
 									<!-- 선택한 상품들을 동적으로 생성 -->
 								</div>
@@ -207,7 +207,7 @@ $(document).ready(function() {
             if (checkedItems.hasOwnProperty(itemName)) {
                 var itemText = itemName;
                 if (isFirst) {
-                    itemText = '추가 ' + itemText;
+                    itemText =itemText;
                     isFirst = false;
                 }
                 
