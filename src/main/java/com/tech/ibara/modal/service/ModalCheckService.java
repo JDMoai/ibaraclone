@@ -43,15 +43,6 @@ public class ModalCheckService implements ModalService{
         modalDao.updateModalComplete(modalCompleteDto);
     }
 
-	@Override
-    public List<ModalCompleteDto> getModalComplete(String estino) {
-        return modalDao.selectModalComplete(estino);
-    }
-	
-	@Override
-    public List<NonMemberDto> getNonMember(String phone) {
-        return modalDao.selectNonMember(phone);
-    }
 	
 
 }

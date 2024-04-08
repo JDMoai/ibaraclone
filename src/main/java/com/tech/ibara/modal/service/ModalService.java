@@ -13,9 +13,6 @@ public interface ModalService {
 
 	public List<ModalCheckDto> getServiceItems(String m_type);
 
-	public List<ModalCompleteDto> getModalComplete(String estino);
-	
-	public List<NonMemberDto> getNonMember(String phone);
 
 	void insertNonMember(NonMemberDto nonMemberDto);
 	

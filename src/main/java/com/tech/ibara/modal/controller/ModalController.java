@@ -102,22 +102,7 @@ public class ModalController {
 	        System.out.println("modalCompleteDto컨트롤러 오류");
 	    }
 	}
-	
-	/*
-	 * @GetMapping("/modal/getModalComplete")
-	 * 
-	 * @ResponseBody public List<ModalCompleteDto>
-	 * getModalComplete(@RequestParam("estino") String estino) {
-	 * System.out.println("getModalComplete컨트롤러"); return
-	 * modalService.getModalComplete(estino); }
-	 * 
-	 * @GetMapping("/modal/getModalComplete")
-	 * 
-	 * @ResponseBody public List<NonMemberDto> getNonMember(@RequestParam("phone")
-	 * String phone) { System.out.println("getgetNonMember컨트롤러"); return
-	 * modalService.getNonMember(phone); }
-	 */
-	
+
 	
 	
 }

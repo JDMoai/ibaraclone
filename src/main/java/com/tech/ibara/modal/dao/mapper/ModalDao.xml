@@ -41,16 +41,11 @@
     	)
 	</insert>
 
- 	<select id="selectModalComplete" resultType="com.tech.ibara.modal.dto.ModalCompleteDto">
-         SELECT *
-   		 FROM MODAL_COMPLETE
-   		 WHERE ESTINO = #{estino}
-    </select>
-     
-     <select id="selectNonMember" resultType="com.tech.ibara.modal.dto.NonMemberDto">
-         SELECT *
-   		 FROM MY_NONMEMBER
-   		 WHERE PHONE = #{phone}
-    </select>
+	<select id="selectCompleteInfo" parameterType="string" resultType="com.tech.ibara.modal.dto.CompleteInfoDto">
+	    SELECT mn.NAME, mn.EMAIL, mn.PHONE, mc.ESTINO
+	    FROM MY_NONMEMBER mn
+	    JOIN MODAL_COMPLETE mc ON mn.PHONE = mc.PHONE
+	    WHERE mn.PHONE = #{phone}
+	</select>
 
 </mapper>
