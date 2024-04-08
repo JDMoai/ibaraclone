@@ -197,7 +197,7 @@ $(document).ready(function() {
 
 				    var modalCompleteDto = {
 				        m_addr: $('.addr_result').text(),
-				        m_tel: $('.phone').val(),
+				        phone: $('.phone').val(),
 				        m_content: $('.complete-checkedItems').text(),
 				        m_size: $('.complete-selectedSize').text(),
 				        m_request: $('.request_result').text(),
@@ -239,7 +239,9 @@ $(document).ready(function() {
 				    });
 
 				    console.log(modalCompleteDto);
+				    
 				});
+				
 });
 </script>
 

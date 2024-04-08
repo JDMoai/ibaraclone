@@ -69,7 +69,7 @@ String path=request.getContextPath();
 					<div class="modal_center_body">
 						<div class="row">		
 							<div class="estino">
-							    <div>${mComplete.estino}</div>
+							    <div><!-- modal_complete에서 estino가져오려면 my_nonmember와 조인해서 phone으로 가져와야할듯 --></div>
 							</div>
 							<div class="service_box">
 						
@@ -103,10 +103,7 @@ String path=request.getContextPath();
 					</div>
 							<div class="completeInfo">
 							    <div>고객</div>
-							    <div id="name" name="name"></div>
-							    <div id="email" name="email"></div>
-							    <div id="phone" name="phone"></div> 
-
+								<div><!-- my_nonmember 에서 name,email,phone --></div>
 							</div>
 							<div class="completeService">
 							    <div>서비스</div>

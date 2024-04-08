@@ -9,7 +9,7 @@ public class ModalCompleteDto {
 	private String estino;
 	private Date m_date;
 	private String m_addr;
-	private String m_tel;
+	private String phone;
 	private String m_content;
 	private String m_size;
 	private String m_request;
@@ -42,11 +42,12 @@ public class ModalCompleteDto {
 	public void setM_addr(String m_addr) {
 		this.m_addr = m_addr;
 	}
-	public String getM_tel() {
-		return m_tel;
+	
+	public String getPhone() {
+		return phone;
 	}
-	public void setM_tel(String m_tel) {
-		this.m_tel = m_tel;
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 	public String getM_content() {
 		return m_content;

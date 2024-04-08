@@ -27,7 +27,7 @@
         'M' || TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(ESTINO, 10, 4)) FROM MODAL_COMPLETE WHERE TRUNC(M_DATE) = TRUNC(SYSDATE))), 0) + 1, 4, '0') || LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
         SYSDATE,
         #{m_addr},
-        #{m_tel},
+        #{phone},
         #{m_content},
         #{m_size},
         #{m_request},
