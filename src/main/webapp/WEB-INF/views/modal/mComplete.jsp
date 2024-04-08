@@ -17,7 +17,7 @@ String path=request.getContextPath();
 <body>
 
 <!-- 평수 선택 모달 창 영역 -->
-	<div id="completeModal" class="modal" data-prev-modal="">
+	<div class="completeModal" id="modal" data-prev-modal="">
 		<div class="modal_content">
 			<div class="modal_leftside">
 				<div class=modal_leftside_progress>
@@ -103,7 +103,7 @@ String path=request.getContextPath();
 var selectedItems = {};
 var checkedItems = {};
 $(document).ready(function() {
-				var completeModal = $('#completeModal');
+				var completeModal = $('.completeModal');
 				
 				function openModal(modalId) {
 					$(modalId).css('display', 'block');	
@@ -115,7 +115,7 @@ $(document).ready(function() {
 				}
 
 				$(document).on('click', '.close', function() {
-					closeModal('#completeModal');
+					closeModal('.completeModal');
 				});
 
 				

@@ -163,7 +163,7 @@
 		</script>
 		<br />
 		<div class="category_button_wrap">
-			<button id="openModal" class="category_button category_1">
+			<button class="openModal" class="category_button category_1">
 				<span>퀵견적</span>
 			</button>
 			<jsp:include page="../modal/mMain.jsp" />

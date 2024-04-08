@@ -16,7 +16,7 @@ String path=request.getContextPath();
 <body>
 
 <!-- 평수 선택 모달 창 영역 -->
-<div id="serviceCheckModal" class="modal" data-prev-modal="">
+<div class="serviceCheckModal" id="modal" data-prev-modal="">
     <div class="modal_content">
         <div class="modal_leftside">
             <div class=modal_leftside_progress>
@@ -123,7 +123,7 @@ String path=request.getContextPath();
 <script>
 
 $(document).ready(function() {
-    var serviceCheckModal = $('#serviceCheckModal');
+    var serviceCheckModal = $('.serviceCheckModal');
     
    
 
@@ -239,8 +239,8 @@ $(document).ready(function() {
         updateSelectedItems();
         updateTotalPrice(); 
        // console.log(selectedItems);
-        closeModal('#serviceCheckModal');
-        openModal('#askModal');
+        closeModal('.serviceCheckModal');
+        openModal('.askModal');
     });
     function openModal(modalId) {
         $(modalId).css('display', 'block');
@@ -252,14 +252,14 @@ $(document).ready(function() {
     }
 
     $(document).on('click', '.close', function() {
-        closeModal('#serviceCheckModal');
+        closeModal('.serviceCheckModal');
     });
 
     $(document).on('click', '#SCPrivBtn', function() {
     	
         var prevModal = serviceCheckModal.attr('data-prev-modal');
-        closeModal('#serviceCheckModal');
-        openModal('#' + prevModal);
+        closeModal('.serviceCheckModal');
+        openModal('.' + prevModal);
     });
 	
 });

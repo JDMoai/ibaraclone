@@ -20,7 +20,7 @@ String path=request.getContextPath();
 <body>
 
 <!-- 평수 선택 모달 창 영역 -->
-<div id="askModal" class="modal" data-prev-modal="">
+<div class="askModal" id="modal" data-prev-modal="">
     <div class="modal_content">
         <div class="modal_leftside">
             <div class=modal_leftside_progress>
@@ -208,7 +208,7 @@ var checkedItems = {};
 		});
 	} 
 	$(document).ready(function() {
-		var askModal = $('#askModal');
+		var askModal = $('.askModal');
 
 		function openModal(modalId) {
 			$(modalId).css('display', 'block');
@@ -220,18 +220,18 @@ var checkedItems = {};
 		}
 
 		$(document).on('click', '.close', function() {
-			closeModal('#askModal');
+			closeModal('.askModal');
 		});
 
 		$(document).on('click', '#askPrivBtn', function() {
-			closeModal('#askModal');
-			openModal('#serviceCheckModal');
+			closeModal('.askModal');
+			openModal('.serviceCheckModal');
 		});
 
 		$(document).on('click', '#askNextBtn', function() {
 
-			closeModal('#askModal');
-			openModal('#infoModal');
+			closeModal('.askModal');
+			openModal('.infoModal');
 		});
 
 		// 시공공간종류 선택 시

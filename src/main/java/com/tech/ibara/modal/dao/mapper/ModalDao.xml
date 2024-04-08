@@ -24,7 +24,7 @@
    <insert id="updateModalComplete" parameterType="com.tech.ibara.modal.dto.ModalCompleteDto">
     INSERT INTO MODAL_COMPLETE (ESTINO, M_DATE, M_ADDR, M_TEL, M_CONTENT, M_SIZE, M_REQUEST, M_PRICE, M_WANTTIME, M_WANTDATE, M_CIRCS, M_PLACE, M_TYPE)
     VALUES (
-        'M' || TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(ESTINO, 10, 4)) FROM MY_NONMEMBER WHERE TRUNC(CREATED_AT) = TRUNC(SYSDATE))), 0) + 1, 4, '0') || LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
+        'M' || TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(ESTINO, 10, 4)) FROM MY_NONMEMBER WHERE TRUNC(M_DATE) = TRUNC(SYSDATE))), 0) + 1, 4, '0') || LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
         SYSDATE,
         #{m_addr},
         #{m_tel},
@@ -40,15 +40,3 @@
     )
 </insert>
 </mapper>
-
-
-<!-- INSERT INTO my_nonmember (estino, name, phone, email, pw, created_at)
-VALUES (
-    CONCAT(
-        'M',
-        DATE_FORMAT(NOW(), '%Y%m%d'),
-        LPAD(COALESCE((SELECT MAX(SUBSTR(estino, 10, 4)) FROM my_nonmember WHERE DATE(created_at) = CURDATE()), 0) + 1, 4, '0'),
-        LPAD(FLOOR(RAND() * 100), 2, '0')
-    ),
-    NOW()
-); -->

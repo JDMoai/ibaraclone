@@ -15,7 +15,7 @@ String path=request.getContextPath();
 <body>
 
 <!-- 모달 창 영역 -->
-<div id="myModal" class="modal" data-prev-modal="">
+<div class="myModal" id="modal" data-prev-modal="">
     <div class="modal_content">
         <div class="modal_leftside">
             <div class=modal_leftside_progress>
@@ -106,8 +106,8 @@ String path=request.getContextPath();
 
 <script>
 $(document).ready(function() {
-    var modal = $('#myModal');
-    var btn = $('#openModal');
+    var modal = $('.myModal');
+    var btn = $('.openModal');
     var span = $('.close');
     var openSizeModalBtn = $('.openSizeModal');
     var openServiceCheckModalBtn = $('.openServiceCheckModal');
@@ -125,17 +125,17 @@ $(document).ready(function() {
     }
 
     btn.click(function() {
-        openModal('#myModal');
+        openModal('.myModal');
     });
 
     span.click(function() {
-        closeModal('#myModal');
+        closeModal('.myModal');
        
     });
 
     $(window).click(function(event) {
         if (event.target == modal[0]) {
-            closeModal('#myModal');
+            closeModal('.myModal');
             
         }
     });
@@ -181,8 +181,8 @@ $(document).ready(function() {
                     productCheckbox.append(serviceItem);
                 });
                 
-                closeModal('#myModal');
-                openModal('#sizeModal');
+                closeModal('.myModal');
+                openModal('.sizeModal');
             },
             error: function(xhr, status, error) {
                 console.log(error);
@@ -196,7 +196,7 @@ $(document).ready(function() {
         
         updateSelectedService(service);
        
-        $('#serviceCheckModal').attr('data-prev-modal', option === 'kitchen' || option === 'bath' ? 'myModal' : 'sizeModal');//의심중
+        $('.serviceCheckModal').attr('data-prev-modal', option === 'kitchen' || option === 'bath' ? 'myModal' : 'sizeModal');//의심중
         $.ajax({
             type: "GET",
             async: true,
@@ -227,8 +227,8 @@ $(document).ready(function() {
                     productCheckbox.append(serviceItem);
                 });
                 
-                closeModal('#myModal');
-                openModal('#serviceCheckModal');
+                closeModal('.myModal');
+                openModal('.serviceCheckModal');
             },
             error: function(xhr, status, error) {
                 console.log(error);

@@ -18,7 +18,7 @@
 <body>
 	<!-- mInfo.jsp -->
 	<!-- 평수 선택 모달 창 영역 -->
-	<div id="infoModal" class="modal" data-prev-modal="">
+	<div class="infoModal" id="modal" data-prev-modal="">
 		<div class="modal_content">
 			<div class="modal_leftside">
 				<div class=modal_leftside_progress>
@@ -165,7 +165,7 @@
 var selectedItems = {};
 var checkedItems = {};
 $(document).ready(function() {
-				var infoModal = $('#infoModal');
+				var infoModal = $('.infoModal');
 				
 				function openModal(modalId) {
 					$(modalId).css('display', 'block');	
@@ -177,12 +177,12 @@ $(document).ready(function() {
 				}
 
 				$(document).on('click', '.close', function() {
-					closeModal('#infoModal');
+					closeModal('.infoModal');
 				});
 
 				$(document).on('click', '#infoPrivBtn', function() {
-					closeModal('#infoModal');
-					openModal('#askModal');
+					closeModal('.infoModal');
+					openModal('.askModal');
 				});
 				
 				$(document).on('click', '#infoNextBtn', function() {
@@ -225,8 +225,8 @@ $(document).ready(function() {
 					                success: function() {
 					                    // 업데이트 성공 시 처리할 로직
 					                    alert('견적이 완료되었습니다.');
-					                    closeModal('#infoModal');
-					                    openModal('#completeModal');
+					                    closeModal('.infoModal');
+					                    openModal('.completeModal');
 					                },
 					                error: function() {
 					                    alert('AJAX updateModalComplete = 오류가 발생했습니다.');
