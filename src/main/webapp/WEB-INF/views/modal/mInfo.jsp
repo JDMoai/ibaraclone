@@ -112,7 +112,7 @@
 				</div>
 				<div class="modal_rightside_body">
 					<div class="service_box">
-						<div class="selectedSize complete-selectedSize"></div>
+						<div class="selectedSize complete-selectedSize" id="complete-selectedSize"></div>
 						<div class="selectedService">
 							<span id="selectedService"></span>
 							<div class="checkedItems complete-checkedItems" id="complete-checkedItems">
@@ -167,6 +167,7 @@ var checkedItems = {};
 $(document).ready(function() {
 				var infoModal = $('.infoModal');
 				
+				
 				function openModal(modalId) {
 					$(modalId).css('display', 'block');	
 
@@ -187,7 +188,7 @@ $(document).ready(function() {
 				
 			
 				$(document).on('click', '#infoNextBtn', function() {
-					closeModal('.infoModal');
+					
 	                
 				    var password = $('#password').val();
 				    var confirmPassword = $('#confirmPassword').val();
@@ -196,40 +197,27 @@ $(document).ready(function() {
 				        alert('비밀번호가 일치하지 않습니다.');
 				        return;
 				    }
-				    var modalCompleteDto = {
-			                m_addr: $('.addr_result').text(),
-			                phone: $('.phone').val(),
-			                m_content: $('.complete-checkedItems').text(),
-			                m_size: $('.complete-selectedSize').text(),
-			                m_request: $('.request_result').text(),
-			                m_price: $('.complete-totalPriceValue').text(),
-			                m_wanttime: $('.wanttime_result').text(),
-			                m_wantdate: $('.wantdate_result').text(),
-			                m_circs: $('.circs_result').text(),
-			                m_place: $('.place_result').text(),
-			                m_type: $('#selectedService').text(),
-			                m_contentprice: $('.complete-selectedItems').text()
-			            };
+				    
 				    $.ajax({
 				        type: 'POST',
 				        url: '<%=path%>/modal/insertNonMember',
 				        data: $('#nonMemberForm').serialize(),
 				        success: function() {
-				            var modalCompleteDto = {
-				                m_addr: $('.addr_result').text(),
-				                phone: $('.phone').val(),
-				                m_content: $('.complete-checkedItems').text(),
-				                m_size: $('.complete-selectedSize').text(),
-				                m_request: $('.request_result').text(),
-				                m_price: $('.complete-totalPriceValue').text(),
-				                m_wanttime: $('.wanttime_result').text(),
-				                m_wantdate: $('.wantdate_result').text(),
-				                m_circs: $('.circs_result').text(),
-				                m_place: $('.place_result').text(),
-				                m_type: $('#selectedService').text(),
-				                m_contentprice: $('.complete-selectedItems').text()
-				                
-				            };
+				        	var modalCompleteDto = {
+					                m_addr: $('#addr_result').text(),
+					                phone: $('.phone').val(),
+					                m_content: $('#complete-checkedItems').text(),
+					                m_size: $('#complete-selectedSize').text(),
+					                m_request: $('#request_result').text(),
+					                m_price: $('.complete-totalPriceValue').text(),
+					                m_wanttime: $('#wanttime_result').text(),
+					                m_wantdate: $('#wantdate_result').text(),
+					                m_circs: $('#circs_result').text(),
+					                m_place: $('#place_result').text(),
+					                m_type: $('#selectedService').text(),
+					                m_contentprice: $('#complete-selectedItems').text()
+					                
+					            };
 
 				            $.ajax({
 				                type: 'POST',
@@ -248,6 +236,7 @@ $(document).ready(function() {
 				                        	 $('.estino').text(data.estino);
 				                             $('.customer-info').text(data.name + ', ' + data.email + ', ' + data.phone);
 				                             openModal('.completeModal');
+				                             closeModal('.infoModal');
 				                        },
 				                        error: function() {
 				                            alert('완료 정보를 가져오는 중 오류가 발생했습니다.');

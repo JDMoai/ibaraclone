@@ -129,7 +129,9 @@ String path=request.getContextPath();
 	<script>
 		var selectedItems = {};
 		var checkedItems = {};
+		
 		$(document).ready(function() {
+			
 			var completeModal = $('.completeModal');
 			 
 			function openModal(modalId) {
