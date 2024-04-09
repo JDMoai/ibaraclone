@@ -187,6 +187,8 @@ $(document).ready(function() {
 				
 			
 				$(document).on('click', '#infoNextBtn', function() {
+					closeModal('.infoModal');
+	                
 				    var password = $('#password').val();
 				    var confirmPassword = $('#confirmPassword').val();
 
@@ -194,53 +196,80 @@ $(document).ready(function() {
 				        alert('비밀번호가 일치하지 않습니다.');
 				        return;
 				    }
-
 				    var modalCompleteDto = {
-				        m_addr: $('.addr_result').text(),
-				        phone: $('.phone').val(),
-				        m_content: $('.complete-checkedItems').text(),
-				        m_size: $('.complete-selectedSize').text(),
-				        m_request: $('.request_result').text(),
-				        m_price: $('.complete-totalPriceValue').text(),
-				        m_wanttime: $('.wanttime_result').text(),
-				        m_wantdate: $('.wantdate_result').text(),
-				        m_circs: $('.circs_result').text(),
-				        m_place: $('.place_result').text(),
-				        m_type: $('#selectedService').text(),
-				        m_contentprice: $('.complete-selectedItems').text()
-				    };
-
+			                m_addr: $('.addr_result').text(),
+			                phone: $('.phone').val(),
+			                m_content: $('.complete-checkedItems').text(),
+			                m_size: $('.complete-selectedSize').text(),
+			                m_request: $('.request_result').text(),
+			                m_price: $('.complete-totalPriceValue').text(),
+			                m_wanttime: $('.wanttime_result').text(),
+			                m_wantdate: $('.wantdate_result').text(),
+			                m_circs: $('.circs_result').text(),
+			                m_place: $('.place_result').text(),
+			                m_type: $('#selectedService').text(),
+			                m_contentprice: $('.complete-selectedItems').text()
+			            };
 				    $.ajax({
 				        type: 'POST',
 				        url: '<%=path%>/modal/insertNonMember',
 				        data: $('#nonMemberForm').serialize(),
-				        success: function(response) {
-				            openModal(response);
-				            alert('견적이 완료되었습니다.');
-				            closeModal('.infoModal');
-				            openModal('.completeModal');
+				        success: function() {
+				            var modalCompleteDto = {
+				                m_addr: $('.addr_result').text(),
+				                phone: $('.phone').val(),
+				                m_content: $('.complete-checkedItems').text(),
+				                m_size: $('.complete-selectedSize').text(),
+				                m_request: $('.request_result').text(),
+				                m_price: $('.complete-totalPriceValue').text(),
+				                m_wanttime: $('.wanttime_result').text(),
+				                m_wantdate: $('.wantdate_result').text(),
+				                m_circs: $('.circs_result').text(),
+				                m_place: $('.place_result').text(),
+				                m_type: $('#selectedService').text(),
+				                m_contentprice: $('.complete-selectedItems').text()
+				                
+				            };
+
+				            $.ajax({
+				                type: 'POST',
+				                url: '<%=path%>/modal/updateModalComplete',
+				                contentType: 'application/json',
+				                data: JSON.stringify(modalCompleteDto),
+				                success: function() {
+				                    console.log('updateModalComplete 성공');
+
+				                    // 서버로부터 완료 정보를 가져오는 AJAX 요청
+				                    $.ajax({
+				                        type: 'GET',
+				                        url: '<%=path%>/modal/complete',
+				                        data: { phone: $('.phone').val() },
+				                        success: function(data) {
+				                        	 $('.estino').text(data.estino);
+				                             $('.customer-info').text(data.name + ', ' + data.email + ', ' + data.phone);
+				                             openModal('.completeModal');
+				                        },
+				                        error: function() {
+				                            alert('완료 정보를 가져오는 중 오류가 발생했습니다.');
+				                        }
+				                    });
+				                },
+				                error: function() {
+				                    alert('AJAX updateModalComplete = 오류가 발생했습니다.');
+				                }
+				            });
+				            
 				        },
 				        error: function() {
 				            alert('AJAX insertNonMember = 오류가 발생했습니다.');
 				        }
+				        
 				    });
-
-				    $.ajax({
-				        type: 'POST',
-				        url: '<%=path%>/modal/updateModalComplete',
-				        contentType: 'application/json',
-				        data: JSON.stringify(modalCompleteDto),
-				        success: function() {
-				            console.log('updateModalComplete 성공');
-				        },
-				        error: function() {
-				            alert('AJAX updateModalComplete = 오류가 발생했습니다.');
-				        }
-				    });
-
 				    console.log(modalCompleteDto);
 				    
+				    
 				});
+				
 				
 });
 </script>

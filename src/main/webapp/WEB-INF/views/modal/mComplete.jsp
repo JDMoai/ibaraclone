@@ -70,7 +70,7 @@ String path=request.getContextPath();
 						<div class="row">		
 							<div class="completeInfo">
 								<div class="estino">
-								     <div>${completeInfo.estino}</div>
+								     
 								</div>
 							</div>
 							<div class="service_box">
@@ -103,9 +103,9 @@ String path=request.getContextPath();
 							</div>
 						</div>
 					</div>
-							<div class="completeInfo">
-						        <div>고객</div>
-						        	<div>${completeInfo.name}, ${completeInfo.email}, ${completeInfo.phone}</div>
+								<div class="completeInfo">
+						        	<div>고객</div>
+						        	<div class="customer-info"></div>
 						 	   </div>
 							<div class="completeService">
 							    <div>서비스</div>
@@ -131,7 +131,7 @@ String path=request.getContextPath();
 		var checkedItems = {};
 		$(document).ready(function() {
 			var completeModal = $('.completeModal');
-
+			 
 			function openModal(modalId) {
 				$(modalId).css('display', 'block');
 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.tech.ibara.modal.dao.mapper.ModalDao;
+import com.tech.ibara.modal.dto.CompleteInfoDto;
 import com.tech.ibara.modal.dto.ModalCheckDto;
 import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
@@ -43,6 +44,9 @@ public class ModalCheckService implements ModalService{
         modalDao.updateModalComplete(modalCompleteDto);
     }
 
-	
+	@Override
+    public CompleteInfoDto getCompleteInfo(String phone) {
+        return modalDao.selectCompleteInfo(phone);
+    }
 
 }

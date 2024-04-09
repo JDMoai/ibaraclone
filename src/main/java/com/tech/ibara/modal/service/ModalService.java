@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.ui.Model;
 
+import com.tech.ibara.modal.dto.CompleteInfoDto;
 import com.tech.ibara.modal.dto.ModalCheckDto;
 import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
@@ -18,5 +19,6 @@ public interface ModalService {
 	
 	void updateModalComplete(ModalCompleteDto modalCompleteDto);
 
+	CompleteInfoDto getCompleteInfo(String phone);
 
 }

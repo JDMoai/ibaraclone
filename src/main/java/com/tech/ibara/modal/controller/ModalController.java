@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.tech.ibara.modal.dao.mapper.ModalDao;
+import com.tech.ibara.modal.dto.CompleteInfoDto;
 import com.tech.ibara.modal.dto.ModalCheckDto;
 import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
@@ -101,6 +102,14 @@ public class ModalController {
 	        e.printStackTrace();
 	        System.out.println("modalCompleteDto컨트롤러 오류");
 	    }
+	}
+	
+	@GetMapping("/modal/complete")
+	@ResponseBody
+	public CompleteInfoDto showCompleteModal(@RequestParam("phone") String phone) {
+	    CompleteInfoDto completeInfo = modalService.getCompleteInfo(phone);
+	    System.out.println("completeInfo컨트롤러");
+	    return completeInfo;
 	}
 
 	
