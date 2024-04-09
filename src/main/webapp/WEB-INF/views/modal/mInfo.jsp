@@ -82,7 +82,7 @@
 										name="email" required>
 								</div>
 								<div class="item14">
-									<label for="phone">전화번호</label> <input type="tel" id="phone"
+									<label for="phone">휴대번호</label> <input type="tel" id="phone"
 										name="phone" class="phone" required>
 								</div>
 								<div class="item15">
@@ -167,7 +167,6 @@ var checkedItems = {};
 $(document).ready(function() {
 				var infoModal = $('.infoModal');
 				
-				
 				function openModal(modalId) {
 					$(modalId).css('display', 'block');	
 
@@ -189,14 +188,38 @@ $(document).ready(function() {
 			
 				$(document).on('click', '#infoNextBtn', function() {
 					
-	                
+					var email = $('#email').val();
 				    var password = $('#password').val();
 				    var confirmPassword = $('#confirmPassword').val();
+				    var phone = $('#phone').val();
 
+				    // 이메일 형식 검증
+				    var emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+				    if (!emailPattern.test(email)) {
+				        alert('올바른 이메일 형식으로 입력해주세요.');
+				        return;
+				    }
+
+				    // 비밀번호 길이 검증
+				    if (password.length < 4) {
+				        alert('비밀번호는 4자리 이상으로 입력해주세요.');
+				        return;
+				    }
+
+				    // 비밀번호 일치 여부 검증
 				    if (password !== confirmPassword) {
 				        alert('비밀번호가 일치하지 않습니다.');
 				        return;
 				    }
+
+				    // 전화번호 형식 검증
+				    var phonePattern = /^010\d{8}$/;
+				    if (!phonePattern.test(phone)) {
+				        alert('올바른 핸드폰번호 형식으로 입력해주세요.');
+				        return;
+				    }
+
+				    
 				    
 				    $.ajax({
 				        type: 'POST',
