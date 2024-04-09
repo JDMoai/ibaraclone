@@ -1,7 +1,7 @@
 create table modal_check(
 m_type varchar2(40),
-m_pname varchar(70),
-m_pexp varchar(100),
+m_pname varchar2(70),
+m_pexp varchar2(100),
 m_pprice number
 );
 --스탠다드커스텀인테리어
@@ -91,30 +91,32 @@ insert into modal_check values('bath','욕실천장','일자형/SMC타입(욕실
 
 select * from modal_check;
 delete from modal_check;
+drop table modal_check;
 commit;
 ---------------------------------------------------------
 
 create table modal_complete(
-estino varchar(30) primary key,
+estino varchar2(100) primary key,
 m_date DATE DEFAULT SYSDATE,
-m_addr varchar(100),
-m_tel varchar(60),
-m_content varchar(300),
-m_size varchar(20),
-m_request varchar(300),
-m_price varchar(20),
-m_wanttime varchar(30),
-m_wantdate varchar(50),
-m_circs varchar(20),
-m_place varchar(30),
-m_type varchar(40)
+m_addr varchar2(100),
+phone varchar2(100),
+m_content varchar2(1000),
+m_size varchar2(100),
+m_request varchar2(300),
+m_price varchar2(100),
+m_wanttime varchar2(30),
+m_wantdate varchar2(50),
+m_circs varchar2(100),
+m_place varchar2(100),
+m_type varchar2(100),
+m_contentprice varchar2(1000)
 );
 
-INSERT INTO modal_complete (estino, m_date, m_addr, m_tel, m_content, m_size,m_request,m_price,m_wanttime,m_wantdate,m_circs,m_place,m_type)
+INSERT INTO modal_complete
 VALUES (
     'M' || 
     TO_CHAR(SYSDATE, 'YYYYMMDD') ||
-    LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(estino, 10, 4)) FROM my_nonmember WHERE TRUNC(created_at) = TRUNC(SYSDATE))), 0) + 1, 4, '0') ||
+    LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(estino, 10, 4)) FROM my_nonmember WHERE TRUNC(m_date) = TRUNC(SYSDATE))), 0) + 1, 4, '0') ||
     LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
     SYSDATE,
     '안산시 상록구 수암동',
@@ -127,22 +129,21 @@ VALUES (
     '희망시공일자',
     '시공환경',
     '시공공간종류',
-    '프리미엄 인테리어'   
+    '프리미엄 인테리어',
+    '추가내용과가격'
 );
 
 
 select * from modal_complete;
 delete from modal_complete;
-drop sequence m_no_seq;
 drop table modal_complete;
-
 
 --------------------------------
 
 CREATE TABLE my_nonmember (
     name VARCHAR2(30),
-    phone VARCHAR2(30),
     email VARCHAR2(100),
+    phone VARCHAR2(30),
     pw VARCHAR2(20)
 );
 
@@ -178,3 +179,35 @@ select * from modal_complete;
 select * from my_nonmember;
 delete from my_nonmember;
 delete from modal_complete;
+rollback;
+
+--select c.estino
+--from modal_complete c inner join my_nonmember m
+--on c.phone=m.phone
+--where m.phone = 'tq';
+--	
+
+---join view
+CREATE VIEW nonmember_complete_view AS
+SELECT
+    mn.name,
+    mn.email,
+    mn.phone,
+    mc.estino,
+    mc.m_date,
+    mc.m_addr,
+    mc.m_content,
+    mc.m_size,
+    mc.m_request,
+    mc.m_price,
+    mc.m_wanttime,
+    mc.m_wantdate,
+    mc.m_circs,
+    mc.m_place,
+    mc.m_type,
+    mc.m_contentprice
+FROM
+    my_nonmember mn
+    INNER JOIN modal_complete mc ON mn.phone = mc.phone;
+    
+    SELECT * FROM nonmember_complete_view;
