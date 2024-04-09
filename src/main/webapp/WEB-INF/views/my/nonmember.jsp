@@ -6,7 +6,7 @@
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>비회원 견적 조회</title>
+    <title>내 견적 조회</title>
     <style>
     label{
     	display:inline-block;
@@ -45,11 +45,7 @@
 	        <input type="submit" id="btn" value="확인" />
     	</div>
     </form>
-    <!-- <form action="nonmemberOrderSearch" method="post">
-    	<label for="orderno">비회원 주문조회</label> <br />
-    	<input type="text" id="orderno" name="orderno" placeholder="주문번호를 입력해주세요" />
-    	<input type="submit" value="확인" /> 
-    </form> -->
+
 
 </body>
 </html>

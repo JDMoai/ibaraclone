@@ -1,30 +1,26 @@
 package com.tech.ibara.modal.controller;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.tech.ibara.modal.dao.mapper.ModalDao;
 import com.tech.ibara.modal.dto.CompleteInfoDto;
+import com.tech.ibara.modal.dto.ModalBoardDto;
 import com.tech.ibara.modal.dto.ModalCheckDto;
 import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
-import com.tech.ibara.modal.service.ModalBoardService;
+import com.tech.ibara.modal.service.ModalCheckService;
 import com.tech.ibara.modal.service.ModalService;
 
 @Controller
@@ -114,15 +110,18 @@ public class ModalController {
 	}
 	
 	@RequestMapping("/modal/mBoard")
-	public String mBoard(HttpServletRequest request,Model model) {
-		System.out.println("mBoard 컨트롤러");
-		model.addAttribute("request",request);
-		modalService = new ModalBoardService(sqlSession);
-		String str=modalService.execute(model);
-		if(str.equals("phoneNull")) {
-			model.addAttribute("msg","등록되지 않은 폰번호입니다.");
-		}
-		return "/modal/mBoard";
+	public String mBoard(@RequestParam("email") String email, @RequestParam("pw") String pw, Model model) {
+	    System.out.println("mBoard 컨트롤러");
+	    modalService = new ModalCheckService(sqlSession);
+	    ModalBoardDto modalBoard = modalService.getModalBoard(email, pw);
+	    
+	    if (modalBoard != null) {
+	        model.addAttribute("modalBoard", modalBoard);
+	    } else {
+	        model.addAttribute("msg", "등록되지 않은 이메일 또는 비밀번호입니다.");
+	    }
+	    
+	    return "/modal/mBoard";
 	}
 
 	

@@ -19,5 +19,5 @@ public interface ModalDao {
 
 	CompleteInfoDto selectCompleteInfo(String phone);
 
-	ModalBoardDto getModalBoard(String email);
+	ModalBoardDto getModalBoard(String email, String pw);
 }

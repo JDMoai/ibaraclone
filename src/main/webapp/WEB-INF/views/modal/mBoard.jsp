@@ -63,6 +63,21 @@
 		</div>
 	</header>
 	
+<c:choose>
+        <c:when test="${not empty modalBoard}">
+            <h2>견적 정보</h2>
+            <p>이름: ${modalBoard.name}</p>
+            <p>이메일: ${modalBoard.email}</p>
+            <p>전화번호: ${modalBoard.phone}</p>
+            <p>견적번호: ${modalBoard.estino}</p>
+            <p>주소: ${modalBoard.m_addr}</p>
+            <!-- 다른 필드들도 출력 -->
+        </c:when>
+        <c:otherwise>
+            <p>${msg}</p>
+        </c:otherwise>
+    </c:choose>
+	
 	<!-- 푸터 -->
 	<footer>
 		<!-- 푸터 로고 -->

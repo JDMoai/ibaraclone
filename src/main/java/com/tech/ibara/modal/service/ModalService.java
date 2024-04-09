@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.ui.Model;
 
 import com.tech.ibara.modal.dto.CompleteInfoDto;
+import com.tech.ibara.modal.dto.ModalBoardDto;
 import com.tech.ibara.modal.dto.ModalCheckDto;
 import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
 
 public interface ModalService {
 
-	public String execute(Model model);
+	
 
 	public List<ModalCheckDto> getServiceItems(String m_type);
 
@@ -21,5 +22,7 @@ public interface ModalService {
 	void updateModalComplete(ModalCompleteDto modalCompleteDto);
 
 	CompleteInfoDto getCompleteInfo(String phone);
+
+	public ModalBoardDto getModalBoard(String email, String pw);
 
 }
