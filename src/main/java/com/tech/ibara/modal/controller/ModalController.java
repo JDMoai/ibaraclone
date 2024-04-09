@@ -24,6 +24,7 @@ import com.tech.ibara.modal.dto.CompleteInfoDto;
 import com.tech.ibara.modal.dto.ModalCheckDto;
 import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
+import com.tech.ibara.modal.service.ModalBoardService;
 import com.tech.ibara.modal.service.ModalService;
 
 @Controller
@@ -110,6 +111,18 @@ public class ModalController {
 	    CompleteInfoDto completeInfo = modalService.getCompleteInfo(phone);
 	    System.out.println("completeInfo컨트롤러");
 	    return completeInfo;
+	}
+	
+	@RequestMapping("/modal/mBoard")
+	public String mBoard(HttpServletRequest request,Model model) {
+		System.out.println("mBoard 컨트롤러");
+		model.addAttribute("request",request);
+		modalService = new ModalBoardService(sqlSession);
+		String str=modalService.execute(model);
+		if(str.equals("phoneNull")) {
+			model.addAttribute("msg","등록되지 않은 폰번호입니다.");
+		}
+		return "/modal/mBoard";
 	}
 
 	
