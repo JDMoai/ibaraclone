@@ -3,7 +3,7 @@ package com.tech.ibara.oh.vo;
 public class OHPageVO {
 	
 	// 게시글 - Post
-	private Integer displayPostCount = 3; // 출력할 게시글 수	
+	private Integer outputPostCount = 3; // 출력할 게시글 수	
 	private Integer postTotalNum;		  // 전체 게시글 수
 	private Integer postStartNum;		  // 시작 게시글 번호
 	private Integer postEndNum;			  // 종료 게시글 번호
@@ -30,9 +30,9 @@ public class OHPageVO {
 		// 전체 게시글 수
 		postTotalNum = PTN;
 		// 전체 페이지 수 = (전체 게시글 수 / 출력할 게시글 수)
-		pageTotalNum = (int) (PTN / displayPostCount);
+		pageTotalNum = (int) (PTN / outputPostCount);
 		// if 조건문 - (전체 게시글 수 / 출력할 게시글 수)의 나머지 값 > 0
-		if(PTN % displayPostCount > 0) {
+		if(PTN % outputPostCount > 0) {
 			// 전체 페이지 수, 1 증가
 			pageTotalNum++;
 		}
@@ -47,16 +47,16 @@ public class OHPageVO {
 		}
 		// *** 게시글 - Post ***
 		// 시작 게시글 번호 = ((현재 페이지 번호  - 1) * 출력할 게시글 수) + 1
-		postStartNum = ((pageSelectedNum - 1) * displayPostCount) + 1;
-		// 종료 페이지 번호 = 시작 게시글 번호 + 출력할 게시글 수 - 1
-		pageEndNum = postStartNum + displayPostCount - 1;
+		postStartNum = ((pageSelectedNum - 1) * outputPostCount) + 1;
+		// 종료 게시글 번호 = 시작 게시글 번호 + 출력할 게시글 수 - 1
+		postEndNum = postStartNum + outputPostCount - 1;
 	}
-	
-	public Integer getDiplayPostCount() {
-		return displayPostCount;
+		
+	public Integer getOutputPostCount() {
+		return outputPostCount;
 	}
-	public void setDiplayPostCount(Integer diplayPostCount) {
-		this.displayPostCount = diplayPostCount;
+	public void setOutputPostCount(Integer outputPostCount) {
+		this.outputPostCount = outputPostCount;
 	}
 	public Integer getPostTotalNum() {
 		return postTotalNum;
@@ -64,11 +64,11 @@ public class OHPageVO {
 	public void setPostTotalNum(Integer postTotalNum) {
 		this.postTotalNum = postTotalNum;
 	}
-	public Integer getPostStrartNum() {
+	public Integer getPostStartNum() {
 		return postStartNum;
 	}
-	public void setPostStrartNum(Integer postStrartNum) {
-		this.postStartNum = postStrartNum;
+	public void setPostStartNum(Integer postStartNum) {
+		this.postStartNum = postStartNum;
 	}
 	public Integer getPostEndNum() {
 		return postEndNum;

@@ -1,6 +1,10 @@
 package com.tech.ibara.csnotice;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +15,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tech.ibara.csnotice.dao.QnaBoardIDao;
 import com.tech.ibara.csnotice.dto.QnaDto;
+import com.tech.ibara.csnotice.dto.QnaImgDto;
+import com.tech.ibara.csnotice.dto.QnaReplyDto;
+import com.tech.ibara.csnotice.service.CsQnaContentEditService;
+import com.tech.ibara.csnotice.service.CsQnaContentService;
+import com.tech.ibara.csnotice.service.CsQnaDeleteService;
+import com.tech.ibara.csnotice.service.CsQnaEditProcService;
+import com.tech.ibara.csnotice.service.CsQnaListService;
+import com.tech.ibara.csnotice.service.CsQnaReplyService;
+import com.tech.ibara.csnotice.service.CsQnaService;
+import com.tech.ibara.csnotice.service.CsQnaWriteService;
 import com.tech.ibara.csnotice.vo.SearchVO;
 
 @Controller
@@ -23,289 +38,150 @@ public class CsQnaController {
 
 	@Autowired
 	private SqlSession sqlSession;
-
+	
+	CsQnaService csQnaService;
+	
+	
 	// 리스트 컨트롤러
 	@RequestMapping("/qnalist")
 	public String qnalist(HttpServletRequest request, SearchVO searchVO, Model model) {
 		System.out.println("qnaList()controller");
 
-		//dao 선언
-		QnaBoardIDao dao = sqlSession.getMapper(QnaBoardIDao.class);
-
-//		서칭 처리
-		String qq = "";
-		String all = "";
-		String oh = "";
-		String biz = "";
-		String pf = "";
-		String sh = "";
-
-		//글 분류 확인
-		String qnadiv = request.getParameter("qnadiv");
-
-		//처음 리스트 들어왔을 떄 셀렉트 박스 널값 체크 해결 if 문
-		if (qnadiv==null) {   
-			qnadiv="all";
-		}
-		System.out.println("qnadiv : " + qnadiv);
+		model.addAttribute("request",request);
+		model.addAttribute("searchVo",searchVO);
 		
-		// 위 변수의 체크상태 저장
-		if (qnadiv != null) { 
-			if (qnadiv.equals("qq")) {
-				qq = "qq";
-				model.addAttribute("qq", "true");
-				
-			} else if (qnadiv.equals("all")) {
-				all = "all";
-				model.addAttribute("all", "true");
-				
-			} else if (qnadiv.equals("oh")) {
-				oh = "oh";
-				model.addAttribute("oh", "true");
-				
-			} else if (qnadiv.equals("biz")) {
-				biz = "biz";
-				model.addAttribute("biz", "true");
-				
-			} else if (qnadiv.equals("pf")) {
-				pf = "pf";
-				model.addAttribute("pf", "true");
-				
-			} else if (qnadiv.equals("sh")) {
-				sh = "sh";
-				model.addAttribute("sh", "true");
-			}
-		}
-
-		// 검색 결과 유지
-		String a = request.getParameter("all");
-		String q = request.getParameter("qq");
-		String o = request.getParameter("oh");
-		String b = request.getParameter("biz");
-		String p = request.getParameter("pf");
-		String s = request.getParameter("sh");
-
-		if (a != null) {
-			if (a.equals("all")) {
-				all = a;
-				model.addAttribute("all", "true");
-			}
-		}
-		if (q != null) {
-			if (q.equals("qq")) {
-				qq = q;
-				model.addAttribute("qq", "true");
-			}
-		}
-		if (o != null) {
-			if (o.equals("oh")) {
-				oh = o;
-				model.addAttribute("oh", "true");
-			}
-		}
-		if (b != null) {
-			if (b.equals("biz")) {
-				biz = b;
-				model.addAttribute("biz", "true");
-			}
-		}
-		if (p != null) {
-			if (p.equals("pf")) {
-				pf = p;
-				model.addAttribute("pf", "true");
-			}
-		}
-		if (s != null) {
-			if (s.equals("sh")) {
-				sh = s;
-				model.addAttribute("sh", "true");
-			}
-		}
-
-		// sk값 가져오기(검색 키워드)
-		String searchKeyword = request.getParameter("sk");
+		csQnaService = new CsQnaListService(sqlSession);
+		csQnaService.execute(model);
 		
-		// 검색문자 null처리
-		if (searchKeyword == null) { 
-			searchKeyword = "";
-		}
-		model.addAttribute("searchKeyword", searchKeyword);
-		
-		// searchKeyword 확인하는 출력문
-		System.out.println("searchKeyword : " + searchKeyword); 
-
-//		페이징
-		String strPage = request.getParameter("page");
-		// 처음 들어왔을 떄 페이지 null처리
-		if (strPage == null) {
-			strPage = "1";
-		}
-
-		int page = Integer.parseInt(strPage);
-		searchVO.setPage(page);
-		// 토탈 글 갯수
-		// 검색에 적용
-
-		int total = 0;
-		if (qq.equals("qq")) { // 퀵견적 검색
-			total = dao.selectBoardTotalCount1();
-			System.out.println("totqq");
-		} else if (all.equals("all")) { // 전체 검색
-			total = dao.selectBoardTotalCount2();
-			System.out.println("totall");
-		} else if (oh.equals("oh")) { // 우리집 자랑 검색
-			total = dao.selectBoardTotalCount3();
-			
-		} else if (biz.equals("biz")) { // 업체 검색
-			total = dao.selectBoardTotalCount4();
-			
-		} else if (pf.equals("pf")) { // 회원정보 검색
-			total = dao.selectBoardTotalCount5();
-			
-		} else if (sh.equals("sh")) { // 소품샵 검색
-			total = dao.selectBoardTotalCount6();
-		}
-
-		System.out.println("total : " + total);
-
-//		total count 찍히게
-
-		searchVO.pageCalculate(total);
-
-		// 계산된 값
-		System.out.println("total" + total);
-		System.out.println("clickpage" + strPage);
-		System.out.println("pagestart" + searchVO.getPageStart());
-		System.out.println("pageend" + searchVO.getPageEnd());
-		System.out.println("rowstart" + searchVO.getRowStart());
-		System.out.println("rowend" + searchVO.getRowEnd());
-
-		int rowStart = searchVO.getRowStart();
-		int rowEnd = searchVO.getRowEnd();
-
-		ArrayList<QnaDto> list = null;
-		
-		if (qq.equals("qq")) { // 퀵견적 검색
-			model.addAttribute("list", dao.qnalist(rowStart, rowEnd, searchKeyword, "1"));
-			
-		} else if (all.equals("all")) { // 전체 검색
-			model.addAttribute("list", dao.qnalist(rowStart, rowEnd, searchKeyword, "2"));
-			
-		} else if (oh.equals("oh")) { // 우리집 자랑 검색
-			model.addAttribute("list", dao.qnalist(rowStart, rowEnd, searchKeyword, "3"));
-			
-		} else if (biz.equals("biz")) { // 비즈 검색
-			model.addAttribute("list", dao.qnalist(rowStart, rowEnd, searchKeyword, "4"));
-			
-		} else if (pf.equals("pf")) { // 회원정보 검색
-			model.addAttribute("list", dao.qnalist(rowStart, rowEnd, searchKeyword, "5"));
-			
-		} else if (sh.equals("sh")) { // 소품샵 검색
-			model.addAttribute("list", dao.qnalist(rowStart, rowEnd, searchKeyword, "6"));
-		}
-		
-		System.out.println("=======================");
-		
-		model.addAttribute("totalRowcnt", total);
-		model.addAttribute("searchVo", searchVO);
-
 		return "csnotice/qnalist";
-	}
+	}//qnalist
 
+	
+	// 별 기능 없음 writeview로 이동
 	@RequestMapping("/qnawriteview")
 	public String qnawriteview() {
 
 		return "csnotice/qnawriteview";
 	}
 
+	
+	// 글 게시 컨트롤러
 	@RequestMapping("/qnawrite")
 	public String qnawrite(MultipartHttpServletRequest mftrequest, Model model) {
-
 		System.out.println("qnawrite()controller");
 
-		String nbwriter = mftrequest.getParameter("nbwriter");
-		String nbtitle = mftrequest.getParameter("nbtitle");
-		String nbcontent = mftrequest.getParameter("nbcontent");
-		String qnadiv = mftrequest.getParameter("qnadiv");
-
-		String path = "C:\\23setspring\\springwork23\\interiorbara2\\src\\main\\webapp\\resources\\img";
-//		MultipartRequest req=new MultipartRequest(mftrequest, path,1024*1024*10,"utf-8",new DefaultFileRenamePolicy());
-
-		System.out.println("nbwriter : " + nbwriter);
-		System.out.println("nbtitle : " + nbtitle);
-		System.out.println("nbcontent : " + nbcontent);
-		System.out.println("qnadiv : " + qnadiv);
-
-		List<MultipartFile> fileList = mftrequest.getFiles("nbfile");
-
-		System.out.println("fileList : " + fileList);
-
-		QnaBoardIDao dao = sqlSession.getMapper(QnaBoardIDao.class);
-
-		// 최근의 글번호
-		int snbno = dao.selsnbno();
-		System.out.println("snbno: " + snbno);
-
-		dao.qnawrite(nbwriter, nbtitle, nbcontent, snbno, qnadiv);
-
-		for (MultipartFile mf : fileList) {
-			String originFile = mf.getOriginalFilename();
-			System.out.println("파일이름 : " + originFile);
-			long longtime = System.currentTimeMillis();
-			String changeFile = longtime + "_" + mf.getOriginalFilename();
-			System.out.println("변형된 파일 이름 : " + changeFile);
-			String pathFile = path + "\\" + changeFile;
-			try {
-				if (!originFile.equals("")) {
-					mf.transferTo(new File(pathFile));
-					System.out.println("다중 업로드 성공");
-//					db에 파일 이름 인서트
-					dao.imgwrite(snbno, changeFile);
-
-				}
-			} catch (Exception e) {
-				// TODO: handle exception
-			}
-		}
+		model.addAttribute("mftrequest",mftrequest);
+		
+		csQnaService = new CsQnaWriteService(sqlSession);
+		csQnaService.execute(model);
+		
 		return "redirect:qnalist";
-	}
+	}// qnawrite
 
+	
+	//게시글 상세페이지
 	@RequestMapping("/qnacontent")
 	public String qnacontent(HttpServletRequest request, Model model) {
 		System.out.println("qnacontent()controller");
 
-		QnaBoardIDao dao = sqlSession.getMapper(QnaBoardIDao.class);
-
-		String nbno = request.getParameter("nbno");
-		System.out.println(nbno);
-
-		dao.uphit(nbno);
-
-		QnaDto dto = dao.qnacontent(nbno);
-		// model에 담아서 뷰단에 보내줌
-
-		model.addAttribute("qna_content", dto);
-
+		model.addAttribute("request",request);
+		
+		csQnaService = new CsQnaContentService(sqlSession);
+		csQnaService.execute(model);
+		
 		return "csnotice/qnacontent";
-	}
+	}// qnacontent
 	
+
+	//게시글 수정 페이지
+	@RequestMapping("/qnaeditview")
+	public String qnacontentedit(HttpServletRequest request, Model model) {
+		System.out.println("qnacontentedit()controller");
+		
+		model.addAttribute("request",request);
+		
+		csQnaService = new CsQnaContentEditService(sqlSession);
+		csQnaService.execute(model);
+		
+		return "csnotice/qnaeditview";
+	}//qnaeditview
+	
+
+	// 글 수정 컨트롤러 페이지 전환=list로 감
+	@RequestMapping("/qnaeditproc")
+	public String qnaeditproc(MultipartHttpServletRequest mftrequest, Model model) {
+		System.out.println("qnaeditproc()controller");
+		
+		model.addAttribute("mftrequest",mftrequest);
+		String qbno = mftrequest.getParameter("qbno");
+		
+		csQnaService = new CsQnaEditProcService(sqlSession);
+		csQnaService.execute(model);
+
+		return "redirect:qnacontent?qbno=" + qbno;
+	}//qnaeditproc
+	
+	
+	//글 삭제 컨트롤러 페이지 전환=list로 감
 	@RequestMapping("/qnadelete")
 	public String qnadelete(HttpServletRequest request, Model model) {
 		System.out.println("qnadelete()controller");
 		
+		model.addAttribute("request",request);
 		
-		QnaBoardIDao dao = sqlSession.getMapper(QnaBoardIDao.class);
-		
-		String nbno=request.getParameter("nbno");
-		System.out.println("delete : "+nbno);
-		
-		int filecode=dao.selfilecode(nbno);
-		
-		System.out.println("filecode : "+filecode);
-		dao.imgdelete(filecode);
-		dao.qnadelete(nbno);
+		csQnaService = new CsQnaDeleteService(sqlSession);
+		csQnaService.execute(model);
 		
 		return "redirect:qnalist";
-	}
+	}//qnadelete
 
+	
+	//글에 대한 답
+	@RequestMapping(method = RequestMethod.POST, value = "/qnareply")
+	public String qnareply(HttpServletRequest request, Model model) {
+		System.out.println("qnareply()");
+		
+		model.addAttribute("request",request);
+		String qbno = request.getParameter("qbno");
+		
+		csQnaService = new CsQnaReplyService(sqlSession);
+		csQnaService.execute(model);
+		
+		return "redirect:qnacontent?qbno=" + qbno;
+	}//qnareply
+	
+	
+//	//답글에 대한 답글 작성하는 컨트롤러
+//	@RequestMapping(method = RequestMethod.POST, value = "/qnareply_r")
+//	public String qnareply_r(HttpServletRequest request, Model model) throws ClassNotFoundException, SQLException {
+//		System.out.println("qnareply()");
+//
+//		QnaBoardIDao dao = sqlSession.getMapper(QnaBoardIDao.class);
+//
+//		String nbno = request.getParameter("nbno");
+//		String rnbno = request.getParameter("rnbno");
+//		String rwriter = request.getParameter("rwriter");
+//		String rcontent = request.getParameter("rcontent");
+//		String rnbstep = request.getParameter("rnbstep");
+//		String rnbgroup = request.getParameter("rnbgroup");
+//		String rnbindent = request.getParameter("rnbindent");
+//
+//		System.out.println("nbno :" + nbno);
+//		System.out.println("rnbno :" + rnbno);
+//		System.out.println("rwriter :" + rwriter);
+//		System.out.println("rcontent :" + rcontent);
+//		System.out.println("rnbstep :" + rnbstep);
+//		System.out.println("rnbindent :" + rnbindent);
+//
+//		String sql = "select * from dept";
+//		Class.forName("oracle.jdbc.driver.OracleDriver");
+//		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+//		String user = "hr";
+//		String pw = "123456";
+//		Connection conn = DriverManager.getConnection(url, user, pw);
+//		Statement stmt = conn.createStatement();
+//
+//		return "redirect:qnacontent?nbno=" + nbno;
+//	}//qnareply_r rest 사용 없어도 됨
+ 
 }

@@ -34,17 +34,28 @@
 				<div class="header_join">회원가입</div>
 				<div class="header_cs">마이페이지</div>
 			</div>
+			<!-- 로그인 세션 부분 -->
+		<!--<c:choose>
+				<c:when test="${sessionNickname eq null }">
+					<a href="my/joinform">join</a> | <a href="my/loginform">login</a>
+				</c:when>
+				<c:otherwise>
+    				${sessionNickname }님 로그인 되었습니다.
+    				<br />
+					<a href="my/mypagemain">mypage</a> | <a href="my/logout">logout</a>
+				</c:otherwise>
+			</c:choose> -->
 			<!-- 오른쪽 여백 -->
 			<div></div>
 		</div>
 		<!-- header_bottom : 헤더 아랫부분 -->
-		<div class="header_bottom">
+		<div id="header_bottom" class="header_bottom">
 			<!-- header_category_icon : 카테고리 아이콘 -->
 			<div class="header_category_icon">
 				<i class="fas fa-bars"></i>
 			</div>
 			<!-- header_category_list : 카테고리 / list_1~5 : list에 각각 들어갈 내용 -->
-			<div class="header_category_list list_1">퀵견적</div>
+			<div class="openModal header_category_list list_1">퀵견적</div>
 			<div class="header_category_list list_2">업체 둘러보기</div>
 			<div class="header_category_list list_3">소품샵</div>
 			<div class="header_category_list list_4">우리 집 자랑하기</div>
@@ -163,225 +174,202 @@
 		</script>
 		<br />
 		<div class="category_button_wrap">
-			<button class="openModal" class="category_button category_1">
+			<button  class="openModal category_button category_1">
 				<span>퀵견적</span>
 			</button>
 			<jsp:include page="../modal/mMain.jsp" />
-			<button onclick="location.href='shop/list'"
-				class="category_button category_2">
+			<button onclick="location.href='shop/list'" id="category_button" class="category_button category_2">
 				<span>소품 샵</span>
 			</button>
-			<button class="category_button category_3" onclick="location.href='biz/magazine/bizMgzList'" >
+			<button onclick="location.href='biz/magazine/bizMgzList'" id="category_button" class="category_button category_3">
 				<span>업체 <br> 둘러보기
 				</span>
 			</button>
-			<button onclick="location.href='oh/OHMainView'"
-				class="category_button category_4">
+			<button onclick="location.href='oh/OHMainView'" id="category_button" class="category_button category_4">
 				<span>우리 집 <br> 자랑하기
 				</span>
 			</button>
-			<button onclick="location.href='cshome'"
-				class="category_button category_5">
+			<button onclick="location.href='cshome'" id="category_button" class="category_button category_5">
 				<span>고객센터</span>
 			</button>
 			<br />
 		</div>
-		<div class="main_preview">
-			<h1 class="main_preview_title">입점 업체 보기</h1>
-			<hr />
-			<div class="main_preview_biz">
-				<ul>
-					<li class="main_preview_biz_img">사진1</li>
-					<li class="main_preview_biz_img">사진1</li>
-					<li class="main_preview_biz_img">사진1</li>
-					<li class="main_preview_biz_img">사진1</li>
-				</ul>
-				<ul>
-					<li class="main_preview_biz_name">이름1</li>
-					<li class="main_preview_biz_name">이름1</li>
-					<li class="main_preview_biz_name">이름1</li>
-					<li class="main_preview_biz_name">이름1</li>
-				</ul>
-				<ul>
-					<li class="main_preview_biz_addr">주소1</li>
-					<li class="main_preview_biz_addr">주소1</li>
-					<li class="main_preview_biz_addr">주소1</li>
-					<li class="main_preview_biz_addr">주소1</li>
-				</ul>
-				<ul>
-					<li class="main_preview_biz_chat"><a
-						href="https://www.naver.com" class="main_preview_biz_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-					<li class="main_preview_biz_chat"><a
-						href="https://www.naver.com" class="main_preview_biz_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-					<li class="main_preview_biz_chat"><a
-						href="https://www.naver.com" class="main_preview_biz_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-					<li class="main_preview_biz_chat"><a
-						href="https://www.naver.com" class="main_preview_biz_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="main_preview">
-			<h1 class="main_preview_title">인테리어 소품</h1>
-			<hr />
-			<div class="main_preview_shop">
-				<ul>
-					<li class="main_preview_shop_img">사진1</li>
-					<li class="main_preview_shop_img">사진1</li>
-					<li class="main_preview_shop_img">사진1</li>
-					<li class="main_preview_shop_img">사진1</li>
-				</ul>
-				<ul>
-					<li class="main_preview_shop_name">이름1</li>
-					<li class="main_preview_shop_name">이름1</li>
-					<li class="main_preview_shop_name">이름1</li>
-					<li class="main_preview_shop_name">이름1</li>
-				</ul>
-				<ul>
-					<li class="main_preview_shop_addr">주소1</li>
-					<li class="main_preview_shop_addr">주소1</li>
-					<li class="main_preview_shop_addr">주소1</li>
-					<li class="main_preview_shop_addr">주소1</li>
-				</ul>
-				<ul>
-					<li class="main_preview_shop_chat"><a
-						href="https://www.naver.com" class="main_preview_shop_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-					<li class="main_preview_shop_chat"><a
-						href="https://www.naver.com" class="main_preview_shop_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-					<li class="main_preview_shop_chat"><a
-						href="https://www.naver.com" class="main_preview_shop_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-					<li class="main_preview_shop_chat"><a
-						href="https://www.naver.com" class="main_preview_shop_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="main_preview">
-			<h1 class="main_preview_title">우리집 자랑하기</h1>
-			<hr />
-			<div class="main_preview_OH">
-				<ul>
-					<li class="main_preview_OH_img">사진1</li>
-					<li class="main_preview_OH_img">사진1</li>
-					<li class="main_preview_OH_img">사진1</li>
-					<li class="main_preview_OH_img">사진1</li>
-				</ul>
-				<ul>
-					<li class="main_preview_OH_name">이름1</li>
-					<li class="main_preview_OH_name">이름1</li>
-					<li class="main_preview_OH_name">이름1</li>
-					<li class="main_preview_OH_name">이름1</li>
-				</ul>
-				<ul>
-					<li class="main_preview_OH_addr">주소1</li>
-					<li class="main_preview_OH_addr">주소1</li>
-					<li class="main_preview_OH_addr">주소1</li>
-					<li class="main_preview_OH_addr">주소1</li>
-				</ul>
-				<ul>
-					<li class="main_preview_OH_chat"><a
-						href="https://www.naver.com" class="main_preview_OH_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-					<li class="main_preview_OH_chat"><a
-						href="https://www.naver.com" class="main_preview_OH_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-					<li class="main_preview_OH_chat"><a
-						href="https://www.naver.com" class="main_preview_OH_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-					<li class="main_preview_OH_chat"><a
-						href="https://www.naver.com" class="main_preview_OH_chat_link">채팅
-							바로가기 <i class="far fa-comment-alt"></i>
-					</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="main_preview_cs">
-			<div class="main_preview_cs_notice">
-				<h1 class="main_preview_title">공지사항</h1>
-				<hr>
-				<div class="main_preview_cs_notice_board">
-					<ul>
-						<li class="main_preview_cs_notice_category w10 bb">번호</li>
-						<li class="main_preview_cs_notice_category w39 bb">제목</li>
-						<li class="main_preview_cs_notice_category w20 bb">작성자</li>
-						<li class="main_preview_cs_notice_category w10 bb">조회수</li>
-						<li class="main_preview_cs_notice_category w20 bb">작성일</li>
-					</ul>
-					<ul>
-						<li class="main_preview_cs_notice_category w10">1</li>
-						<li class="main_preview_cs_notice_category w39">제aa목</li>
-						<li class="main_preview_cs_notice_category w20">작a성a자</li>
-						<li class="main_preview_cs_notice_category w10">1</li>
-						<li class="main_preview_cs_notice_category w20">1</li>
-					</ul>
-					<ul>
-						<li class="main_preview_cs_notice_category w10">1</li>
-						<li class="main_preview_cs_notice_category w39">제aa목</li>
-						<li class="main_preview_cs_notice_category w20">작a성a자</li>
-						<li class="main_preview_cs_notice_category w10">1</li>
-						<li class="main_preview_cs_notice_category w20">1</li>
-					</ul>
-					<ul>
-						<li class="main_preview_cs_notice_category w10">1</li>
-						<li class="main_preview_cs_notice_category w39">제aa목</li>
-						<li class="main_preview_cs_notice_category w20">작a성a자</li>
-						<li class="main_preview_cs_notice_category w10">1</li>
-						<li class="main_preview_cs_notice_category w20">1</li>
-					</ul>
+		<div class="main_preview_wrap">
+			<div class="main_preview">
+				<h1 class="main_preview_title"><a href="biz/magazine/bizMgzList">입점 업체 보기</a></h1>
+				<hr />
+				<div class="main_preview_biz">
+					<c:forEach items="${bizPreviewList }" var="biz">
+						<div class="main_preview_biz_list">
+							<ul>
+								<li class="main_preview_biz_img">
+									<img src="resources/upload/main/${biz.biz_img }" alt="#" />
+								</li>
+							</ul>
+							<ul>
+								<li class="main_preview_biz_name">${biz.biz_name }</li>
+							</ul>
+							<ul>
+								<li class="main_preview_biz_addr">${biz.biz_addr }</li>
+							</ul>
+							<ul>
+								<li class="main_preview_biz_chat"><a
+									href="https://www.naver.com" class="main_preview_biz_chat_link">채팅
+										바로가기 <i class="far fa-comment-alt"></i>
+								</a></li>
+							</ul>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
-			<div class="main_preview_cs_qna">
-				<h1 class="main_preview_title">QnA</h1>
-				<hr>
-				<div class="main_preview_cs_qna_board">
-					<ul>
-						<li class="main_preview_cs_qna_category w10 bb">번호</li>
-						<li class="main_preview_cs_qna_category w39 bb">제목</li>
-						<li class="main_preview_cs_qna_category w20 bb">작성자</li>
-						<li class="main_preview_cs_qna_category w10 bb">조회수</li>
-						<li class="main_preview_cs_qna_category w20 bb">작성일</li>
-					</ul>
-					<ul>
-						<li class="main_preview_cs_qna_category w10">1</li>
-						<li class="main_preview_cs_qna_category w39">제aa목</li>
-						<li class="main_preview_cs_qna_category w20">작a성a자</li>
-						<li class="main_preview_cs_qna_category w10">1</li>
-						<li class="main_preview_cs_qna_category w20">1</li>
-					</ul>
-					<ul>
-						<li class="main_preview_cs_qna_category w10">1</li>
-						<li class="main_preview_cs_qna_category w39">제aa목</li>
-						<li class="main_preview_cs_qna_category w20">작a성a자</li>
-						<li class="main_preview_cs_qna_category w10">1</li>
-						<li class="main_preview_cs_qna_category w20">1</li>
-					</ul>
-					<ul>
-						<li class="main_preview_cs_qna_category w10">1</li>
-						<li class="main_preview_cs_qna_category w39">제aa목</li>
-						<li class="main_preview_cs_qna_category w20">작a성a자</li>
-						<li class="main_preview_cs_qna_category w10">1</li>
-						<li class="main_preview_cs_qna_category w20">1</li>
-					</ul>
+			<div class="main_preview">
+				<h1 class="main_preview_title"><a href="shop/list">소품 샵</a></h1>
+				<hr />
+				<div class="main_preview_shop">
+					<c:forEach items="${shopPreviewList }" var="shop">
+					<div class="main_preview_shop_list">
+						<ul>
+							<li class="main_preview_shop_img">
+								<img src="resources/upload/main/${shop.shop_img }" alt="#" />
+							</li>
+						</ul>
+						<ul>
+							<li class="main_preview_shop_name">${shop.shop_name }</li>
+						</ul>
+						<ul>
+							<li class="main_preview_shop_price">\ ${shop.shop_price }</li>
+						</ul>
+						<ul>
+							<li class="main_preview_shop_chat"><a
+								href="https://www.naver.com" class="main_preview_shop_chat_link">채팅
+									바로가기 <i class="far fa-comment-alt"></i>
+							</a></li>
+						</ul>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="main_preview">
+				<h1 class="main_preview_title"><a href="oh/OHMainView">우리집 자랑하기</a></h1>
+				<hr />
+				<div class="main_preview_OH">
+					<c:forEach items="${ohPreviewList }" var="oh">
+						<div class="main_preview_OH_list">
+							<ul>
+								<li class="main_preview_OH_img">
+									<img src="resources/upload/main/${oh.oh_img }" alt="#" />
+								</li>
+							</ul>
+							<ul>
+								<li class="main_preview_OH_name">${oh.oh_name }</li>
+							</ul>
+							<ul>
+								<li class="main_preview_OH_content">${oh.oh_content }</li>
+							</ul>
+							<ul>
+								<li class="main_preview_OH_chat"><a
+									href="https://www.naver.com" class="main_preview_OH_chat_link">채팅
+										바로가기 <i class="far fa-comment-alt"></i>
+								</a></li>
+							</ul>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+			<div class="main_preview_cs">
+				<div class="main_preview_cs_notice">
+					<h1 class="main_preview_title"><a href="noticelist">공지사항</a></h1>
+					<hr>
+					<div class="main_preview_cs_notice_board">
+						<ul>
+							<li class="main_preview_cs_notice_category w10 bb">번호</li>
+							<li class="main_preview_cs_notice_category w30 bb">제목</li>
+							<li class="main_preview_cs_notice_category w20 bb">작성자</li>
+							<li class="main_preview_cs_notice_category w15 bb">조회수</li>
+							<li class="main_preview_cs_notice_category w24 bb">작성일</li>
+						</ul>
+						<c:forEach items="${noticePreviewList }" var="notice">
+							<ul>
+								<li class="main_preview_cs_notice_category w10">${notice.notice_no }</li>
+								<li class="main_preview_cs_notice_category w30">${notice.notice_title }</li>
+								<li class="main_preview_cs_notice_category w20">${notice.notice_writer }</li>
+								<li class="main_preview_cs_notice_category w15">${notice.notice_hit }</li>
+								<li class="main_preview_cs_notice_category w24">${notice.notice_date }</li>
+							</ul>
+						</c:forEach>
+					</div>
+				</div>
+				<div class="main_preview_cs_qna">
+					<h1 class="main_preview_title"><a href="qnalist">QnA</a></h1>
+					<hr>
+					<div class="main_preview_cs_qna_board">
+						<ul>
+							<li class="main_preview_cs_qna_category w10 bb">번호</li>
+							<li class="main_preview_cs_qna_category w30 bb">제목</li>
+							<li class="main_preview_cs_qna_category w20 bb">작성자</li>
+							<li class="main_preview_cs_qna_category w15 bb">조회수</li>
+							<li class="main_preview_cs_qna_category w24 bb">작성일</li>
+						</ul>
+						<c:forEach items="${qnaPreviewList }" var="qna">
+							<ul>
+								<li class="main_preview_cs_qna_category w10">${qna.qna_no }</li>
+								<li class="main_preview_cs_qna_category w30">${qna.qna_title }</li>
+								<li class="main_preview_cs_qna_category w20">${qna.qna_writer }</li>
+								<li class="main_preview_cs_qna_category w15">${qna.qna_hit }</li>
+								<li class="main_preview_cs_qna_category w24">${qna.qna_date }</li>
+							</ul>
+						</c:forEach>
+					</div>
 				</div>
 			</div>
 		</div>
+        <div id="main_left_side_bar" class="main_left_side_bar">
+            <button  class="openModal side_bar_button button_1">
+				<span>퀵견적</span>
+			</button>
+			
+			<button onclick="location.href='shop/list'"	class="side_bar_button button_2">
+				<span>소품 샵</span>
+			</button>
+			<button class="side_bar_button button_3" onclick="location.href='biz/magazine/bizMgzList'" >
+				<span>업체 <br> 둘러보기
+				</span>
+			</button>
+			<button onclick="location.href='oh/OHMainView'"	class="side_bar_button button_4">
+				<span>우리 집 <br> 자랑하기
+				</span>
+			</button>
+			<button onclick="location.href='cshome'" class="side_bar_button button_5">
+				<span>고객센터</span>
+			</button>
+        </div>
+
+        <script>
+        window.addEventListener('scroll', function() {
+            var scrollHeight = window.scrollY;
+            var headerBottom = document.getElementById('header_bottom');
+            var mainLeftSideBar = document.getElementById('main_left_side_bar');
+
+            if(scrollHeight > 10) {
+                headerBottom.style.visibility = 'hidden';
+                headerBottom.style.opacity ='0';
+            } else {
+                headerBottom.style.visibility = 'visible';
+                headerBottom.style.opacity ='1';
+            }
+            
+            if(scrollHeight > 650) {
+                mainLeftSideBar.style.visibility = 'visible';
+                mainLeftSideBar.style.opacity = '1';
+            } else {
+                mainLeftSideBar.style.visibility = 'hidden';
+                mainLeftSideBar.style.opacity = '0';
+            }
+        });
+        </script>
+        <script>
+            var side_bar
+        </script>
 		<hr />
 	</div>
 	<br />

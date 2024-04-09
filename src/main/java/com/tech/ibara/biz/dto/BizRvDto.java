@@ -5,11 +5,14 @@ import java.sql.Timestamp;
 public class BizRvDto {
 	private int br_no;
 	private String br_content;
+	private String br_writer;
 	private int br_like_cnt;
 	private Timestamp br_date;
 	private float br_point;
 	private int biz_idno;
 	private int user_idno;
+	
+	private BizRvImgDto bizRvImgDto;
 	
 	
 	public int getBr_no() {
@@ -53,5 +56,17 @@ public class BizRvDto {
 	}
 	public void setUser_idno(int user_idno) {
 		this.user_idno = user_idno;
+	}
+	public String getBr_writer() {
+		return br_writer;
+	}
+	public void setBr_writer(String br_writer) {
+		this.br_writer = br_writer;
+	}
+	public BizRvImgDto getBizRvImgDto() {
+		return bizRvImgDto;
+	}
+	public void setBizRvImgDto(BizRvImgDto bizRvImgDto) {
+		this.bizRvImgDto = bizRvImgDto;
 	}
 }

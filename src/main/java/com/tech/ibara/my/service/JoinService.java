@@ -1,5 +1,7 @@
 package com.tech.ibara.my.service;
 
+import java.sql.Connection;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -12,7 +14,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.cursor.Cursor;
+import org.apache.ibatis.executor.BatchResult;
+import org.apache.ibatis.session.Configuration;
+import org.apache.ibatis.session.ResultHandler;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
 import com.tech.ibara.my.dao.MyDao;
@@ -56,13 +64,10 @@ public class JoinService implements SService {
          // TODO Auto-generated catch block
          e.printStackTrace();
       }
-      
-      //String shpwd="shskfjskjfksf";
-      //String bcpwd="bcskfjskjfskj";
-      
+    
       MyDao mdao=sqlSession.getMapper(MyDao.class);
-      int emailCheckResult=mdao.emailCheck(email);
-      int nnCheckResult=mdao.nicknameCheck(nickname);
+      int emailCheckResult=mdao.countCheck("3",email);
+      int nnCheckResult=mdao.countCheck("2",nickname);
 
       System.out.println("emailCheckResult = "+emailCheckResult);
       System.out.println("nnCheckResult = "+nnCheckResult);
@@ -77,11 +82,11 @@ public class JoinService implements SService {
       }
       return "error";      
 	}    
-      
    
    private void emailSendAction(String nickname) {
+	    
 	  MyDao mdao=sqlSession.getMapper(MyDao.class);
-      String host="http://localhost:9922/ibara/";
+      String host="http://localhost:9024/ibara/";
       String from="amine1225@gmail.com";
       String to=mdao.getMemberEmail(nickname);
       String code=new EmailSHA().getSHA256(to);

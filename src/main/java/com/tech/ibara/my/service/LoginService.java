@@ -25,14 +25,20 @@ public class LoginService implements SService {
 		String pw=request.getParameter("pw");
 		System.out.println("email : "+email);
 		MyDao mdao=sqlSession.getMapper(MyDao.class);
-		MyMemberInfoDto memdto=mdao.getMemberFromEmail(email);
-		int mailcheck=memdto.getMailcheck();
+		MyMemberInfoDto memdto=mdao.getMemberInfo("3",email);
 		if(memdto==null) {
 			return "emailNull";
 		}
+		int mailcheck=memdto.getMailcheck();
+		String memtype=memdto.getMemtype();
+		System.out.println("memtype : "+memtype);
+		
 		if(mailcheck==0) {
 			return "mailcheck error";
-		}		
+		}
+		if(memtype.equals("WITHDRAWAL")) {
+			return "withdrawal";
+		}
 		System.out.println("mailcheck : "+mailcheck);
 		String shpwd=memdto.getShpwd();
 		String bcpwd=memdto.getBcpwd();
@@ -44,12 +50,10 @@ public class LoginService implements SService {
 			e.printStackTrace();
 		}
 		System.out.println("decpwd : "+decpwd);
-		if(decpwd.equals(pw)) {			
+		if(decpwd.equals(pw)) {
 			return memdto.getNickname();
 		}else {
-			return "pessword error";			
+			return "password error";
 		}
 	}
-	
-
 }

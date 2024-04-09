@@ -8,10 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tech.ibara.shop.service.BasketViewService;
 import com.tech.ibara.shop.service.ManagementViewService;
+import com.tech.ibara.shop.service.OrderViewService;
 import com.tech.ibara.shop.service.ProductListService;
+import com.tech.ibara.shop.service.ProductRegService;
 import com.tech.ibara.shop.service.ProductViewService;
 import com.tech.ibara.shop.service.ShopService;
 
@@ -30,7 +33,7 @@ public class ShopController {
 		
 		shopService = new ProductListService(sqlSession);
 		shopService.execute(model);
-		
+
 		return "shop/list";
 	}
 	
@@ -41,11 +44,6 @@ public class ShopController {
 		
 		shopService = new ProductViewService(sqlSession);
 		shopService.execute(model);
-		
-		int result = (Integer) model.asMap().get("result");
-		if (result == -1) {
-			return "redirect:/shop/list";
-		}
 		
 		return "shop/product";
 	}
@@ -69,5 +67,28 @@ public class ShopController {
 		shopService.execute(model);
 		
 		return "shop/management";
+	}
+	
+	@RequestMapping("/shop/management/regProduct")
+	public String regProduct(MultipartHttpServletRequest mpRequest, Model model) {
+		
+		model.addAttribute("mpRequest", mpRequest);
+		
+		shopService = new ProductRegService(sqlSession);
+		shopService.execute(model);
+		
+		return "redirect:/shop/management";
+	}
+	
+	@RequestMapping("/shop/order")
+	public String orderView(HttpServletRequest request, HttpSession session, Model model) {
+		
+		model.addAttribute("request", request);
+		model.addAttribute("session", session);
+		
+		shopService = new OrderViewService(sqlSession);
+		shopService.execute(model);
+		
+		return "shop/order";
 	}
 }

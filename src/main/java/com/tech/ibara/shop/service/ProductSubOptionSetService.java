@@ -9,28 +9,28 @@ import org.springframework.ui.Model;
 
 import com.tech.ibara.shop.dao.ShopDao;
 import com.tech.ibara.shop.dto.OptionDto;
-import com.tech.ibara.shop.dto.OptionSetDto;
 
-public class ProductSubOptionSetService implements ShopService {
+public class ProductSubOptionSetService extends SqlSessionBase implements ShopRestService<ArrayList<OptionDto>> {
 
-	private SqlSession sqlSession;
-	
+	private ArrayList<OptionDto> optionDtoList;
+
 	public ProductSubOptionSetService(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
+		super(sqlSession);
 	}
-	
+
 	@Override
 	public void execute(Model model) {
 		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
 		ShopDao dao = sqlSession.getMapper(ShopDao.class);
-		
-		int option_id = Integer.parseInt(request.getParameter("option_id"));
-		
-		OptionDto optionDto = dao.selectOptionById(option_id);
-		OptionSetDto subOptionSetDto = dao.selectOptionSetById(optionDto.getSub_option_set_id());
-		ArrayList<OptionDto> optionDtoList = dao.selectJoinOptionsBySet(subOptionSetDto.getOption_set_id());
-		
-		model.addAttribute("subOptions", optionDtoList);
+
+		int optionId = Integer.parseInt(request.getParameter("optionId"));
+
+		optionDtoList = dao.selectOptionsByParentOption(optionId);
+	}
+
+	@Override
+	public ArrayList<OptionDto> getData() {
+		return optionDtoList;
 	}
 
 }

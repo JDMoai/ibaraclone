@@ -7,10 +7,10 @@ public class BizCasesDto {
 	private int bc_no;
 	private String	bc_title;
 	private String	bc_content;
+	private String bc_writer;
 	private Timestamp bc_date;
 	private int bc_hit;
 	private int biz_idno;
-	private String bc_thumb;
 	
 	public int getBc_no() {
 		return bc_no;
@@ -48,11 +48,11 @@ public class BizCasesDto {
 	public void setBiz_idno(int biz_idno) {
 		this.biz_idno = biz_idno;
 	}
-	public String getBc_thumb() {
-		return bc_thumb;
+	public String getBc_writer() {
+		return bc_writer;
 	}
-	public void setBc_thumb(String bc_thumb) {
-		this.bc_thumb = bc_thumb;
+	public void setBc_writer(String bc_writer) {
+		this.bc_writer = bc_writer;
 	}
 	
 }

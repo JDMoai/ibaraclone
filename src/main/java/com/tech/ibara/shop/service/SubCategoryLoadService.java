@@ -9,27 +9,30 @@ import org.springframework.ui.Model;
 
 import com.tech.ibara.shop.dao.ShopDao;
 import com.tech.ibara.shop.dto.CategoryDto;
-import com.tech.ibara.shop.dto.OptionDto;
-import com.tech.ibara.shop.dto.OptionSetDto;
 
-public class SubCategoryLoadService implements ShopService {
+public class SubCategoryLoadService extends SqlSessionBase implements ShopRestService<ArrayList<CategoryDto>> {
 
-	private SqlSession sqlSession;
-	
+	private ArrayList<CategoryDto> subCategories;
+
 	public SubCategoryLoadService(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
+		super(sqlSession);
 	}
-	
+
 	@Override
 	public void execute(Model model) {
 		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
 		ShopDao dao = sqlSession.getMapper(ShopDao.class);
 
-		int category_id = Integer.parseInt(request.getParameter("category_id"));
-		
-		ArrayList<CategoryDto> subCategories = dao.selectCategoriesByUp(category_id);
-				
+		int categoryId = Integer.parseInt(request.getParameter("categoryId"));
+
+		subCategories = dao.selectCategoriesByParent(categoryId);
+
 		model.addAttribute("subCategories", subCategories);
+	}
+
+	@Override
+	public ArrayList<CategoryDto> getData() {
+		return subCategories;
 	}
 
 }

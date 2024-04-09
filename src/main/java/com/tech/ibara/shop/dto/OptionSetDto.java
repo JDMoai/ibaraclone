@@ -9,6 +9,10 @@ public class OptionSetDto {
 
 	}
 
+	public OptionSetDto(String name) {
+		this.name = name;
+	}
+
 	public int getOption_set_id() {
 		return option_set_id;
 	}

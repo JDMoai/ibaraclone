@@ -12,42 +12,39 @@ import com.tech.ibara.shop.dto.CategoryDto;
 import com.tech.ibara.shop.dto.LevelCategoryDto;
 import com.tech.ibara.shop.dto.ProductDto;
 
-public class ProductListService implements ShopService {
+public class ProductListService extends SqlSessionBase implements ShopService {
 
-	private SqlSession sqlSession;
-	
 	public ProductListService(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
+		super(sqlSession);
 	}
-	
+
 	@Override
 	public void execute(Model model) {
 		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
 		ShopDao dao = sqlSession.getMapper(ShopDao.class);
-		
-		String category_idStr = request.getParameter("category_id");
-		int category_id = 10000;
-		if (category_idStr != null) {
-			category_id = Integer.parseInt(category_idStr); 
+
+		String categoryIdStr = request.getParameter("categoryId");
+		int categoryId = 10000;
+		if (categoryIdStr != null) {
+			categoryId = Integer.parseInt(categoryIdStr);
 		}
-		
-		CategoryDto categoryDto = dao.selectCategoryById(category_id);
+
+		CategoryDto categoryDto = dao.selectCategory(categoryId);
 		if (categoryDto == null) {
 			return;
 		}
-		ArrayList<CategoryDto> subCategoryList = dao.selectAllSubCategoriesById(category_id);
-		
-		
+		ArrayList<CategoryDto> subCategoryList = dao.selectAllSubCategoriesById(categoryId);
+
 		ArrayList<ProductDto> productList = null;
 		if (subCategoryList.size() == 0) {
-			productList = dao.selectProductsByCategory(category_id);
+			productList = dao.selectProductsByCategory(categoryId);
 		} else {
 			productList = dao.selectProductsByCategories(subCategoryList);
 		}
-		
+
 		ArrayList<String> categoryList = dao.selectAllCategories();
 		ArrayList<LevelCategoryDto> levelCategoryList = dao.selectAllLevelCategories();
-		
+
 		model.addAttribute("levelCategories", levelCategoryList);
 		model.addAttribute("categories", categoryList);
 		model.addAttribute("category", categoryDto);

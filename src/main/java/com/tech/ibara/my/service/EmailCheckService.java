@@ -8,7 +8,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.ui.Model;
 
 import com.tech.ibara.my.dao.MyDao;
-import com.tech.ibara.my.dto.MyMemberInfoDto;
 import com.tech.ibara.my.util.EmailSHA;
 
 public class EmailCheckService implements SService {
@@ -26,13 +25,23 @@ public class EmailCheckService implements SService {
 		String nickname=request.getParameter("nickname");
 		MyDao mdao=sqlSession.getMapper(MyDao.class);
 		String memberEmail=mdao.getMemberEmail(nickname);
-		int mymemberemailcheck=mdao.emailCheck(memberEmail);
+		int mymemberemailcheck=mdao.getmailcheckNum(nickname);
+		System.out.println("mymemberemailcheck : "+mymemberemailcheck);
 		boolean isRight=(new EmailSHA().getSHA256(memberEmail).equals(code))?true:false;
 		if(isRight==true){
-			mdao.setMemberEmailChecked(nickname);
-			return "my/emailCheck";
-		}else {
-			return "emailCheck error";
+			if(mymemberemailcheck==0) {
+				mdao.setMemberEmailChecked(nickname);
+				System.out.println("회원가입 메일인증성공");
+				return "my/emailCheck";
+			}else {
+				System.out.println("비밀번호변경 메일 인증 성공");
+				model.addAttribute("nickname",nickname);
+				model.addAttribute("msg","비밀번호변경 메일 인증 성공");
+				return "my/passwordReset";
+			}
 		}
+		return "emailCheck error";
+		
+		
 	}
 }

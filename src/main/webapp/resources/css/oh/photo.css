@@ -1,0 +1,89 @@
+@charset "UTF-8";
+
+/* ---------------------------------------------------------------- */
+/* ----- Start: 공통부분 ----- */
+/* ---------------------------------------------------------------- */
+
+/* ----- Start: 모든 요소 기본적용 ----- */	
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* ----- End: 모든 요소 기본적용 ----- */
+
+/* ----- Start: .container ----- */	
+/* 
+			header
+			
+			footer
+			
+			.contents
+				.sideBar
+				#각 페이지 Main 범위 
+*/ 
+/* ----- End: .container ----- */	
+
+/* ---------------------------------------------------------------- */
+
+/* ----- Start: header ----- */
+header {
+	border: 1px solid #333;
+	text-align: center;
+}
+/* ----- End: header ----- */
+
+/* ---------------------------------------------------------------- */
+
+/* ----- Start: footer ----- */
+footer {
+	border: 1px solid #333;
+	text-align: center;
+}		
+/* ----- End: footer ----- */
+	
+/* ---------------------------------------------------------------- */		
+	
+/* ----- Start: .contents ----- */
+.contents {
+ 	display: flex;
+    justify-content: center;
+    align-items: center;	 
+}
+/* ----- End: .contents ----- */	
+	
+/* ---------------------------------------------------------------- */	
+	
+/* ----- Start: .sideBar ----- */
+.sideBar {
+	background-color: powderblue;
+	margin: 10px;
+	position: fixed;
+    left: 10px;
+    top: 50%;
+    transform: translate(0, -50%);
+}		
+.sideBar ul {
+	text-align: center;
+	margin: 0px;
+	padding: 0px;
+}
+.sideBar ul li {
+	margin: 10px 0px 10px 0px;
+    line-height: 30px;
+    height: 30px;
+    width: 150px;
+	list-style-type: none;
+}		
+.sideBar ul li a {
+	text-decoration: none;
+	color: #333;
+}
+.sideBar ul li a:hover {
+
+}		
+/* ----- End: .sideBar ----- */
+
+/* ---------------------------------------------------------------- */
+/* ----- End: 공통부분 ----- */
+/* ---------------------------------------------------------------- */

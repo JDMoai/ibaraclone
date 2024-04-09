@@ -2,7 +2,6 @@ package com.tech.ibara.shop.service;
 
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -12,31 +11,29 @@ import com.tech.ibara.shop.dao.ShopDao;
 import com.tech.ibara.shop.dto.BasketDto;
 import com.tech.ibara.shop.dto.ProductDto;
 
-public class BasketViewService implements ShopService {
+public class BasketViewService extends SqlSessionBase implements ShopService {
 
-	private SqlSession sqlSession;
-	
 	public BasketViewService(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
+		super(sqlSession);
 	}
-	
+
 	@Override
 	public void execute(Model model) {
-		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
+//		HttpServletRequest request = (HttpServletRequest) model.asMap().get("request");
 		HttpSession session = (HttpSession) model.asMap().get("session");
 		
 		ShopDao dao = sqlSession.getMapper(ShopDao.class);
 		
-		int user_id = Integer.parseInt((String) session.getAttribute("user_id"));
+		int userId = Integer.parseInt((String) session.getAttribute("userId"));
 		
-		ArrayList<BasketDto> basketDtoList = dao.selectBasketsByUser(user_id);
+		ArrayList<BasketDto> basketDtoList = dao.selectBasketsByUser(userId);
 		ArrayList<Integer> productIds = new ArrayList<Integer>(); 
 		ArrayList<ProductDto> productDtoList = new ArrayList<ProductDto>();
 		for (BasketDto b : basketDtoList) {
-			int product_id = b.getProduct_id();
-			if (!productIds.contains(product_id)) {
-				productIds.add(product_id);
-				productDtoList.add(dao.selectProductById(product_id));
+			int productId = b.getProduct_id();
+			if (!productIds.contains(productId)) {
+				productIds.add(productId);
+				productDtoList.add(dao.selectProduct(productId));
 			}
 		}
 		

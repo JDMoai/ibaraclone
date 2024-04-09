@@ -1,0 +1,33 @@
+@charset "UTF-8";
+
+main {
+	width: 800px;
+	margin: auto;
+}
+
+#contentWrap {
+	float: left;
+	width: 70%;
+}
+
+#sideWrap {
+	float: right;
+	width: 30%;
+}
+
+.selectedOption {
+	background-color: #f0f0f0;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.productItem {
+	background-color: #fefee0;
+	padding: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+ul {
+	list-style: none;
+}

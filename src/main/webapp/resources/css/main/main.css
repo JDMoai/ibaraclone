@@ -12,6 +12,9 @@ header {
 	width: 100%;
 	height: 130px;
 	text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 999;
 }
 
 /* 헤더 윗부분 */
@@ -24,7 +27,7 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: lightblue;
+	background-color: lightskyblue;
 }
 
 /* 로고 이미지 */
@@ -105,7 +108,8 @@ header {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	background-color: lightblue;
+	background-color: lightskyblue;
+    transition: 0.1s;
 }
 
 /* 카테고리 아이콘 */
@@ -291,46 +295,82 @@ header {
 .category_4 {
     transform: translateY(-15px);
 }
-.main_preview{
+.main_preview_wrap{
+	display: inline-block;
+}
+.main_preview_wrap a{
+	text-decoration: none;
 	text-align: left;
+}
+.main_preview{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	text-align: left;
+	height: 500px;
 }
 .main_preview_title{
     margin-left: 20px;
 }
 .main_preview_biz{
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
     text-align: center;
 }
 .main_preview_biz_img{
     margin-left: 40px;
     margin-right: 40px;
-    display: inline-block;
+    margin-bottom: 50px;
     width: 200px;
     height: 150px;
     background-color: lightgray;
+    box-sizing: border-box;
+    overflow: hidden;
+    cursor: pointer;
+}
+.main_preview_biz_img img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 .main_preview_biz_name{
     margin-left: 40px;
     margin-right: 40px;
-    display: inline-block;
     width: 200px;
     height: 30px;
     background-color: lightgray;
+    border-radius: 10px;
     transform: translateY(-5px);
+    font-size: 20px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
 }
 .main_preview_biz_addr{
     margin-left: 40px;
     margin-right: 40px;
-    display: inline-block;
+    padding-top: 10px;
     width: 200px;
     height: 30px;
     background-color: lightgray;
+    border-radius: 10px;
     transform: translateY(-10px);
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
 }
 .main_preview_biz_chat{
+	list-style: none;
     margin-left: 65px;
     margin-right: 65px;
-    display: inline-block;
     width: 150px;
     height: 30px;
     background-color: lightgray;
@@ -344,38 +384,65 @@ header {
 }
 .main_preview_shop{
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
     text-align: center;
 }
 .main_preview_shop_img{
     margin-left: 40px;
     margin-right: 40px;
-    display: inline-block;
+    margin-bottom: 50px;
     width: 200px;
     height: 150px;
     background-color: lightgray;
+    box-sizing: border-box;
+    overflow: hidden;
+    cursor: pointer;
+}
+.main_preview_shop_img img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 .main_preview_shop_name{
     margin-left: 40px;
     margin-right: 40px;
-    display: inline-block;
     width: 200px;
     height: 30px;
     background-color: lightgray;
+    border-radius: 10px;
     transform: translateY(-5px);
+    font-size: 20px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
 }
-.main_preview_shop_addr{
+.main_preview_shop_price{
     margin-left: 40px;
     margin-right: 40px;
-    display: inline-block;
+    padding-bottom: 10px;
     width: 200px;
     height: 30px;
     background-color: lightgray;
+    border-radius: 10px;
     transform: translateY(-10px);
+    font-size: 25px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
 }
 .main_preview_shop_chat{
+	list-style: none;
     margin-left: 65px;
     margin-right: 65px;
-    display: inline-block;
     width: 150px;
     height: 30px;
     background-color: lightgray;
@@ -389,38 +456,68 @@ header {
 }
 .main_preview_OH{
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
     text-align: center;
 }
 .main_preview_OH_img{
     margin-left: 40px;
     margin-right: 40px;
-    display: inline-block;
+    margin-bottom: 50px;
     width: 200px;
     height: 150px;
     background-color: lightgray;
+    box-sizing: border-box;
+    overflow: hidden;
+    cursor: pointer;
+}
+.main_preview_OH_img img{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
 }
 .main_preview_OH_name{
     margin-left: 40px;
     margin-right: 40px;
-    display: inline-block;
     width: 200px;
     height: 30px;
     background-color: lightgray;
+    border-radius: 10px;
     transform: translateY(-5px);
+    font-size: 20px;
+    font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
 }
-.main_preview_OH_addr{
+.main_preview_OH_content{
     margin-left: 40px;
     margin-right: 40px;
-    display: inline-block;
-    width: 200px;
-    height: 30px;
+    padding: 0 10px 10px 10px;
+    width: 180px;
     background-color: lightgray;
+    border-radius: 10px;
     transform: translateY(-10px);
+    font-size: 12px;
+    overflow: hidden;
+    display: -webkit-box;
+    word-wrap: break-word;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    line-height: 20px;
+    height: 50px;
+    cursor: pointer;
 }
 .main_preview_OH_chat{
+	list-style: none;
     margin-left: 65px;
     margin-right: 65px;
-    display: inline-block;
     width: 150px;
     height: 30px;
     background-color: lightgray;
@@ -432,6 +529,7 @@ header {
     text-decoration: none;
     color: black;
 }
+/*  */
 .main_preview_cs{
 	display: flex;
 }
@@ -442,6 +540,11 @@ header {
 	width: 50%;
     text-align: left;
 }
+.main_preview_cs_notice_board{
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
 .main_preview_cs_notice_category{
     padding-bottom: 15px;
     height: 10px;
@@ -449,6 +552,9 @@ header {
     list-style: none;
     text-decoration: none;
     text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .main_preview_cs_qna{
     margin: 0;
@@ -464,11 +570,85 @@ header {
     list-style: none;
     text-decoration: none;
     text-align: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .w10{width: 10%;}
+.w15{width: 15%;}
 .w20{width: 20%;}
-.w39{width: 39%;}
+.w24{width: 24%;}
+.w30{width: 30%;}
 .bb{border-bottom: 1px solid gray;}
+
+
+/* main RWD (반응형웹디자인) */
+  @media (max-width: 1600px) {
+    .main_preview_biz_list:nth-child(n+4) {
+      display: none;
+    }
+    .main_preview_shop_list:nth-child(n+4) {
+      display: none;
+    }
+    .main_preview_OH_list:nth-child(n+4) {
+      display: none;
+    }
+  }
+  @media (max-width: 1199px) {
+    .main_preview_biz_list:nth-child(n+3) {
+      display: none;
+    }
+    .main_preview_shop_list:nth-child(n+3) {
+      display: none;
+    }
+    .main_preview_OH_list:nth-child(n+3) {
+      display: none;
+    }
+  }
+/* 왼쪽 사이드바 */
+.main_left_side_bar{
+    position: fixed;
+    top: 50%;
+    left: 1%;
+    transform: translateY(-50%);
+    background-color: lightskyblue;
+    width: 150px;
+    height: 300px;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-radius: 30px;
+    z-index: 999;
+    overflow-y: hidden;
+    visibility: hidden;
+    transition: 0.2s;
+}
+.side_bar_button{
+    transform: translateY(-15%);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 100%;
+    height: 45px;
+    border: none;
+    display: inline-block;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+    border-radius: 40px;
+    background-color: #a3a1a1;
+    font-weight: 600;
+    font-family: "paybooc-Light", sans-serif;
+    color: white;
+}
+.side_bar_button:hover {
+    letter-spacing: 2px;
+    transform: scale(1.1);
+    font-size: 15px;
+    cursor: pointer;
+}
+.side_bar_button:active {
+    transform: sclae(1.1);
+}
 /* 푸터 */
 footer {
 	margin: 0;
@@ -479,6 +659,7 @@ footer {
 	transform: translateY(10%);
 	border-top: 1px solid gray;
 	display: flex;
+	background-color: lightskyblue;
 }
 
 /* 푸터 로고 */

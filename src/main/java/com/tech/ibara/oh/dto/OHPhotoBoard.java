@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class OHPhotoBoard {
 	
+	private int no;
 	private int pb_no;
 	private String pb_user;
 	private String pb_title;
@@ -34,11 +35,12 @@ public class OHPhotoBoard {
 		// TODO Auto-generated constructor stub
 	}
 
-	public OHPhotoBoard(int pb_no, String pb_user, String pb_title, 
+	public OHPhotoBoard(int no, int pb_no, String pb_user, String pb_title, 
 						String pb_content, Date pb_date, int pb_like,		
 						int pb_scrap, int pb_reply, int pb_link, 
 						int pb_hit, String pb_category, String pb_residence,
 						String pb_room, String pb_style, String pb_skill) {
+		this.no = no;
 		this.pb_no = pb_no;
 		this.pb_user = pb_user;
 		this.pb_title = pb_title;
@@ -54,6 +56,14 @@ public class OHPhotoBoard {
 		this.pb_room = pb_room;
 		this.pb_style = pb_style;
 		this.pb_skill = pb_skill;
+	}
+
+	public int getNo() {
+		return no;
+	}
+
+	public void setNo(int no) {
+		this.no = no;
 	}
 
 	public int getPb_no() {

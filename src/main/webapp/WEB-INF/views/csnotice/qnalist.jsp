@@ -5,15 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css"
-	href="resources/css/noticelist.css" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/noticelist.css" /> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+<style>
+.fa-solid {
+	color: #333;
+}
 
+.fa-solid:hover {
+	color: gold;
+}
+</style>
 <title>Insert title here</title>
 </head>
 <body>
 	<h3>qnalist</h3>
+
+	<%
+	if (session.getAttribute("userId") == null) {
+		 session.setAttribute("userId", "cus");
+		/* session.removeAttribute("userId"); */
+	}
+	%>
+	<p>userId: <%= session.getAttribute("userId") %></p>
 
 	<!-- 헤더 -->
 	<header>
@@ -58,59 +72,14 @@
 	<form action="qnalist" method="post">
 		<div>
 			<select name="qnadiv">
-				<c:choose>
-					<c:when test="${all }">
-						<option value="all" selected="selected">전체</option>
-					</c:when>
-					<c:otherwise>						
-						<option value="all">전체</option>
-					</c:otherwise>
-				</c:choose>
+			
+				<option value="all" ${all eq 'true' ? 'selected' : ''}>전체</option>
+				<option value="qq" ${qq eq 'true' ? 'selected' : ''}>퀵견적</option>
+				<option value="oh" ${oh eq 'true' ? 'selected' : ''}>우리집 자랑하기</option>
+				<option value="biz" ${biz eq 'true' ? 'selected' : ''}>업체 관련</option>
+				<option value="pf" ${pf eq 'true' ? 'selected' : ''}>로그인/회원정보</option>
+				<option value="sh" ${sh eq 'true' ? 'selected' : ''}>소품샵</option>
 				
-				<c:choose>
-					<c:when test="${qq }">
-						<option value="qq" selected="selected">퀵견적</option>
-					</c:when>
-					<c:otherwise>						
-						<option value="qq">퀵견적</option>
-					</c:otherwise>
-				</c:choose>
-
-				<c:choose>
-					<c:when test="${oh }">
-						<option value="oh" selected="selected">우리집 자랑하기</option>
-					</c:when>
-					<c:otherwise>						
-						<option value="oh">우리집 자랑하기</option>
-					</c:otherwise>
-				</c:choose>
-				
-				<c:choose>
-					<c:when test="${biz }">
-						<option value="biz" selected="selected">업체 관련</option>
-					</c:when>
-					<c:otherwise>						
-						<option value="biz">업체 관련</option>
-					</c:otherwise>
-				</c:choose>
-				
-				<c:choose>
-					<c:when test="${pf }">
-						<option value="pf" selected="selected">로그인/회원정보</option>
-					</c:when>
-					<c:otherwise>						
-						<option value="pf">로그인/회원정보</option>
-					</c:otherwise>
-				</c:choose>
-				
-				<c:choose>
-					<c:when test="${sh }">
-						<option value="sh" selected="selected">소품샵</option>
-					</c:when>
-					<c:otherwise>						
-						<option value="sh">소품샵</option>
-					</c:otherwise>
-				</c:choose>
 			</select> 
 			<input type="text" name="sk" value="${searchKeyword }" /> 
 			<input type="submit" value="검색" />
@@ -126,20 +95,23 @@
 			</tr>
 			<c:forEach items="${list }" var="dto">
 				<tr class="">
-					<td class="">${dto.nbno }</td>
-					<td class=""><a href="qnacontent?nbno=${dto.nbno }">${dto.nbtitle }</a>
+					<td class="">${dto.qbno }</td>
+					<td class=""><a href="qnacontent?qbno=${dto.qbno }">${dto.qbtitle }</a>
 					</td>
-					<td class="">${dto.nbwriter }</td>
-					<td class="">${dto.nbdate }</td>
-					<td class="">${dto.nbhit }</td>
+					<td class="">${dto.qbwriter }</td>
+					<td class="">${dto.qbdate }</td>
+					<td class="">${dto.qbhit }</td>
 				</tr>
 			</c:forEach>
 		</table>
+		
+		<!--로그인 안 한 상태로는 글 쓰기 버튼 안 보이게 처리-->
+		<% if(session.getAttribute("userId") == null){ %>
+		<% } else {%>
 		<a href="qnawriteview">글쓰기</a>
+		<% } %>
+		
 		<hr />
-
-
-
 		<c:if test="${searchVo.page>1 }">
 			<a href="qnalist?page=1&sk=${searchKeyword}&all=${all==true?'all':''}
 					&qq=${qq==true?'qq':''}&oh=${oh==true?'oh':''}&biz=${biz==true?'biz':''}&qf=${qf==true?'pf':''}&sh=${sh==true?'sh':''}">

@@ -5,8 +5,11 @@
     "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.tech.ibara.oh.dao.OHInterfaceDao">
+
 	<!-- resultMap OHPhotoBoard -->
+	
 	<resultMap type="com.tech.ibara.oh.dto.OHPhotoBoard" id="OHPhotoBoard">
+		<result column="NO" property="no" />
 		<result column="PB_NO" property="pb_no" />
 		<result column="PB_USER" property="pb_user" />
 		<result column="PB_TITLE" property="pb_title" />
@@ -25,39 +28,142 @@
 		<!-- collection -->
 		<collection property="ohPhotoAttach" resultMap="OHPhotoAttach"/>
 	</resultMap>
+	
 	<!-- resultMap OHPhotoAttach -->
+	
 	<resultMap type="com.tech.ibara.oh.dto.OHPhotoAttach" id="OHPhotoAttach">
 		<result column="PA_NO" property="pa_no" />
 		<result column="PA_ATTACH" property="pa_attach" />
 		<result column="PB_NO" property="pb_no" />
 	</resultMap>	
-	<!-- OHPhotoView.jsp -->
-	<select id="ohPhotoView" resultType="com.tech.ibara.oh.dto.OHPhotoBoard" resultMap="OHPhotoBoard">
-		SELECT 
-		    * 
-		FROM 
-		    OH_PHOTO_BOARD OH1 
-		LEFT OUTER JOIN 
-			(SELECT 
-                 * 
-             FROM 
-                 OH_PHOTO_ATTACH 
-             WHERE 
-	             PA_NO IN (
-	                       SELECT 
-	                           MIN(PA_NO) 
-	                       FROM 
-	                           OH_PHOTO_ATTACH 
-	                       GROUP BY 
-	                           PB_NO
-	                      ) 
-             ORDER BY 
-                 PA_NO
-            ) OH2
-		ON
-			OH1.PB_NO = OH2.PB_NO		
+	
+	<!-- OHMainView.jsp -->
+	
+	<select id="ohMainPhotoView" resultType="com.tech.ibara.oh.dto.OHPhotoBoard" resultMap="OHPhotoBoard">
+		SELECT
+		    ROWNUM, N.*
+		FROM
+		    (SELECT 
+		         * 
+		     FROM 
+		         OH_PHOTO_BOARD OH1 
+		     LEFT OUTER JOIN 
+		         (SELECT 
+		              * 
+		          FROM 
+		              OH_PHOTO_ATTACH 
+		          WHERE 
+		              PA_NO IN (
+		                        SELECT 
+		                            MIN(PA_NO) 
+		                        FROM 
+		                            OH_PHOTO_ATTACH 
+		                        GROUP BY 
+		                            PB_NO
+		                       ) 
+		          ORDER BY 
+		              PA_NO
+		         ) OH2
+		     ON
+		         OH1.PB_NO = OH2.PB_NO
+		     ORDER BY
+		        PB_DATE DESC
+		    ) N
+		WHERE
+		    ROWNUM BETWEEN 1 AND #{param1}	
 	</select>
 	
+	<!-- OHPhotoView.jsp -->
+	
+	<select id="ohPhotoView" resultType="com.tech.ibara.oh.dto.OHPhotoBoard" resultMap="OHPhotoBoard">
+		SELECT
+			*
+		FROM
+			(SELECT
+			 	ROWNUM NO, N.*
+			 FROM
+			 	(SELECT 
+			     	* 
+			     FROM 
+			     	OH_PHOTO_BOARD OH1 
+			     LEFT OUTER JOIN 
+			     	(SELECT 
+			         	* 
+			         FROM 
+			            OH_PHOTO_ATTACH 
+			         WHERE 
+			            PA_NO IN (SELECT 
+			                      	  MIN(PA_NO) 
+			                      FROM 
+			                      	  OH_PHOTO_ATTACH 
+			                      GROUP BY 
+			                      	  PB_NO
+			                     ) 
+			         ORDER BY 
+			         	PA_NO
+			        ) OH2
+			     ON
+			     	OH1.PB_NO = OH2.PB_NO
+				 <choose>
+					 <when test='param3 == "pb_date" and param4 == "desc"'>
+						 ORDER BY 
+							 PB_DATE DESC
+					 </when>
+					 <when test='param3 == "pb_date" and param4 == "asc"'>
+						 ORDER BY 
+							 PB_DATE ASC
+					 </when>
+					 <when test='param3 == "pb_like" and param4 == "desc"'>
+						 ORDER BY 
+							 PB_LIKE DESC
+					 </when>
+					 <when test='param3 == "pb_like" and param4 == "asc"'>
+						 ORDER BY 
+							 PB_LIKE ASC
+					 </when>
+					 <when test='param3 == "pb_hit" and param4 == "desc"'>
+						 ORDER BY 
+							 PB_HIT DESC
+					 </when>
+					 <when test='param3 == "pb_hit" and param4 == "asc"'>
+						 ORDER BY 
+							 PB_HIT ASC
+					 </when>										
+				 </choose>			     	
+			    ) N
+			 <trim prefix="WHERE" prefixOverrides="AND">
+			 	 <if test='param5 != "default"' >
+				 	 AND PB_CATEGORY = #{param5}
+				 </if>
+				 <if test='param6 != "default"' >
+					 AND PB_RESIDENCE = #{param6}
+				 </if>
+				 <if test='param7 != "default"' >
+					 AND PB_ROOM = #{param7}
+				 </if>						
+				 <if test='param8 != "default"' >
+					 AND PB_STYLE = #{param8}
+				 </if>
+				 <if test='param9 != "default"' >
+					 AND PB_SKILL = #{param9}
+				 </if>
+				 <choose>						
+					 <when test='param10 == "default"'>
+						 AND (PB_TITLE LIKE '%'||#{param11}||'%' OR PB_CONTENT LIKE '%'||#{param11}||'%')
+					 </when>	
+					 <when test='param10 == "pb_title"'>
+						 AND (PB_TITLE LIKE '%'||#{param11}||'%')
+					 </when>
+					 <when test='param10 == "pb_content"'>
+						 AND (PB_CONTENT LIKE '%'||#{param11}||'%')
+					 </when>
+					 <otherwise></otherwise>				
+				 </choose>													
+			 </trim>
+		    )
+		WHERE
+			NO BETWEEN #{param1} AND #{param2}
+	</select>
 	<select id="getPostTotalCount" resultType="Integer">
 		SELECT 
 			COUNT(*) 
@@ -92,26 +198,129 @@
 				<otherwise></otherwise>				
 			</choose>													
 		</trim>
+	</select>	
+	<select id="ohPhotoLikeView" resultType="com.tech.ibara.oh.dto.OHPhotoLike">
+		SELECT
+			*
+		FROM
+			OH_PHOTO_LIKE
+		WHERE
+			PL_USER = #{param1}
+	</select>
+	<select id="ohPhotoScrapView" resultType="com.tech.ibara.oh.dto.OHPhotoScrap">
+		SELECT
+			*
+		FROM
+			OH_PHOTO_SCRAP
+		WHERE
+			PS_USER = #{param1}
 	</select>
 	
-	<!-- 	<if test='param6 = "default"'>
-				AND (PB_TITLE LIKE '%'||#{param7}||'%' OR PB_CONTENT LIKE '%'||#{param7}||'%')
-			</if>	
-			<if test='param6 = "pb_title"'>
-				AND (PB_TITLE LIKE '%'||#{param7}||'%')
-			</if>
-			<if test='param6 = "pb_content"'>
-				AND (PB_CONTENT LIKE '%'||#{param7}||'%')
-			</if> -->	
+	<!-- OHPhotoLikeExecute -->
+	
+	<select id="likeCheck" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			OH_PHOTO_LIKE
+		WHERE
+			PL_USER = #{param1} AND PB_NO = #{param2}
+	</select>
+	<insert id="likeSave">
+		INSERT INTO
+			OH_PHOTO_LIKE
+		VALUES (
+			OH_PHOTO_LIKE_SEQ.NEXTVAL, #{param1}, SYSDATE, #{param2}
+		)
+	</insert>
+	<update id="likeIncrease">
+		UPDATE
+			OH_PHOTO_BOARD
+		SET
+			PB_LIKE = PB_LIKE + 1
+		WHERE
+			PB_NO = #{param1}
+	</update>
+	<delete id="likeDelete">
+		DELETE FROM 
+			OH_PHOTO_LIKE
+		WHERE
+			PL_USER = #{param1} AND PB_NO = #{param2}
+	</delete>
+	<update id="likeDecrease">
+		UPDATE
+			OH_PHOTO_BOARD
+		SET
+			PB_LIKE = PB_LIKE - 1
+		WHERE
+			PB_NO = #{param1}	
+	</update>
+	<select id="likeGetNumber" resultType="Integer">
+		SELECT
+			PB_LIKE
+		FROM
+			OH_PHOTO_BOARD
+		WHERE
+			PB_NO = #{param1}		
+	</select>
+	
+	<!-- OHPhotoScrapExecute -->
+		
+	<select id="scrapCheck" resultType="Integer">
+		SELECT
+			COUNT(*)
+		FROM
+			OH_PHOTO_SCRAP
+		WHERE
+			PS_USER = #{param1} AND PB_NO = #{param2}
+	</select>	
+	<insert id="scrapSave">
+		INSERT INTO
+			OH_PHOTO_SCRAP
+		VALUES (
+			OH_PHOTO_SCRAP_SEQ.NEXTVAL, #{param1}, SYSDATE, #{param2}
+		)
+	</insert>
+	<update id="scrapIncrease">
+		UPDATE
+			OH_PHOTO_BOARD
+		SET
+			PB_SCRAP = PB_SCRAP + 1
+		WHERE
+			PB_NO = #{param1}
+	</update>
+	<delete id="scrapDelete">
+		DELETE FROM 
+			OH_PHOTO_SCRAP
+		WHERE
+			PS_USER = #{param1} AND PB_NO = #{param2}
+	</delete>
+	<update id="scrapDecrease">
+		UPDATE
+			OH_PHOTO_BOARD
+		SET
+			PB_SCRAP = PB_SCRAP - 1
+		WHERE
+			PB_NO = #{param1}	
+	</update>
+	<select id="scrapGetNumber" resultType="Integer">
+		SELECT
+			PB_SCRAP
+		FROM
+			OH_PHOTO_BOARD
+		WHERE
+			PB_NO = #{param1}		
+	</select>	
 	
 	<!-- OHPhotoWriteExecute -->
+	
 	<insert id="ohPhotoWriteExecute">
 		INSERT INTO 
 		    OH_PHOTO_BOARD
 		VALUES (
-			OH_PHOTO_BOARD_SEQ.NEXTVAL, NULL, #{param1}, #{param2}, SYSDATE, 
+			OH_PHOTO_BOARD_SEQ.NEXTVAL, #{param1}, #{param2}, #{param3}, SYSDATE, 
 		    0, 0, 0, 0, 0, 
-		    #{param3}, #{param4}, #{param5}, #{param6}, #{param7}
+		    #{param4}, #{param5}, #{param6}, #{param7}, #{param8}
 		)
 	</insert>
 	<select id="getRecentPb_no" resultType="Integer">
@@ -127,7 +336,9 @@
 		    OH_PHOTO_ATTACH_SEQ.NEXTVAL, #{param2}, #{param1} 
 		)
 	</insert>
+	
 	<!-- OHPhotoDetailView -->
+	
 	<update id="updatePb_hit">
 		UPDATE
 			OH_PHOTO_BOARD
@@ -152,7 +363,31 @@
 		WHERE
 			PB_NO = #{param1}		
 	</select>
+	
+	<!-- OHPhotoReplyView -->
+	
+	<select id="ohPhotoReplyView" resultType="com.tech.ibara.oh.dto.OHPhotoReply">
+		SELECT
+			*
+		FROM
+			OH_PHOTO_REPLY
+		WHERE
+			PB_NO = #{param1}
+	</select>
+	
+	<!-- OHPhotoReplyWriteExecute -->
+	
+	<insert id="ohPhotoReplyWriteExecute">
+		INSERT INTO
+			OH_PHOTO_REPLY
+		VALUES (
+			OH_PHOTO_REPLY_SEQ.NEXTVAL, #{param1}, #{param2}, SYSDATE,
+			0, 0, 0, #{param3}
+		)
+	</insert>
+	
 	<!-- OHPhotoEditExecute -->
+	
 	<update id="ohPBEditUpdate">
 		UPDATE
 			OH_PHOTO_BOARD
@@ -188,11 +423,14 @@
 		WHERE
 			PB_NO = #{param1}
 	</select>	
+	
 	<!-- OHPhotoDeleteExecute -->	
+	
 	<delete id="ohPBDelete">
 		DELETE FROM 
 			OH_PHOTO_BOARD
 		WHERE
 			PB_NO = #{param1}
 	</delete>	
+	
 </mapper>
