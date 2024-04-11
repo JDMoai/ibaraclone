@@ -3,7 +3,6 @@ package com.tech.ibara.modal.dao.mapper;
 import java.util.List;
 
 import com.tech.ibara.modal.dto.CompleteInfoDto;
-import com.tech.ibara.modal.dto.ModalBoardDto;
 import com.tech.ibara.modal.dto.ModalCheckDto;
 import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
@@ -18,6 +17,4 @@ public interface ModalDao {
 	void updateModalComplete(ModalCompleteDto modalCompleteDto);
 
 	CompleteInfoDto selectCompleteInfo(String phone);
-
-	ModalBoardDto getModalBoard(String email);
 }

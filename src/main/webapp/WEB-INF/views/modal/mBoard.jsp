@@ -62,7 +62,25 @@
 			<div class="header_category_list list_5">고객센터</div>
 		</div>
 	</header>
-	
+	<div>이곳에 견적데이터불러오기</div>
+	<div>
+	    <h3>견적 정보</h3>
+	    <p>이메일: ${modalBoard.email}</p>
+	    <p>이름: ${modalBoard.name}</p>
+	    <p>전화번호: ${modalBoard.phone}</p>
+	    <p>견적번호: ${modalBoard.estino}</p>
+	    <p>주소: ${modalBoard.m_addr}</p>
+	    <p>내용: ${modalBoard.m_content}</p>
+	    <p>평수: ${modalBoard.m_size}</p>
+	    <p>요청사항: ${modalBoard.m_request}</p>
+	    <p>가격: ${modalBoard.m_price}</p>
+	    <p>희망시간: ${modalBoard.m_wanttime}</p>
+	    <p>희망날짜: ${modalBoard.m_wantdate}</p>
+	    <p>시공환경: ${modalBoard.m_circs}</p>
+	    <p>시공공간: ${modalBoard.m_place}</p>
+	    <p>유형: ${modalBoard.m_type}</p>
+	    <p>추가상품가격: ${modalBoard.m_contentprice}</p>
+	</div>
 	<!-- 푸터 -->
 	<footer>
 		<!-- 푸터 로고 -->
