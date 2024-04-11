@@ -302,7 +302,7 @@ public class MyController {
 //		if(str.equals("phoneNull")) {
 //			model.addAttribute("msg","등록되지 않은 폰번호입니다.");
 //		}
-//		return "my/nonmemberEstimateSearch";
+//		return "my/nonmemberEstimateSearch";`
 //	}
 //	@RequestMapping("my/nonmemberOrderSearch")
 //	public String nonmemberOrderSearch(HttpServletRequest request,Model model) {
