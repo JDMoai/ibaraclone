@@ -66,20 +66,20 @@
 		</div>
 	</header>
 	
-	<div class="mBoard-body">
+	<div class="mBoard_body">
 	    	<h3>견적 상세</h3>
-		<div>
-	    	<div>${modalBoard.m_date} (견적번호 ${modalBoard.estino})</div>	    	
+		<div class="mBoard_body_1">
+	    	<div>작성일  ${modalBoard.m_date} (견적번호 ${modalBoard.estino})</div>	    	
 	    </div>
-	    	<h3>고객 정보</h3>
-	    <div>
+	    	<h4>고객 정보</h4>
+	    <div class="mBoard_body_2">
 	    	<div>받는사람</div><div>${modalBoard.name}</div>
 	    	<div>연락처</div><div>${modalBoard.phone}</div>
 	    	<div>이메일</div><div>${modalBoard.email}</div>
 	    	<div>주소</div><div>${modalBoard.m_addr}</div>
 	    </div>
-	    	<h3>견적 내용</h3>
-		<div>
+	    	<h4>견적 내용</h4>
+		<div class="mBoard_body_3">
 			<div>${modalBoard.m_type}  ${modalBoard.m_size}</div>
 			<div>환경</div>
 			<div>${modalBoard.m_circs}</div>
@@ -90,8 +90,8 @@
 			<div>예상금액</div><div>${modalBoard.m_price}</div>
 			</div>
 		</div>
-			<h3>요청사항</h3>
-		<div>
+			<h4>요청사항</h4>
+		<div class="mBoard_body_4">
 			<div>희망상담시간</div><div>${modalBoard.m_wanttime}</div>
 			<div>희망시공일자</div><div>${modalBoard.m_wantdate}</div>
 			<div>추가요청내용</div><div>${modalBoard.m_request}</div>
