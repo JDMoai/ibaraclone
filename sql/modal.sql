@@ -89,15 +89,11 @@ insert into modal_check values('bath','샤워부스','일반 유리 샤워부스
 insert into modal_check values('bath','거울슬라이드장','수건 수납 등(500*1000 기준)',30);
 insert into modal_check values('bath','욕실천장','일자형/SMC타입(욕실크기 1500*2300기준)',40);
 
-select * from modal_check;
-delete from modal_check;
-drop table modal_check;
-commit;
 ---------------------------------------------------------
 
 create table modal_complete(
-estino varchar2(100) primary key,
-m_date DATE DEFAULT SYSDATE,
+estino varchar2(100),
+m_date DATE,
 m_addr varchar2(100),
 phone varchar2(100),
 m_content varchar2(1000),
@@ -111,32 +107,27 @@ m_place varchar2(100),
 m_type varchar2(100),
 m_contentprice varchar2(1000)
 );
-
-INSERT INTO modal_complete
-VALUES (
-    'M' || 
-    TO_CHAR(SYSDATE, 'YYYYMMDD') ||
-    LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(estino, 10, 4)) FROM my_nonmember WHERE TRUNC(m_date) = TRUNC(SYSDATE))), 0) + 1, 4, '0') ||
-    LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
-    SYSDATE,
-    '안산시 상록구 수암동',
-    '010-9544-9544',
-    '자재상품내용 블라블라블라블라',
-    '평수',
-    '추가내용',
-    '총합가격',
-    '희망상담시간',
-    '희망시공일자',
-    '시공환경',
-    '시공공간종류',
-    '프리미엄 인테리어',
-    '추가내용과가격'
-);
-
-
-select * from modal_complete;
-delete from modal_complete;
-drop table modal_complete;
+--
+--INSERT INTO modal_complete
+--VALUES (
+--    'M' || 
+--    TO_CHAR(SYSDATE, 'YYYYMMDD') ||
+--    LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(estino, 10, 4)) FROM my_nonmember WHERE TRUNC(m_date) = TRUNC(SYSDATE))), 0) + 1, 4, '0') ||
+--    LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
+--    SYSDATE,
+--    '안산시 상록구 수암동',
+--    '010-9544-9544',
+--    '자재상품내용 블라블라블라블라',
+--    '평수',
+--    '추가내용',
+--    '총합가격',
+--    '희망상담시간',
+--    '희망시공일자',
+--    '시공환경',
+--    '시공공간종류',
+--    '프리미엄 인테리어',
+--    '추가내용과가격'
+--);
 
 --------------------------------
 
@@ -147,52 +138,37 @@ CREATE TABLE my_nonmember (
     pw VARCHAR2(20)
 );
 
-select * from my_nonmember;
---drop table my_nonmember;
-delete from my_nonmember;
-drop table my_nonmember;
-
-select * from modal_complete;
-
-commit;
-----트리거--------------
---CREATE OR REPLACE TRIGGER my_nonmember_insert_trigger
---AFTER INSERT ON my_nonmember
---FOR EACH ROW
---BEGIN
---    INSERT INTO modal_complete (estino)
---    VALUES (:NEW.estino);
---END;
---/
---INSERT INTO my_nonmember (estino, name, phone, email, pw, created_at)
---VALUES (
---    'M' || TO_CHAR(SYSDATE, 'YYYYMMDD') || LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(estino, 10, 4)) FROM my_nonmember WHERE TRUNC(created_at) = TRUNC(SYSDATE))), 0) + 1, 4, '0') || LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
---    '홍길동',
---    '010-1234-5678',
---    'test@example.com',
---    'password',
---    SYSDATE
---);
-
-------------------------
-select * from modal_complete;
-select * from my_nonmember;
-delete from my_nonmember;
-delete from modal_complete;
-rollback;
-
---select c.estino
---from modal_complete c inner join my_nonmember m
---on c.phone=m.phone
---where m.phone = 'tq';
---	
-
 ---join view
-CREATE VIEW nonmember_complete_view AS
-SELECT
+--CREATE VIEW nonmember_complete_view AS
+--SELECT
+--    mn.name,
+--    mn.email,
+--    mn.phone,
+--    mc.estino,
+--    mc.m_date,
+--    mc.m_addr,
+--    mc.m_content,
+--    mc.m_size,
+--    mc.m_request,
+--    mc.m_price,
+--    mc.m_wanttime,
+--    mc.m_wantdate,
+--    mc.m_circs,
+--    mc.m_place,
+--    mc.m_type,
+--    mc.m_contentprice
+--FROM
+--    my_nonmember mn
+--    INNER JOIN modal_complete mc ON mn.phone = mc.phone;
+--    
+
+ ---가장 최근목록만 가져오기
+ CREATE VIEW nonmember_complete_view AS
+SELECT 
     mn.name,
     mn.email,
     mn.phone,
+    mn.pw,
     mc.estino,
     mc.m_date,
     mc.m_addr,
@@ -208,6 +184,19 @@ SELECT
     mc.m_contentprice
 FROM
     my_nonmember mn
-    INNER JOIN modal_complete mc ON mn.phone = mc.phone;
-    
-    SELECT * FROM nonmember_complete_view;
+INNER JOIN (
+    SELECT 
+        phone,
+        MAX(m_date) AS max_date
+    FROM 
+        modal_complete
+    GROUP BY 
+        phone
+) latest_mc ON mn.phone = latest_mc.phone
+INNER JOIN modal_complete mc ON latest_mc.phone = mc.phone AND latest_mc.max_date = mc.m_date;
+
+select * from nonmember_complete_view;
+select * from modal_check;
+select * from modal_complete;
+select * from my_nonmember;
+commit;

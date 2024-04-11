@@ -1,14 +1,14 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page session="false"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 <html>
 <head>
+<title>Main</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="mainCSS/main.css" />
+<link rel="stylesheet" href="<c:url value='/resources/css/modal.css' />">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
-<title>Main</title>
 </head>
 <body>
 	<!-- 헤더 -->
@@ -62,7 +62,7 @@
 			<div class="header_category_list list_5">고객센터</div>
 		</div>
 	</header>
-	<div>이곳에 견적데이터불러오기</div>
+	
 	<div>
 	    <h3>견적 정보</h3>
 	    <p>이메일: ${modalBoard.email}</p>
