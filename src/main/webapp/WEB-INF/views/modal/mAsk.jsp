@@ -9,13 +9,13 @@ String path=request.getContextPath();
 %>
 <meta charset="UTF-8">
 <title>상품체크창</title>
- 	<link rel="stylesheet" href="resources/css/modal.css">
+ 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    
-    <!-- 주소api -->
+     <!-- 주소api -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4efcfe1bb89f6b2d141d4e7298e8efee&libraries=services"></script>
+	<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=4efcfe1bb89f6b2d141d4e7298e8efee&libraries=services"></script>
+    
 </head>
 <body>
 

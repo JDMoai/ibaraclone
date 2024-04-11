@@ -6,10 +6,13 @@
 <head>
 <title>Main</title>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="<c:url value='/resources/css/modal.css' />">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modal.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+	
+   
 </head>
+
 <body>
 	<!-- 헤더 -->
 	<header>
@@ -55,7 +58,7 @@
 				<i class="fas fa-bars"></i>
 			</div>
 			<!-- header_category_list : 카테고리 / list_1~5 : list에 각각 들어갈 내용 -->
-			<div class="openModal header_category_list list_1">퀵견적</div>
+			<div class="openModal header_category_list list_1">퀵견적</div>	
 			<div class="header_category_list list_2">업체 둘러보기</div>
 			<div class="header_category_list list_3">소품샵</div>
 			<div class="header_category_list list_4">우리 집 자랑하기</div>
@@ -63,23 +66,37 @@
 		</div>
 	</header>
 	
-	<div>
-	    <h3>견적 정보</h3>
-	    <p>이메일: ${modalBoard.email}</p>
-	    <p>이름: ${modalBoard.name}</p>
-	    <p>전화번호: ${modalBoard.phone}</p>
-	    <p>견적번호: ${modalBoard.estino}</p>
-	    <p>주소: ${modalBoard.m_addr}</p>
-	    <p>내용: ${modalBoard.m_content}</p>
-	    <p>평수: ${modalBoard.m_size}</p>
-	    <p>요청사항: ${modalBoard.m_request}</p>
-	    <p>가격: ${modalBoard.m_price}</p>
-	    <p>희망시간: ${modalBoard.m_wanttime}</p>
-	    <p>희망날짜: ${modalBoard.m_wantdate}</p>
-	    <p>시공환경: ${modalBoard.m_circs}</p>
-	    <p>시공공간: ${modalBoard.m_place}</p>
-	    <p>유형: ${modalBoard.m_type}</p>
-	    <p>추가상품가격: ${modalBoard.m_contentprice}</p>
+	<div class="mBoard-body">
+	    	<h3>견적 상세</h3>
+		<div>
+	    	<div>${modalBoard.m_date} (견적번호 ${modalBoard.estino})</div>	    	
+	    </div>
+	    	<h3>고객 정보</h3>
+	    <div>
+	    	<div>받는사람</div><div>${modalBoard.name}</div>
+	    	<div>연락처</div><div>${modalBoard.phone}</div>
+	    	<div>이메일</div><div>${modalBoard.email}</div>
+	    	<div>주소</div><div>${modalBoard.m_addr}</div>
+	    </div>
+	    	<h3>견적 내용</h3>
+		<div>
+			<div>${modalBoard.m_type}  ${modalBoard.m_size}</div>
+			<div>환경</div>
+			<div>${modalBoard.m_circs}</div>
+			<div>${modalBoard.m_place}</div>
+			<div>추가내용</div>
+			<div style="white-space: pre-wrap;">${modalBoard.m_contentprice}</div>
+			<div>
+			<div>예상금액</div><div>${modalBoard.m_price}</div>
+			</div>
+		</div>
+			<h3>요청사항</h3>
+		<div>
+			<div>희망상담시간</div><div>${modalBoard.m_wanttime}</div>
+			<div>희망시공일자</div><div>${modalBoard.m_wantdate}</div>
+			<div>추가요청내용</div><div>${modalBoard.m_request}</div>
+		</div>	
+
 	</div>
 	<!-- 푸터 -->
 	<footer>

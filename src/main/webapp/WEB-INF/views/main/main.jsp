@@ -345,6 +345,33 @@
         </div>
 
         <script>
+        $(document).ready(function() {
+            var modal = $('.myModal');
+            var btn = $('.openModal');
+            var span = $('.close');
+
+            function openModal() {
+                modal.css('display', 'block');
+            }
+
+            function closeModal() {
+                modal.css('display', 'none');
+            }
+
+            btn.click(function() {
+                openModal();
+            });
+
+            span.click(function() {
+                closeModal();
+            });
+
+            $(window).click(function(event) {
+                if (event.target == modal[0]) {
+                    closeModal();
+                }
+            });
+        });
         window.addEventListener('scroll', function() {
             var scrollHeight = window.scrollY;
             var headerBottom = document.getElementById('header_bottom');

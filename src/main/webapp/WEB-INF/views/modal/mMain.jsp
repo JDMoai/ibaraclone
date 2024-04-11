@@ -7,9 +7,10 @@ String path=request.getContextPath();
 %>
     <title>mMain.jsp</title>
    
-    <link rel="stylesheet" href="resources/css/modal.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
    
 </head> 
 <body>
@@ -67,27 +68,27 @@ String path=request.getContextPath();
                 <div class="row">
                     <a href="">
                     <div class="item1">
-                        <img src="resources/img/modalimg/company.png" alt="Icon 1" class="icon1"> <span>업체 먼저 둘러보기</span>
+                        <img src="${pageContext.request.contextPath}/resources/img/modalimg/company.png" alt="Icon 1" class="icon1"> <span>업체 먼저 둘러보기</span>
                     </div>
                     </a>
                     <a href="#" class="openSizeModal" data-option="standard" data-service="스탠다드 커스텀 인테리어 ">
                     <div class="item2">
-                        <img src="resources/img/modalimg/custom.png" alt="Icon 2" class="icon2"> <span>스탠다드 커스텀 인테리어 시공하기</span>
+                        <img src="${pageContext.request.contextPath}/resources/img/modalimg/custom.png" alt="Icon 2" class="icon2"> <span>스탠다드 커스텀 인테리어 시공하기</span>
                     </div>
                     </a>
                     <a href="#" class="openSizeModal" data-option="premium" data-service="프리미엄 커스텀 인테리어 ">
                     <div class="item3">
-                        <img src="resources/img/modalimg/premium.png" alt="Icon 3" class="icon3"> <span>프리미엄 커스텀 인테리어 시공하기</span>
+                        <img src="${pageContext.request.contextPath}/resources/img/modalimg/premium.png" alt="Icon 3" class="icon3"> <span>프리미엄 커스텀 인테리어 시공하기</span>
                     </div>
                     </a>
                     <a href="#" class="openServiceCheckModal" data-option="kitchen" data-service="주방만 시공하기">
                     <div class="item4">
-                        <img src="resources/img/modalimg/kitchen.jpg" alt="Icon 4" class="icon4"> <span>주방만 시공하기</span>
+                        <img src="${pageContext.request.contextPath}/resources/img/modalimg/kitchen.jpg" alt="Icon 4" class="icon4"> <span>주방만 시공하기</span>
                     </div>
                     </a>
                     <a href="#" class="openServiceCheckModal"  data-option="bath" data-service="욕실만 시공하기">
                     <div class="item5">
-                        <img src="resources/img/modalimg/bath.jpg" alt="Icon 5" class="icon5"> <span>욕실만 시공하기</span>
+                        <img src="${pageContext.request.contextPath}/resources/img/modalimg/bath.jpg" alt="Icon 5" class="icon5"> <span>욕실만 시공하기</span>
                     </div>  
                     </a>                   
                 </div>
@@ -103,6 +104,8 @@ String path=request.getContextPath();
 <jsp:include page="mAsk.jsp" />
 <jsp:include page="mInfo.jsp" />
 <jsp:include page="mComplete.jsp" />
+
+
 
 <script>
 $(document).ready(function() {

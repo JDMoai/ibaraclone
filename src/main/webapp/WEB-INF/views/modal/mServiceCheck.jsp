@@ -9,7 +9,7 @@ String path=request.getContextPath();
 %>
 <meta charset="UTF-8">
 <title>상품체크창</title>
- <link rel="stylesheet" href="resources/css/modal.css">
+ <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modal.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
@@ -106,7 +106,7 @@ String path=request.getContextPath();
 						</div>												
 					</div>
 					
-						<div class="selectedItems" id="selectedItems">
+						<div class="selectedItems" id="selectedItems" >
 							<!-- 선택한 상품들을 동적으로 생성 -->
 						</div>
 					
@@ -194,7 +194,7 @@ $(document).ready(function() {
                 var totalPrice = itemPrice * itemQuantity;
                 var itemDiv = $('<div>').text(itemName);
                 var priceDiv = $('<div>').text(totalPrice + '만원');
-                selectedItemsDiv.append(itemDiv).append(priceDiv);
+                selectedItemsDiv.append(itemDiv).append(priceDiv).append('<br>');
             }
         }
 
