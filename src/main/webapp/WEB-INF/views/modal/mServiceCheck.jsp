@@ -106,7 +106,7 @@ String path=request.getContextPath();
 						</div>												
 					</div>
 					
-						<div class="selectedItems" id="selectedItems" >
+						<div class="selectedItems" id="selectedItems" style="white-space: pre-wrap;">
 							<!-- 선택한 상품들을 동적으로 생성 -->
 						</div>
 					
@@ -194,7 +194,7 @@ $(document).ready(function() {
                 var totalPrice = itemPrice * itemQuantity;
                 var itemDiv = $('<div>').text(itemName);
                 var priceDiv = $('<div>').text(totalPrice + '만원');
-                selectedItemsDiv.append(itemDiv).append(priceDiv).append('<br>');
+                selectedItemsDiv.append(itemDiv).append(priceDiv).append('\n');
             }
         }
 

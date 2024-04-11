@@ -116,7 +116,7 @@ String path=request.getContextPath();
 							</div>
 							<div class="completeSelectedItems">
 							    <div>추가</div>
-							    <div class="selectedItems complete-selectedItems" id="complete-selectedItems"></div>
+							    <div class="selectedItems complete-selectedItems" id="complete-selectedItems" style="white-space: pre-wrap;"></div>
 							</div>
 						</div>
 					</div>

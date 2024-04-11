@@ -148,7 +148,7 @@
 							<span id="selectedService"></span>
 						</div>
 					</div>
-					<div class="selectedItems complete-selectedItems" id="complete-selectedItems">
+					<div class="selectedItems complete-selectedItems" id="complete-selectedItems" style="white-space: pre-wrap;">
 						<!-- 선택한 상품들을 동적으로 생성 -->
 					</div>
 					<div class="totalPrice">

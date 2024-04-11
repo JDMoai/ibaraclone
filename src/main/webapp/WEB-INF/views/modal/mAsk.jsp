@@ -170,7 +170,7 @@ String path=request.getContextPath();
 							<span id="selectedService"></span>
 						</div>
 					</div>
-					<div class="selectedItems" id="selectedItems">
+					<div class="selectedItems" id="selectedItems" style="white-space: pre-wrap;">
 						<!-- 선택한 상품들을 동적으로 생성 -->
 					</div>
 					<div class="totalPrice">
