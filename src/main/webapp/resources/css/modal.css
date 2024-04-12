@@ -498,7 +498,10 @@ a {
 	display: flex;
 	justify-content: space-between;
 }
-
+.complete_totalPriceValues{
+	display: flex;
+	justify-content: space-between;
+}
 
 /* -------------mBoard-------------- */
 
@@ -698,14 +701,13 @@ padding: 10px;
 background-color: #f0f0f0;
 border-radius: 3px;
 }
-
-.mBoard-body-contentprice{
+#mBoard-body-contentprice span{
 	display: flex;
 	justify-content: space-between;
-}
-.mBoard-body-contentprice > div {
-  flex: 1;
-}
+
+	
+	}
+
 /* 푸터 */
 footer {
 	margin: 0;

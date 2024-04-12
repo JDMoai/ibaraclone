@@ -118,6 +118,9 @@ String path=request.getContextPath();
 							    <div>추가</div>
 							    <div class="selectedItems complete-selectedItems" id="complete-selectedItems" style="white-space: pre-wrap;"></div>
 							</div>
+							<div class="complete_totalPriceValues">
+								<span>예상금액</span><span class="totalPriceValue complete-totalPriceValue"></span>
+							</div>
 						</div>
 					</div>
 				</div>
