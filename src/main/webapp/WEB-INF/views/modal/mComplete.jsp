@@ -119,7 +119,7 @@ String path=request.getContextPath();
 							    <div class="selectedItems complete-selectedItems" id="complete-selectedItems" style="white-space: pre-wrap;"></div>
 							</div>
 							<div class="complete_totalPriceValues">
-								<span>예상금액</span><span class="totalPriceValue complete-totalPriceValue"></span>
+								<span>예상금액</span><span class="totalPriceValue"></span>
 							</div>
 						</div>
 					</div>
