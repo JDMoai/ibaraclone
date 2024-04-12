@@ -85,7 +85,7 @@
 			<div>${modalBoard.m_circs}</div>
 			<div>${modalBoard.m_place}</div>
 			<div>추가내용</div>
-			<div style="white-space: pre-wrap;">${modalBoard.m_contentprice}</div>
+			<div class="mBoard-body-contentprice">${modalBoard.m_contentprice}</div>
 			<div>
 			<div>예상금액</div><div>${modalBoard.m_price}</div>
 			</div>
