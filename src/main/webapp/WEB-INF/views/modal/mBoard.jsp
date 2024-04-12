@@ -71,12 +71,13 @@
 		<div class="mBoard_body_1">
 	    	<div>작성일  ${modalBoard.m_date} (견적번호 ${modalBoard.estino})</div>	    	
 	    </div>
+	    
 	    	<h4>고객 정보</h4>
 	    <div class="mBoard_body_2">
-	    	<div>받는사람</div><div>${modalBoard.name}</div>
-	    	<div>연락처</div><div>${modalBoard.phone}</div>
-	    	<div>이메일</div><div>${modalBoard.email}</div>
-	    	<div>주소</div><div>${modalBoard.m_addr}</div>
+	    	<div class="mBoard-info">받는사람</div><div class="mBoard-info2">${modalBoard.name}</div>
+	    	<div class="mBoard-info">연락처</div><div class="mBoard-info2">${modalBoard.phone}</div>
+	    	<div class="mBoard-info">이메일</div><div class="mBoard-info2">${modalBoard.email}</div>
+	    	<div class="mBoard-info">주소</div><div class="mBoard-info2">${modalBoard.m_addr}</div>
 	    </div>
 	    	<h4>견적 내용</h4>
 		<div class="mBoard_body_3">

@@ -674,20 +674,50 @@ font-weight: bold;
 margin-bottom: 10px;
 color: #333;
 }
+.mBoard_body_1{
+	color: #aaa;
+}
 
-.mBoard_body_1, .mBoard_body_2, .mBoard_body_3, .mBoard_body_4 {
+
+
+.mBoard_body_2, .mBoard_body_3, .mBoard_body_4 {
 padding: 20px;
-background-color: #f8f8f8;
 border: 1px solid #eee;
 border-radius: 5px;
 margin-bottom: 20px;
 }
 
-.mBoard_body_2 div, .mBoard_body_3 div, .mBoard_body_4 div {
-margin-bottom: 10px;
+
+.mBoard_body_2 div:nth-child(odd){
+	font-weight: bold;
+	color: #aaa;
+}
+.mBoard_body_2 > div {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+.mBoard_body_2 > div > div:first-child {
+  font-weight: bold;
+  color: #aaa; 
+  width: 100px;
+  margin-right: 20px;
+}
+.mBoard_body_3 > div,
+.mBoard_body_4 > div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
 
-.mBoard_body_2 div:nth-child(odd),
+
+.mBoard_body_3 > div > div:first-child, 
+.mBoard_body_4 > div > div:first-child {
+  font-weight: bold; 
+  color: #333;
+  flex: 0 0 120px;
+}
+
 .mBoard_body_3 div:nth-child(odd),
 .mBoard_body_4 div:nth-child(odd) {
 font-weight: bold;
