@@ -107,27 +107,7 @@ m_place varchar2(100),
 m_type varchar2(100),
 m_contentprice varchar2(1000)
 );
---
---INSERT INTO modal_complete
---VALUES (
---    'M' || 
---    TO_CHAR(SYSDATE, 'YYYYMMDD') ||
---    LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(estino, 10, 4)) FROM my_nonmember WHERE TRUNC(m_date) = TRUNC(SYSDATE))), 0) + 1, 4, '0') ||
---    LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
---    SYSDATE,
---    '안산시 상록구 수암동',
---    '010-9544-9544',
---    '자재상품내용 블라블라블라블라',
---    '평수',
---    '추가내용',
---    '총합가격',
---    '희망상담시간',
---    '희망시공일자',
---    '시공환경',
---    '시공공간종류',
---    '프리미엄 인테리어',
---    '추가내용과가격'
---);
+
 
 --------------------------------
 
@@ -138,31 +118,7 @@ CREATE TABLE my_nonmember (
     pw VARCHAR2(20)
 );
 
----join view
---CREATE VIEW nonmember_complete_view AS
---SELECT
---    mn.name,
---    mn.email,
---    mn.phone,
---    mc.estino,
---    mc.m_date,
---    mc.m_addr,
---    mc.m_content,
---    mc.m_size,
---    mc.m_request,
---    mc.m_price,
---    mc.m_wanttime,
---    mc.m_wantdate,
---    mc.m_circs,
---    mc.m_place,
---    mc.m_type,
---    mc.m_contentprice
---FROM
---    my_nonmember mn
---    INNER JOIN modal_complete mc ON mn.phone = mc.phone;
---    
-
- ---가장 최근목록만 가져오기
+ ---modal_complete와 my_nonmember 조인해서 가장 최근목록만 가져오기 view
  CREATE VIEW nonmember_complete_view AS
 SELECT 
     mn.name,
@@ -195,8 +151,36 @@ INNER JOIN (
 ) latest_mc ON mn.phone = latest_mc.phone
 INNER JOIN modal_complete mc ON latest_mc.phone = mc.phone AND latest_mc.max_date = mc.m_date;
 
-select * from nonmember_complete_view;
+---modal_complete 예시 인서트
+
+INSERT INTO modal_complete
+VALUES (
+    'M' || 
+    TO_CHAR(SYSDATE, 'YYYYMMDD') ||
+    LPAD(COALESCE(TO_NUMBER((SELECT MAX(SUBSTR(estino, 10, 4)) FROM my_nonmember WHERE TRUNC(m_date) = TRUNC(SYSDATE))), 0) + 1, 4, '0') ||
+    LPAD(FLOOR(DBMS_RANDOM.VALUE(0, 100)), 2, '0'),
+    SYSDATE,
+    '안산시 상록구 수암동',
+    '01012341234',
+    '자재상품내용 블라블라블라블라',
+    '평수',
+    '추가내용',
+    '총합가격',
+    '희망상담시간',
+    '희망시공일자',
+    '시공환경',
+    '시공공간종류',
+    '프리미엄 인테리어',
+    '추가내용과가격'
+);
+
+--my_nonmember 예시 인서트
+insert into my_nonmember values('홍길동','eee@eee.eee','01012341234','1234');
+
+
+
 select * from modal_check;
 select * from modal_complete;
 select * from my_nonmember;
-commit;
+select * from nonmember_complete_view;
+
