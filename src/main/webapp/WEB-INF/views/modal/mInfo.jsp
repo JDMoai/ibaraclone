@@ -22,7 +22,7 @@
 		<div class="modal_content">
 			<div class="modal_leftside">
 				<div class=modal_leftside_progress>
-					<ul>
+				<!-- 	<ul>
 						<li data-step-name="services" class="">
 							<div>
 								<span>어떤 서비스가 필요하신가요?</span>
@@ -50,15 +50,18 @@
 								<span>견적완료</span>
 							</div>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
+				<div class="img2 modal_leftside_img">
+            		<img src="${pageContext.request.contextPath}/resources/img/modalimg/mInfo.png" alt="mInfo" />
+           		</div>
 				<div class="modal_leftside_content">
 					<h4>정보 입력</h4>
 					<div>연락을 드릴 수 있는 고객님의 정보를 입력해 주세요!</div>
 				</div>
 				<div class="modal_leftside_question">
-					<h5>바로문의</h5>
-					123-456-7890
+					<h4>바로문의</h4>
+                010-1234-5678
 				</div>
 			</div>
 			<div class="modal_center">

@@ -20,7 +20,7 @@ String path=request.getContextPath();
     <div class="modal_content">
         <div class="modal_leftside">
             <div class=modal_leftside_progress>
-                <ul>
+                <!-- <ul>
                     <li data-step-name="services" class="">
                         <div>
                             <span>어떤 서비스가 필요하신가요?</span>
@@ -48,15 +48,18 @@ String path=request.getContextPath();
                             <span>견적완료</span>
                         </div>
                     </li>
-                </ul>
+                </ul> -->
+            </div>
+            <div class="modal_leftside_img">
+            	<img src="${pageContext.request.contextPath}/resources/img/modalimg/mMain.png" alt="mMain" />
             </div>
             <div class="modal_leftside_content">
                 <h4>어떤 서비스가 필요하신가요?</h4>
                 <div>필요한 서비스를 선택해 주세요.</div>
             </div>
             <div class="modal_leftside_question">
-                <h5>바로문의</h5>
-                123-456-7890
+                <h4>바로문의</h4>
+                010-1234-5678
             </div>
         </div>
         <div class="modal_center">
@@ -167,14 +170,20 @@ $(document).ready(function() {
                 
                 $.each(serviceItems, function(index, item) {
                     var serviceItem = '<div class="serviceItem">' +
-                                      '<div>' +
-                                      '<input type="checkbox" class="productCheckBox" ' +
-                                      'data-name="' + item.m_pname + '" data-exp="' + item.m_pexp + '" ' +
-                                      'data-price="' + item.m_pprice + '">' +
-                                      '<span>' + item.m_pname + '</span><br/>' +
-                                      '<span>' + item.m_pexp + '</span>' +
-                                      '</div>' +
-                                      '<div>' + item.m_pprice + '만원</div>' +
+                    
+                                      	'<div>' +
+                                      		'<input type="checkbox" class="productCheckBox" ' +
+                                      		'data-name="' + item.m_pname + '" data-exp="' + item.m_pexp + '" ' +
+                                     		 'data-price="' + item.m_pprice + '">' +
+                                    	'</div>' +
+                                      
+                                      	'<div>' +
+                                      		'<div>' + item.m_pname + '</div><br/>' +
+                                     		'<div>' + item.m_pexp + '</div>' +
+                                     	'</div>' +
+                                     	 '<div>' + item.m_pprice + '만원</div>' +
+                                      
+                                      
                                       '<div>' +
                                       '<button class="decreaseQuantity">-</button>' +
                                       '<input type="text" class="quantity" value="0" readonly>' +
@@ -212,21 +221,27 @@ $(document).ready(function() {
                 productCheckbox.empty();
                 
                 $.each(serviceItems, function(index, item) {
-                    var serviceItem = '<div class="serviceItem">' +
-                                      '<div>' +
-                                      '<input type="checkbox" class="productCheckBox" ' +
-                                      'data-name="' + item.m_pname + '" data-exp="' + item.m_pexp + '" ' +
-                                      'data-price="' + item.m_pprice + '">' +
-                                      '<span>' + item.m_pname + '</span><br/>' +
-                                      '<span>' + item.m_pexp + '</span>' +
-                                      '</div>' +
-                                      '<div>' + item.m_pprice + '만원</div>' +
-                                      '<div>' +
-                                      '<button class="decreaseQuantity">-</button>' +
-                                      '<input type="text" class="quantity" value="0" readonly>' +
-                                      '<button class="increaseQuantity">+</button>' +
-                                      '</div>' +
-                                      '</div>';
+                	 var serviceItem = '<div class="serviceItem">' +
+                     
+						                   	'<div>' +
+						                   		'<input type="checkbox" class="productCheckBox" ' +
+						                   		'data-name="' + item.m_pname + '" data-exp="' + item.m_pexp + '" ' +
+						                  		 'data-price="' + item.m_pprice + '">' +
+						                 	'</div>' +
+						                   
+						                   	'<div>' +
+						                   		'<div>' + item.m_pname + '</div><br/>' +
+						                  		'<div>' + item.m_pexp + '</div>' +
+						                  	'</div>' +
+						                  	 '<div>' + item.m_pprice + '만원</div>' +
+						                   
+						                   
+						                   '<div>' +
+							                   '<button class="decreaseQuantity">-</button>' +
+							                   '<input type="text" class="quantity" value="0" readonly>' +
+							                   '<button class="increaseQuantity">+</button>' +
+						                   '</div>' +
+						                '</div>';
                     productCheckbox.append(serviceItem);
                 });
                 

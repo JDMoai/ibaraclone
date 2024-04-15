@@ -81,21 +81,21 @@
 	    </div>
 	    	<h4>견적 내용</h4>
 		<div class="mBoard_body_3">
-			<div>${modalBoard.m_type}  ${modalBoard.m_size}</div>
-			<div>환경</div>
-			<div>${modalBoard.m_circs}</div>
-			<div>${modalBoard.m_place}</div>
-			<div>추가내용</div>
+			<div class="mBoard_body_3-service">${modalBoard.m_type}  ${modalBoard.m_size}</div>
+			<div class="mBoard_body_3-circs">환경</div>
+			<div class="mBoard_body_3-circs-1">${modalBoard.m_circs}</div>
+			<div class="mBoard_body_3-circs-2">${modalBoard.m_place}</div>		
+			<div class="mBoard_body_3-plus">추가내용</div>
 			<div style="white-space: pre-wrap;" id="mBoard-body-contentprice">${modalBoard.m_contentprice}</div>
-			<div>
+			<div class="mBoard_body_3-money">
 			<div>예상금액</div><div>${modalBoard.m_price}</div>
 			</div>
 		</div>
 			<h4>요청사항</h4>
 		<div class="mBoard_body_4">
-			<div>희망상담시간</div><div>${modalBoard.m_wanttime}</div>
-			<div>희망시공일자</div><div>${modalBoard.m_wantdate}</div>
-			<div>추가요청내용</div><div>${modalBoard.m_request}</div>
+			<div class="mBoard_body_4-time">희망상담시간</div><div>${modalBoard.m_wanttime}</div>
+			<div class="mBoard_body_4-date">희망시공일자</div><div>${modalBoard.m_wantdate}</div>
+			<div class="mBoard_body_4-content">추가요청내용</div><div>${modalBoard.m_request}</div>
 		</div>	
 
 	</div>

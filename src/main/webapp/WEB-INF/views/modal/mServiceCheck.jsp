@@ -20,7 +20,7 @@ String path=request.getContextPath();
     <div class="modal_content">
         <div class="modal_leftside">
             <div class=modal_leftside_progress>
-                <ul>
+               <!--  <ul>
                     <li data-step-name="services" class="">
                         <div>
                             <span>어떤 서비스가 필요하신가요?</span>
@@ -48,15 +48,18 @@ String path=request.getContextPath();
                             <span>견적완료</span>
                         </div>
                     </li>
-                </ul>
+                </ul> -->
+            </div>
+             <div class="img2 modal_leftside_img">
+            	<img src="${pageContext.request.contextPath}/resources/img/modalimg/mServiceCheck.png" alt="mServiceCheck" />
             </div>
             <div class="modal_leftside_content">
                 <h4>원하는 서비스 선택하기</h4>
                 <div>원하는 서비스를 선택해 주세요.</div>
             </div>
             <div class="modal_leftside_question">
-                <h5>바로문의</h5>
-                123-456-7890
+                <h4>바로문의</h4>
+                010-1234-5678
             </div>
         </div>
 			<div class="modal_center">
@@ -148,6 +151,15 @@ $(document).ready(function() {
         updateSelectedItems();
         updateTotalPrice();
     });
+    
+    $('.serviceItem').click(function(e) {
+        if (e.target.type !== 'checkbox') {
+            $(this).find('input[type="checkbox"]').prop('checked', function(i, checked) {
+                return !checked;
+            });
+        }
+    });
+    
 
     // 수량 증가 버튼 클릭 이벤트 처리 (이벤트 위임 사용)
     $(document).on('click', '.increaseQuantity', function() {
@@ -168,7 +180,7 @@ $(document).ready(function() {
     $(document).on('click', '.decreaseQuantity', function() {
         var quantityInput = $(this).siblings('.quantity');
         var currentQuantity = parseInt(quantityInput.val());
-        if (currentQuantity > 1) {
+        if (currentQuantity > 0) {
             quantityInput.val(currentQuantity - 1);
 
             var itemName = $(this).closest('.serviceItem').find('.productCheckBox').data('name');

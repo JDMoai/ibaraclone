@@ -24,7 +24,7 @@ String path=request.getContextPath();
     <div class="modal_content">
         <div class="modal_leftside">
             <div class=modal_leftside_progress>
-                <ul>
+                <!-- <ul>
                     <li data-step-name="services" class="">
                         <div>
                             <span>어떤 서비스가 필요하신가요?</span>
@@ -52,15 +52,18 @@ String path=request.getContextPath();
                             <span>견적완료</span>
                         </div>
                     </li>
-                </ul>
+                </ul> -->
             </div>
+            <div class="img2 modal_leftside_img">
+            		<img src="${pageContext.request.contextPath}/resources/img/modalimg/mAsk.png" alt="mAsk" />
+           		</div>
             <div class="modal_leftside_content">
                 <h4>추가 질문</h4>
                 <div>현장환경에 따라 시공비/운임비/운송비/양중비(기타비용)이 추가 될 수 있습니다.</div>
             </div>
             <div class="modal_leftside_question">
-                <h5>바로문의</h5>
-                123-456-7890
+                <h4>바로문의</h4>
+                010-1234-5678
             </div>
         </div>
 			<div class="modal_center">

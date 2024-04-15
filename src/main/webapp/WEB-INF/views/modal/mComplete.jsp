@@ -21,7 +21,7 @@ String path=request.getContextPath();
 		<div class="modal_content">
 			<div class="modal_leftside">
 				<div class=modal_leftside_progress>
-					<ul>
+					<!-- <ul>
 						<li data-step-name="services" class="">
 							<div>
 								<span>어떤 서비스가 필요하신가요?</span>
@@ -49,15 +49,18 @@ String path=request.getContextPath();
 								<span>견적완료</span>
 							</div>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
+				<div class="img2 modal_leftside_img">
+            		<img src="${pageContext.request.contextPath}/resources/img/modalimg/mComplete.png" alt="mComplete" />
+           		</div>
 				<div class="modal_leftside_content">
 					<h4>견적 완료</h4>
 					<div>견적이 완료되었습니다. 확인 후 1,2 영업일 내 연락 드리겠습니다.</div>
 				</div>
 				<div class="modal_leftside_question">
-					<h5>바로문의</h5>
-					123-456-7890
+					<h4>바로문의</h4>
+                010-1234-5678
 				</div>
 			</div>
 			<div class="modal_center">
