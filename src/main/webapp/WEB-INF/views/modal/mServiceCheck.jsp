@@ -93,7 +93,7 @@ String path=request.getContextPath();
 						<div class="selectedSize"></div>
 						<div class="selectedService">
 							<span id="selectedService"></span>
-								<div>추가 :</div>
+								<div class="plus-checkedItems">추가 </div>
 								<div class="checkedItems" id="checkedItems">
 									<!-- 선택한 상품들을 동적으로 생성 -->
 								</div>
@@ -132,6 +132,7 @@ $(document).ready(function() {
 
     // 상품 체크박스 클릭 이벤트 처리 (이벤트 위임 사용)
     $(document).on('change', '.productCheckBox', function() {
+    	
         var itemName = $(this).data('name');
         var itemPrice = $(this).data('price');
         var itemQuantity = $(this).closest('.serviceItem').find('.quantity').val();
@@ -142,9 +143,11 @@ $(document).ready(function() {
                 quantity: itemQuantity
             };
             checkedItems[itemName] = {};
+            $(this).closest('.serviceItem').css('border-color', '#1e90ff'); // 체크박스 활성화 시 border 색상 변경
         } else {
             delete selectedItems[itemName];
             delete checkedItems[itemName];
+            $(this).closest('.serviceItem').css('border-color', 'rgba(0, 0, 0, .05)'); // 체크박스 비활성화 시 원래 border 색상으로 변경
         }
         
 		
@@ -152,22 +155,22 @@ $(document).ready(function() {
         updateTotalPrice();
     });
     
-    $('.serviceItem').click(function(e) {
-        if (e.target.type !== 'checkbox') {
-            $(this).find('input[type="checkbox"]').prop('checked', function(i, checked) {
-                return !checked;
-            });
-        }
-    });
+  
     
 
-    // 수량 증가 버튼 클릭 이벤트 처리 (이벤트 위임 사용)
+ // 수량 증가 버튼 클릭 이벤트 처리 (이벤트 위임 사용)
     $(document).on('click', '.increaseQuantity', function() {
         var quantityInput = $(this).siblings('.quantity');
         var currentQuantity = parseInt(quantityInput.val());
         quantityInput.val(currentQuantity + 1);
 
-        var itemName = $(this).closest('.serviceItem').find('.productCheckBox').data('name');
+        var checkbox = $(this).closest('.serviceItem').find('.productCheckBox');
+        var itemName = checkbox.data('name');
+
+        if (!checkbox.is(':checked')) {
+            checkbox.prop('checked', true).trigger('change');
+        }
+
         if (selectedItems[itemName]) {
             selectedItems[itemName].quantity++;
         }
@@ -183,9 +186,15 @@ $(document).ready(function() {
         if (currentQuantity > 0) {
             quantityInput.val(currentQuantity - 1);
 
-            var itemName = $(this).closest('.serviceItem').find('.productCheckBox').data('name');
+            var checkbox = $(this).closest('.serviceItem').find('.productCheckBox');
+            var itemName = checkbox.data('name');
+
             if (selectedItems[itemName]) {
                 selectedItems[itemName].quantity--;
+            }
+
+            if (currentQuantity - 1 === 0) {
+                checkbox.prop('checked', false).trigger('change');
             }
 
             updateSelectedItems();

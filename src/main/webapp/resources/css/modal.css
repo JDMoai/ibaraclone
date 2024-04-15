@@ -26,6 +26,8 @@
     border: 0px solid #888;
     width: 80%;
     max-width: 800px;
+    
+    
 }
 .modal_leftside{
     display:flex;
@@ -42,8 +44,16 @@
     margin: 15% auto;
     padding: 20px;
     border: 0px solid #888;
-    width: 80%;
+    width:550px;
+    max-height: 70vh;
+    margin-top:0;
+    margin-bottom:0;
+    flex:1;
+    padding: 10px 0px;
+    height: auto;
+    
 }
+
 
 .modal_leftside_progress ul{
     list-style-type: none;
@@ -117,27 +127,21 @@ position: absolute;
     color: #333;
     font-size: 15px;
 }
-.modal_center{
-    margin-top:0;
-    margin-bottom:0;
-    flex:1;
-    width:550px;
-    padding: 10px 0px;
-    height: auto;
-    
-}
+
 .modal_center_header{
     display: flex;
     flex:0 0 auto;
     justify-content: space-between;
     text-align:left;
     border-bottom: 1px solid rgba(0, 0, 0, .05);
-    padding-left:10px; 
-    padding-right:10px;
     margin-right: 10px; 
-    width:550px;
+    width:100%;
     height: 40px auto;
 }
+.modal_center_header h3{
+	margin-left: 20px;
+}
+
 .modal_center_body{
     display:flex;
     flex:1 1 auto;
@@ -221,7 +225,6 @@ a {
 .modal_rightside {
     flex: 0 0 250px;
     padding: 20px;
-    margin-left:10px;
     background-color: #e2f0fe;
     text-align: left;
     
@@ -354,19 +357,22 @@ a {
     flex:0 0 auto;
     justify-content: space-between;
     text-align:left;
-    border-bottom: 1px solid rgba(0, 0, 0, .05);
-    padding-left:10px; 
-    padding-right:10px;
-    margin-right: 10px; 
+    border-bottom: 1px solid rgba(0, 0, 0, .05);   
     width:500px;
     height: 40px auto;
 }
+.serviceCheckModal_center_header h3{
+	margin-left: 20px;
+}
+
+
 .serviceCheckModal_center {
     display: flex;
     flex-direction: column;
     flex: 1;
     overflow-y: auto;
-    padding-bottom: 20px;
+    
+    
     
 }
 
@@ -375,7 +381,7 @@ a {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    height: 800px;
+    height: 100%;
     overflow-y: auto;
     padding: 20px 0;
 }
@@ -390,6 +396,7 @@ a {
     background-color: #fff;
     position: fixed;
     bottom: 0;
+    
 }
 .serviceCheckModal_center_footer button {
     padding: 10px 20px;
@@ -409,28 +416,42 @@ a {
     margin-left: 15px;
     margin-right: 15px;
 }
-.productCheckBox span{
+.productCheckBox div{
 	text-align: left;
+}
+
+.item_m_pname{
 	
-	
+	font-weight: bold;
+	color: #1a1f27;
+}
+
+.item_m_pexp{
+	color: #333;
 }
 
 .serviceItem {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 15px 20px;
+    width: 106%;
+    padding: 15px 10px;
     border: 1px solid rgba(0, 0, 0, .05);
     border-radius: 8px;
     margin-bottom: 10px;
     font-family: 'Pretendard', sans-serif !important;
     cursor: pointer;
+    transition: border-color 0.3s ease;
 }
+
+.serviceItem:hover {
+    border-color: #1e90ff; /* 추가: 마우스 호버 시 border 색상 변경 */
+}
+
+
 
 .serviceItem > div:first-child {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     width: 10%;
     
     
@@ -445,21 +466,24 @@ a {
 .serviceItem > div:nth-child(2) {
     font-size: 14px;
     text-align: left;
-    
+    align-items: flex-start;
+    width: 55%;
     
 }
 
 .serviceItem > div:nth-child(3) {
     font-size: 14px;
     font-weight: bold;
-    color: #b1b8c0;
+    color: #1e90ff;
+    width: 15%;
     
 }
 
 .serviceItem > div:last-child {
     display: flex;
     align-items: center;
-    font-size: 10px;
+    width: 20%;
+    
     
 }
 
@@ -478,29 +502,71 @@ a {
     border-top: 1px solid rgba(0, 0, 0, .05);
     display: flex;
     flex-direction: column;
+    
 }
 .totalPrice{
 	display: flex;
 	justify-content: space-between;
+	font-weight: bold;
 }
 .quantity {
     font-size: 12px;
-    width: 30px;
+    width: 20px;
     text-align: center;
     border: 1px solid rgba(0, 0, 0, .05);
     border-radius: 4px;
     padding: 5px;
-    margin: 0 10px;
+    margin: 0 5px; 
 }
-.decreaseQuantity,
-.increaseQuantity {
-    font-size: 12px;
-    padding: 5px 10px;
+.decreaseQuantity{
+    font-size: 18px;
+    padding: 0px 8px;
     border: none;
     background-color: #f1f1f1;
     border-radius: 10px;
     cursor: pointer;
 }
+.increaseQuantity{
+	font-size: 14px;
+    padding: 5px 8px;
+    border: none;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    cursor: pointer;
+} 
+
+.decreaseQuantity:hover,
+.increaseQuantity:hover {
+    
+    background-color: #1e90ff;
+    
+}
+
+.selectedSize{
+	font-weight: bold;
+}
+
+.selectedService{
+	font-weight: bold;
+}
+
+.expPrice{
+	font-weight: bold;
+	color: #b1b8c0;
+}
+
+
+.plus-checkedItems{
+	
+	color: #1034a6;
+	font-weight: bold;
+	font-size: small;
+}
+
+.checkedItems{
+	background-color: #b1b8c0;
+}
+
 
 /* -------------mAsk------------------ */
 #sample5_address1{

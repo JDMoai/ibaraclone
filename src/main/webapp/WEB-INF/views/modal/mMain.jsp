@@ -169,26 +169,26 @@ $(document).ready(function() {
                 productCheckbox.empty();
                 
                 $.each(serviceItems, function(index, item) {
-                    var serviceItem = '<div class="serviceItem">' +
-                    
-                                      	'<div>' +
-                                      		'<input type="checkbox" class="productCheckBox" ' +
-                                      		'data-name="' + item.m_pname + '" data-exp="' + item.m_pexp + '" ' +
-                                     		 'data-price="' + item.m_pprice + '">' +
-                                    	'</div>' +
-                                      
-                                      	'<div>' +
-                                      		'<div>' + item.m_pname + '</div><br/>' +
-                                     		'<div>' + item.m_pexp + '</div>' +
-                                     	'</div>' +
-                                     	 '<div>' + item.m_pprice + '만원</div>' +
-                                      
-                                      
-                                      '<div>' +
-                                      '<button class="decreaseQuantity">-</button>' +
-                                      '<input type="text" class="quantity" value="0" readonly>' +
-                                      '<button class="increaseQuantity">+</button>' +
-                                      '</div>' +
+                    var m_pname = item.m_pname === null ? "" : item.m_pname;
+                    var m_pexp = item.m_pexp === null ? "" : item.m_pexp;
+                    var m_pprice = item.m_pprice === null ? "" : item.m_pprice;
+
+                    var serviceItem = '<div class="serviceItem" data-option="' + option + '">' +
+                                          '<div>' +
+                                              '<input type="checkbox" class="productCheckBox" ' +
+                                              'data-name="' + m_pname + '" data-exp="' + m_pexp + '" ' +
+                                              'data-price="' + m_pprice + '">' +
+                                          '</div>' +
+                                          '<div>' +
+                                              '<div class="item_m_pname">' + m_pname + '</div><br/>' +
+                                              '<div class="item_m_pexp">' + m_pexp + '</div>' +
+                                          '</div>' +
+                                          '<div>' + m_pprice + '만원</div>' +
+                                          '<div>' +
+                                              '<button class="decreaseQuantity">-</button>' +
+                                              '<input type="text" class="quantity" value="0" readonly>' +
+                                              '<button class="increaseQuantity">+</button>' +
+                                          '</div>' +
                                       '</div>';
                     productCheckbox.append(serviceItem);
                 });
@@ -199,7 +199,7 @@ $(document).ready(function() {
             error: function(xhr, status, error) {
                 console.log(error);
             }
-    });
+        });
     });
 
     openServiceCheckModalBtn.click(function() {
@@ -208,7 +208,8 @@ $(document).ready(function() {
         
         updateSelectedService(service);
        
-        $('.serviceCheckModal').attr('data-prev-modal', option === 'kitchen' || option === 'bath' ? 'myModal' : 'sizeModal');//의심중
+        $('.serviceCheckModal').attr('data-prev-modal', option === 'kitchen' || option === 'bath' ? 'myModal' : 'sizeModal');
+        
         $.ajax({
             type: "GET",
             async: true,
@@ -221,27 +222,27 @@ $(document).ready(function() {
                 productCheckbox.empty();
                 
                 $.each(serviceItems, function(index, item) {
-                	 var serviceItem = '<div class="serviceItem">' +
-                     
-						                   	'<div>' +
-						                   		'<input type="checkbox" class="productCheckBox" ' +
-						                   		'data-name="' + item.m_pname + '" data-exp="' + item.m_pexp + '" ' +
-						                  		 'data-price="' + item.m_pprice + '">' +
-						                 	'</div>' +
-						                   
-						                   	'<div>' +
-						                   		'<div>' + item.m_pname + '</div><br/>' +
-						                  		'<div>' + item.m_pexp + '</div>' +
-						                  	'</div>' +
-						                  	 '<div>' + item.m_pprice + '만원</div>' +
-						                   
-						                   
-						                   '<div>' +
-							                   '<button class="decreaseQuantity">-</button>' +
-							                   '<input type="text" class="quantity" value="0" readonly>' +
-							                   '<button class="increaseQuantity">+</button>' +
-						                   '</div>' +
-						                '</div>';
+                    var m_pname = item.m_pname === null ? "" : item.m_pname;
+                    var m_pexp = item.m_pexp === null ? "" : item.m_pexp;
+                    var m_pprice = item.m_pprice === null ? "" : item.m_pprice;
+
+                    var serviceItem = '<div class="serviceItem" data-option="' + option + '">' +
+                                          '<div>' +
+                                              '<input type="checkbox" class="productCheckBox" ' +
+                                              'data-name="' + m_pname + '" data-exp="' + m_pexp + '" ' +
+                                              'data-price="' + m_pprice + '">' +
+                                          '</div>' +
+                                          '<div>' +
+                                              '<div class="item_m_pname">' + m_pname + '</div><br/>' +
+                                              '<div class="item_m_pexp">' + m_pexp + '</div>' +
+                                          '</div>' +
+                                          '<div>' + m_pprice + '만원</div>' +
+                                          '<div>' +
+                                              '<button class="decreaseQuantity">-</button>' +
+                                              '<input type="text" class="quantity" value="0" readonly>' +
+                                              '<button class="increaseQuantity">+</button>' +
+                                          '</div>' +
+                                      '</div>';
                     productCheckbox.append(serviceItem);
                 });
                 
@@ -251,8 +252,9 @@ $(document).ready(function() {
             error: function(xhr, status, error) {
                 console.log(error);
             }
+        });
     });
-    });
+    
 });
        
 
