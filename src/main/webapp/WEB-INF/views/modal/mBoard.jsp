@@ -13,7 +13,7 @@
    
 </head>
 
-<body>
+<body class="body">
 	<!-- 헤더 -->
 	<header>
 		<!-- header_top : 헤더 윗부분 -->
@@ -99,6 +99,7 @@
 		</div>	
 
 	</div>
+	
 	<!-- 푸터 -->
 	<footer>
 		<!-- 푸터 로고 -->
