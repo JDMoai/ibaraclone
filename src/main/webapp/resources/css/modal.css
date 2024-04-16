@@ -641,18 +641,6 @@ padding-right: 30px;
 border-color: #1e90ff;
 }
 
-.item6:visited,
-.item7:visited,
-.item9:visited,
-.item10:visited,
-.item11:visited,
-.addr:visited{
-border-color: #1e90ff;
-}
-
-
-
-
 
 #sample5_address1{
 	border: none;
@@ -691,23 +679,85 @@ border-color: #1e90ff;
 }
 
 /* ----------------mInfo--------------- */
+.infoRow {
+/* display: flex;
+flex-direction: column; */
+}
+
 .infoRow > div {
-  margin-bottom: 15px;
+margin-bottom: 15px;
+}
+.users{
+	display: flex;
+	justify-content: space-between;
+	
+}
+
+#nonMemberForm{
+	margin-left: 50px;
+	padding: 10px;
 }
 
 
+.item-pw{
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	width: 100%;
+}
 
 .item12,
 .item13,
 .item14,
 .item15,
 .item16{
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+	width: 95%;
+	padding: 15px;
+	border-radius: 8px;
+border: 1px solid #e5e7ee;
+position: relative;
+margin-bottom: 20px;
 }
+
+.item12 label,
+.item13 label,
+.item14 label,
+.item15 label,
+.item16 label{
+position: absolute;
+top: -10px;
+left: 10px;
+background-color: #fff;
+padding: 0 5px;
+font-size: 12px;
+color: #888;
+}
+
+.item12 input,
+.item13 input,
+.item14 input,
+.item15 input,
+.item16 input{
+	border: none;
+	outline: none;
+	text-align: left;
+	width: 80%;
+}
+
+.item14{
+background: url('../img/modalimg/koreaflag.png') no-repeat left 25px center;
+background-size: 25px;
+}
+
+
+.item12:hover,
+.item13:hover,
+.item14:hover,
+.item15:hover,
+.item16:hover{
+border-color: #1e90ff;
+}
+
 .questionAsk{
 	background-color: #b1b8c0;
 	font-size: small;
@@ -715,10 +765,7 @@ border-color: #1e90ff;
 }
 
 
-.users{
-	display: flex;
-	justify-content: space-between;
-}
+
 /* ------------mComplete----------- */
 
 #complete-selectedItems{

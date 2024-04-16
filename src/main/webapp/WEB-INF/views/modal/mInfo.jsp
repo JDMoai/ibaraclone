@@ -88,14 +88,16 @@
 									<label for="phone">휴대번호</label> <input type="tel" id="phone"
 										name="phone" class="phone" required>
 								</div>
-								<div class="item15">
-									<label for="password">비밀번호</label> <input type="password"
-										id="password" name="pw" required>
-								</div>
-								<div class="item16">
-									<label for="confirmPassword">비밀번호확인</label> <input
-										type="password" id="confirmPassword" name="confirmPassword"
-										required>
+								<div class="item-pw">
+									<div class="item15">
+										<label for="password">비밀번호</label> <input type="password"
+											id="password" name="pw" required>
+									</div>
+									<div class="item16">
+										<label for="confirmPassword">비밀번호확인</label> <input
+											type="password" id="confirmPassword" name="confirmPassword"
+											required>
+									</div>
 								</div>
 							</form>
 						</div>
