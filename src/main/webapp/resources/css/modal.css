@@ -225,12 +225,19 @@ a {
 	background-image: radial-gradient(#d4d4d4 1px, transparent 0);
     background-size: 7px 7px;
     display: flex;
-    padding: 9px 12px;
+    padding: 24.2px 12px;
     justify-content: flex-end;
     border-bottom: 1px solid rgba(0, 0, 0, .05);
-    
-    
-    
+
+}
+
+.modal_rightside_header span{
+	
+	font-weight: bold;
+	padding: 1px;
+	background-color: #e2f0fe;
+	border-radius: 5px;
+	
 }
 .modal_rightside {
 flex: 1;
@@ -694,7 +701,7 @@ margin-bottom: 15px;
 }
 
 #nonMemberForm{
-	margin-left: 50px;
+	margin-left: 40px;
 	padding: 10px;
 }
 
@@ -703,7 +710,14 @@ margin-bottom: 15px;
 	display: flex;
 	justify-content: space-between;
 	padding: 10px;
-	width: 100%;
+	width: 90%;
+}
+.item15{
+	margin-right: 8px;
+	margin-left: -10px;
+}
+.item16{
+	margin-left: 20px;
 }
 
 .item12,
@@ -711,7 +725,7 @@ margin-bottom: 15px;
 .item14,
 .item15,
 .item16{
-	width: 95%;
+	width: 85%;
 	padding: 15px;
 	border-radius: 8px;
 border: 1px solid #e5e7ee;
@@ -735,13 +749,21 @@ color: #888;
 
 .item12 input,
 .item13 input,
-.item14 input,
 .item15 input,
 .item16 input{
 	border: none;
 	outline: none;
 	text-align: left;
+	width: 100%;
+	font-size: 18px;
+}
+
+.item14 input{
+	border: none;
+	outline: none;
+	text-align: left;
 	width: 80%;
+	font-size: 18px;
 }
 
 .item14{

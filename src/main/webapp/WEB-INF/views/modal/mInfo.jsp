@@ -78,25 +78,25 @@
 								method="post">
 								<div class="item12">
 									<label for="name">성함</label> <input type="text" id="name"
-										name="name" required>
+										name="name" placeholder="성함" required>
 								</div>
 								<div class="item13">
 									<label for="email">이메일</label> <input type="email" id="email"
-										name="email" required>
+										name="email" placeholder="이메일 주소" required>
 								</div>
 								<div class="item14">
 									<label for="phone">휴대번호</label> <input type="tel" id="phone"
-										name="phone" class="phone" required>
+										name="phone" class="phone" placeholder="01012345678 (- 제외 )" required>
 								</div>
 								<div class="item-pw">
 									<div class="item15">
 										<label for="password">비밀번호</label> <input type="password"
-											id="password" name="pw" required>
+											id="password" name="pw" placeholder="비밀번호" required>
 									</div>
 									<div class="item16">
 										<label for="confirmPassword">비밀번호확인</label> <input
 											type="password" id="confirmPassword" name="confirmPassword"
-											required>
+											 placeholder="비밀번호확인" required>
 									</div>
 								</div>
 							</form>
@@ -112,7 +112,7 @@
 			</div>
 			<div class="rightside">
 				<div class="modal_rightside_header">
-					<p>요약</p>
+					<span>요약</span>
 				</div>
 			<div class="modal_rightside">
 				<div class="modal_rightside_body">

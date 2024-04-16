@@ -152,7 +152,7 @@ String path=request.getContextPath();
 			</div>
 			<div class="rightside">
 				<div class="modal_rightside_header">
-					<p>요약</p>
+					<span>요약</span>
 				</div>
 			<div class="modal_rightside">
 				<div class="modal_rightside_body">
