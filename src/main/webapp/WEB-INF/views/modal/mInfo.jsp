@@ -283,7 +283,7 @@ $(document).ready(function() {
 				        }
 				        
 				    });
-				    console.log(modalCompleteDto);
+				    
 				    
 				    
 				});

@@ -467,6 +467,7 @@ right: 0;
 	
 	font-weight: bold;
 	color: #1a1f27;
+	margin-right: 15px;
 }
 
 .item_m_pexp{
@@ -867,6 +868,7 @@ border-color: #1e90ff;
 .estino{
 	font-weight: bold;
 	color: #1034a6;
+	font-size: xx-large;
 }
 
 .completeInfo {   

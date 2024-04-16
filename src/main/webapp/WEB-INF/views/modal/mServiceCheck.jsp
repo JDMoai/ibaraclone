@@ -215,7 +215,7 @@ $(document).ready(function() {
                 var itemQuantity = item.quantity;
                 var totalPrice = itemPrice * itemQuantity;
                 var itemDiv = $('<div>').css('display', 'flex').css('justify-content', 'space-between')
-                .append($('<span>').text(itemName))
+                .append($('<span>').text(itemName+'  '))
                 .append($('<span>').text(totalPrice + '만원'));
                 selectedItemsDiv.append(itemDiv).append('\n');
             }
