@@ -99,7 +99,7 @@ String path=request.getContextPath();
                     </div>
                     <div class="item8">
                     	<div class="addr">
-                    		<label for="sample5_address"></label>
+                    		<label for="sample5_address">주소</label>
                         	<input type="text" id="sample5_address1" placeholder="시공하실 주소를 입력해주세요" >
 							<input type="button" class="sample5_address2" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
 						</div>
@@ -136,7 +136,7 @@ String path=request.getContextPath();
                     <div class="item11">
                     	<div class="request">
                     		<label for="request_id"></label>
-                        	<textarea placeholder="추가로 요청하실 사항이 있으시면 적어주세요!" class="request_ta" id="request_id" cols="60" rows="3"></textarea>
+                        	<textarea placeholder="추가로 요청하실 사항이 있으시면 적어주세요!" class="request_ta" id="request_id" cols="69" rows="4" style="border-radius: 8px;"></textarea>
 						</div>
                     </div>                               
                 </div>

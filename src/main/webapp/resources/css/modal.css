@@ -283,6 +283,9 @@ right: 0;
   display: flex;
   flex-direction: column;
   white-space: pre-wrap;
+  font-size: small;
+  font-weight: bold;
+  color: #333;
 }
 
 .selectedItems > div {
@@ -587,45 +590,104 @@ right: 0;
 
 
 /* -------------mAsk------------------ */
-#sample5_address1{
-	border: none;
-	outline: none;
-	width: 400px;
-}
-.sample5_address2{
-	border-radius: 8px;
-	background: #555;
-	color: #fff;
-	border: none;
-	cursor: pointer;
-}
 
 .item6,
 .item7,
-.item8{
-    flex:1 auto;
-    display: flex;
-    background: #fff;
-    border: 0;
-    align-items: center;
-    box-shadow: none;
-    outline: 0;
-    padding: 10px;
-    margin:7px;
-    color: #1f222b;
-    border-radius: 8px;
-    text-align: center;
-    
-    justify-content: space-between;
-    
+.item8,
+.item9,
+.item10{
+position: relative;
+margin-bottom: 20px;
 }
+
+.item6 label,
+.item7 label,
+.item8 label,
+.item9 label,
+.item10 label{
+position: absolute;
+top: -10px;
+left: 10px;
+background-color: #fff;
+padding: 0 5px;
+font-size: 12px;
+color: #888;
+}
+
+.item6 select,
+.item7 select,
+.item9 select,
+.item10 select {
+width: 95%;
+padding: 20px;
+border: 1px solid #e5e7ee;
+border-radius: 8px;
+box-sizing: border-box;
+appearance: none;
+-webkit-appearance: none;
+-moz-appearance: none;
+background: url('../img/modalimg/arrow-down.png') no-repeat right 10px center;
+background-size: 12px;
+padding-right: 30px;
+}
+
+
+.item6 select:hover,
+.item7 select:hover,
+.item9 select:hover,
+.item10 select:hover,
+.item11 textarea:hover,
+.addr:hover{
+border-color: #1e90ff;
+}
+
+.item6:visited,
+.item7:visited,
+.item9:visited,
+.item10:visited,
+.item11:visited,
+.addr:visited{
+border-color: #1e90ff;
+}
+
+
+
+
+
+#sample5_address1{
+	border: none;
+	outline: none;
+	width: 200px;
+	
+	
+}
+.sample5_address2{
+	border-radius: 8px;
+	background: #b1b8c0;
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	transform: translateX(130%);
+	padding: 7px;
+	font-weight: bold;
+	
+}
+
+.sample5_address2:hover{
+	background: #1e90ff;
+}
+
+
 .addr{
+	width:448px;
+	margin-left:14px;
 	display: flex;
+	
 	border: 1px solid #e5e7ee;	
 	border-radius: 8px;
 	justify-content: space-between;
-	padding: 8px;
-	width: 450px;
+	padding: 17px;
+	
 }
 
 /* ----------------mInfo--------------- */
@@ -633,15 +695,7 @@ right: 0;
   margin-bottom: 15px;
 }
 
-/* .item12 label,
-.item13 label,
-.item14 label,
-.item15 label,
-.item16 label{
-  font-weight: bold;
-  margin-bottom: 5px;
-  display: block;
-}  */
+
 
 .item12,
 .item13,
