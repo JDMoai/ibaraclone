@@ -55,7 +55,7 @@ String path=request.getContextPath();
             		<img src="${pageContext.request.contextPath}/resources/img/modalimg/mComplete.png" alt="mComplete" />
            		</div>
 				<div class="modal_leftside_content">
-					<h4>견적 완료</h4>
+					<h3>견적 완료</h3>
 					<div>견적이 완료되었습니다. 확인 후 1,2 영업일 내 연락 드리겠습니다.</div>
 				</div>
 				<div class="modal_leftside_question">
@@ -63,29 +63,30 @@ String path=request.getContextPath();
                 010-1234-5678
 				</div>
 			</div>
-			<div class="modal_center">
+			<div class="complete_modal_center">
 				<div class="modal_center_header">
 					<h3>견적 완료</h3>
 					<span id="closeCompleteModal" class="close">&times;</span>
 				</div>
-				<div class="Modal_center">
-					<div class="modal_center_body">
-						<div class="row">		
-							<div class="completeInfo">
+				<div class="Modal_center2">
+					<div class="complete_modal_center_body">
+						<div class="complete-row">		
+							<div class="completeEstino">
+							<span class="section-title">견적번호</span>
 								<div class="estino">
 								     
 								</div>
 							</div>
-							<div class="service_box">
-						
+							<div class="complete_service_box">
+							<span class="section-title">선택사항</span>
 							<div class="selectedService">
 								<span id="selectedService"></span>
 							</div>
-							<div class="checkedItems complete-checkedItems" id="complete-checkedItems">
+							<div class="checkedItems complete-checkedItems" id="complete-checkedItems2">
 								<!-- 선택한 상품들을 동적으로 생성 -->
 							</div>
 						
-						<div class="questionAsk" id="questionAsk">
+						<div class="questionAsk" id="complete-questionAsk">
 							<div>
 								시공공간종류: <span class="place_result" id="place_result"></span>
 							</div>
@@ -107,18 +108,18 @@ String path=request.getContextPath();
 						</div>
 					</div>
 								<div class="completeInfo">
-						        	<div>고객</div>
+						        	<span class="section-title">고객</span>
 						        	<div class="customer-info"></div>
 						 	   </div>
 							<div class="completeService">
-							    <div>서비스</div>
-							    <div class="selectedService">
+							    <span class="section-title">서비스</span>
+							    <div class="selectedService complete-selectedService">
 									<span id="selectedService"></span>
-								</div>
 							    <div class="selectedSize complete-selectedSize"></div>
+								</div>
 							</div>
 							<div class="completeSelectedItems">
-							    <div>추가</div>
+							    <span class="section-title">추가</span>
 							    <div class="selectedItems complete-selectedItems" id="complete-selectedItems" style="white-space: pre-wrap;"></div>
 							</div>
 							<div class="complete_totalPriceValues">

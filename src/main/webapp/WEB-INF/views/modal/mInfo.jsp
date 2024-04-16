@@ -263,7 +263,7 @@ $(document).ready(function() {
 				                        data: { phone: $('.phone').val() },
 				                        success: function(data) {
 				                        	 $('.estino').text(data.estino);
-				                             $('.customer-info').text(data.name + ', ' + data.email + ', ' + data.phone);
+				                        	 $('.customer-info').html('성함  ' + data.name + '<br>' + '이메일  ' + data.email + '<br>' + '전화번호  ' + data.phone);
 				                             openModal('.completeModal');
 				                             closeModal('.infoModal');
 				                        },

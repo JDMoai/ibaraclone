@@ -136,7 +136,8 @@ String path=request.getContextPath();
                     <div class="item11">
                     	<div class="request">
                     		<label for="request_id"></label>
-                        	<textarea placeholder="추가로 요청하실 사항이 있으시면 적어주세요!" class="request_ta" id="request_id" cols="69" rows="4" style="border-radius: 8px;"></textarea>
+                        	<textarea placeholder="추가로 요청하실 사항이 있으시면 적어주세요!" class="request_ta" id="request_id" cols="68" rows="4" style="border-radius: 8px;padding-block-start: 5px;
+    padding-inline-start: 5px;"></textarea>
 						</div>
                     </div>                               
                 </div>
