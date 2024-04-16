@@ -245,12 +245,16 @@ position: relative;
 .modal_rightside_body {
 flex: 1;
 overflow-y: auto;
+height: 190px;
 }
 .modal_rightside_footer {
+	flex:1;
 padding: 15px 10px;
 margin: 10px 13px;
 border-top: 1px solid rgba(0, 0, 0, .05);
 position: absolute;
+overflow-y: auto;
+height:170px;
 bottom: 0;
 left: 0;
 right: 0;
@@ -578,6 +582,7 @@ right: 0;
 
 .checkedItems{
 	background-color: #b1b8c0;
+	font-size: small;
 }
 
 
@@ -623,7 +628,7 @@ right: 0;
 	width: 450px;
 }
 
-/* ----------------info--------------- */
+/* ----------------mInfo--------------- */
 .infoRow > div {
   margin-bottom: 15px;
 }
@@ -649,6 +654,13 @@ right: 0;
   border-radius: 4px;
   box-sizing: border-box;
 }
+.questionAsk{
+	background-color: #b1b8c0;
+	font-size: small;
+	font-weight: bold;
+}
+
+
 .users{
 	display: flex;
 	justify-content: space-between;
