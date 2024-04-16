@@ -233,30 +233,27 @@ a {
     
 }
 .modal_rightside {
-    flex: 1;
-    flex-direction: column;
-    padding: 20px;
-    text-align: left;
-    width: 250px;
-    justify-content: space-between;
-    position: relative;
+flex: 1;
+flex-direction: column;
+padding: 20px;
+text-align: left;
+width: 250px;
+justify-content: space-between;
+position: relative;
 }
 
-/* .modal_rightside_body{
-	display:flex;
-    flex:1 1 auto;
-    overflow-y:auto;
-    left: 50%;
-    right: 50%;
-    height:300px;
-     
-} */
-.modal_rightside_footer{
-	padding: 15px 0px;
-    margin: 10px 3px;
-    border-top: 1px solid rgba(0, 0, 0, .05);
-    
-    
+.modal_rightside_body {
+flex: 1;
+overflow-y: auto;
+}
+.modal_rightside_footer {
+padding: 15px 10px;
+margin: 10px 13px;
+border-top: 1px solid rgba(0, 0, 0, .05);
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
 }
 
 .selected-service {
