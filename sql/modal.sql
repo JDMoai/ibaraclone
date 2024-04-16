@@ -9,8 +9,8 @@ insert into modal_check values('standard','철거-마루바닥(평당)','거실 
 insert into modal_check values('standard','확장-발코니(개소당)','단열/난방배관 포함가',110);
 insert into modal_check values('standard','전기-배선공사(평당)','토탈 리모델링 공사시 필수 선택',4);
 insert into modal_check values('standard','스위치/콘센트교체(개당)','르그랑제품 기준(인건비포함)',2);
-insert into modal_check values('standard','샷시-교체','샷시는 실측 후 별도 요금 안내',null);
-insert into modal_check values('standard','에어컨','별도 요금 안내',null);
+insert into modal_check values('standard','샷시-교체','샷시는 실측 후 별도 요금 안내','');
+insert into modal_check values('standard','에어컨','별도 요금 안내','');
 insert into modal_check values('standard','방문교체(개당)','기본 플랫형(손잡이/경첩 포함)',25);
 insert into modal_check values('standard','방문+문틀교체(개당)','플랫도어,브랜드(손잡이/경첩 포함)',40);
 insert into modal_check values('standard','중문','기본형 이외 추가비용 발생',100);
@@ -20,7 +20,7 @@ insert into modal_check values('standard','바닥-마루(평당가)','스탠다�
 insert into modal_check values('standard','바닥-장판(평당가)','LX장판(3T)기준',5);
 insert into modal_check values('standard','욕실-스탠다드(개소당)','기성비제품(도기/슬라이드장/욕실제품/타일공사 포함)',380);
 insert into modal_check values('standard','필름-방문(개당)','도어 교체시 선택 금지',12);
-insert into modal_check values('standard','필름-현관문내측',null,20);
+insert into modal_check values('standard','필름-현관문내측','',20);
 insert into modal_check values('standard','주방가구-스탠다드(미터당)','상/하부장,기본싱크볼/수전,후드 포함(주방 벽 타일 비포함)',95);
 insert into modal_check values('standard','아일랜드(미터당)','기본 인조대리석 상판 포함',75);
 insert into modal_check values('standard','신발장/현관장(미터당)','신발장 하부 띄움시 추가 비용 발생',45);
@@ -37,9 +37,9 @@ insert into modal_check values('premium','철거-마루바닥(평당)','거실 �
 insert into modal_check values('premium','확장-발코니(개소당)','단열/난방배관 포함가',110);
 insert into modal_check values('premium','전기-배선공사(평당)','토탈 리모델링 공사시 필수 선택',4);
 insert into modal_check values('premium','스위치/콘센트교체(개당)','르그랑제품 기준(인건비포함)',2);
-insert into modal_check values('premium','샷시-교체','샷시는 실측 후 별도 요금 안내',null);
+insert into modal_check values('premium','샷시-교체','샷시는 실측 후 별도 요금 안내','');
 insert into modal_check values('premium','조명-천장매입등 시공(평당)','LED 2/3인치 포함(인건비 포함)',3);
-insert into modal_check values('premium','에어컨','별도 요금 안내',null);
+insert into modal_check values('premium','에어컨','별도 요금 안내','');
 insert into modal_check values('premium','방문교체(개당)','브랜드(손잡이/경첩 포함)',28);
 insert into modal_check values('premium','방문+문틀교체(개당)','플랫도어,브랜드(손잡이/경첩 포함)',40);
 insert into modal_check values('premium','방문교체(히든도어/개당)','브랜드(손잡이/경첩 포함)',55);
@@ -48,7 +48,7 @@ insert into modal_check values('premium','도배-실크(평당가)','LX벽지 �
 insert into modal_check values('premium','바닥-마루(평당가)','프리미엄 강마루(구정마루 기준)',13);
 insert into modal_check values('premium','욕실-프리미엄(개소당)','브랜드제품(도기/슬라이드장/욕실제품/타일공사 포함)',480);
 insert into modal_check values('premium','필름-방문(개당)','도어 교체시 선택 금지',12);
-insert into modal_check values('premium','필름-현관문내측',null,20);
+insert into modal_check values('premium','필름-현관문내측','',20);
 insert into modal_check values('premium','주방가구-스탠다드(미터당)','상/하부장,기본싱크볼/수전,후드 포함(주방 벽 타일 비포함)',95);
 insert into modal_check values('premium','주방가구-프리미엄(미터당)','상/하부장,브랜드싱크볼/수전,후드 포함(주방 벽 타일 비포함)',125);
 insert into modal_check values('premium','아일랜드(미터당)','기본 인조대리석 상판 포함',75);
@@ -88,6 +88,7 @@ insert into modal_check values('bath','욕조','기본 플랫 욕조(1500*700)',
 insert into modal_check values('bath','샤워부스','일반 유리 샤워부스',50);
 insert into modal_check values('bath','거울슬라이드장','수건 수납 등(500*1000 기준)',30);
 insert into modal_check values('bath','욕실천장','일자형/SMC타입(욕실크기 1500*2300기준)',40);
+
 
 ---------------------------------------------------------
 
@@ -179,8 +180,4 @@ insert into my_nonmember values('홍길동','eee@eee.eee','01012341234','1234');
 
 
 
-select * from modal_check;
-select * from modal_complete;
-select * from my_nonmember;
-select * from nonmember_complete_view;
-
+commit;
