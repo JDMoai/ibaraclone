@@ -35,6 +35,7 @@
     </style>
 </head>
 <body>
+<<<<<<< HEAD
 	<div>
 		<form action="/ibara2/modal/mBoard" method="post">
 			<div align="center">
@@ -50,6 +51,19 @@
 			<p style="color: red;">${error}</p>
 		</c:if>
 	</div>
+=======
+    <form action="mBoard" method="post">
+    	<div align="center">
+    		<h3>내 견적조회</h3>
+	        <label for="email">이메일</label>       
+	        <input type="email" id="email" name="email" size="35" placeholder="이메일을 입력해주세요" /><br />
+	        <label for="pw">비밀번호</label>
+	        <input type="password" id="pw" name="pw" size="35" placeholder="비밀번호를 입력해주세요" title="비밀번호를 입력해주세요"/><br />
+	        <input type="submit" id="btn" value="확인" />
+    	</div>
+    </form>
+
+>>>>>>> 4872eb86d0c43a66ca5d2dfdbbde917c4fd6ee35
 
 </body>
 </html>
