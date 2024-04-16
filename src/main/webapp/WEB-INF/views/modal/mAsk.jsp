@@ -150,11 +150,11 @@ String path=request.getContextPath();
 						
 				</div>			
 			</div>
-
-			<div class="modal_rightside">
+			<div class="rightside">
 				<div class="modal_rightside_header">
 					<p>요약</p>
 				</div>
+			<div class="modal_rightside">
 				<div class="modal_rightside_body">
 					<div class="service_box">
 						<div class="selectedSize"></div>
@@ -181,6 +181,8 @@ String path=request.getContextPath();
 						<div class="totalPriceValue">0 만원</div>
 					</div>
 				</div>
+			</div>
+			
 			</div>
 		</div>
 </div>

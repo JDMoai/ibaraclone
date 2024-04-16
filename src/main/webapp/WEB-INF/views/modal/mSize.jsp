@@ -89,11 +89,11 @@ String path=request.getContextPath();
 						
 				</div>			
 			</div>
-			
-			<div class="modal_rightside">
+			<div class="rightside">
 				<div class="modal_rightside_header">
 				<p>요약</p>
 				</div>
+			<div class="modal_rightside">
 				<div class="service_box">
 				<div class="selectedSize" ></div>
 				<div class="selectedService" >
@@ -101,6 +101,7 @@ String path=request.getContextPath();
 				</div>
 				</div>
 				
+			</div>
 			</div>
 		</div>
 </div>
