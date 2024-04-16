@@ -5,14 +5,12 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
 import com.tech.ibara.modal.dao.mapper.ModalDao;
 import com.tech.ibara.modal.dto.CompleteInfoDto;
-import com.tech.ibara.modal.dto.ModalBoardDto;
 import com.tech.ibara.modal.dto.ModalCheckDto;
 import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
@@ -21,11 +19,10 @@ import com.tech.ibara.modal.dto.NonMemberDto;
 public class ModalCheckService implements ModalService{
 			
 	private ModalDao modalDao;
-	private SqlSession sqlSession;
 	
 	@Autowired
-	public ModalCheckService(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
+	public ModalCheckService(ModalDao modalDao) {
+		this.modalDao = modalDao;
 	}
 
 	@Override
@@ -52,12 +49,10 @@ public class ModalCheckService implements ModalService{
         return modalDao.selectCompleteInfo(phone);
     }
 
-	
-
 	@Override
-	public ModalBoardDto getModalBoard(String email, String pw) {
+	public String execute(Model model) {
 		// TODO Auto-generated method stub
-		return modalDao.getModalBoard(email, pw);
+		return null;
 	}
 
 }

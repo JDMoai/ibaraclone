@@ -17,9 +17,4 @@ public interface ModalDao {
 	void updateModalComplete(ModalCompleteDto modalCompleteDto);
 
 	CompleteInfoDto selectCompleteInfo(String phone);
-<<<<<<< HEAD
-=======
-
-	ModalBoardDto getModalBoard(String email, String pw);
->>>>>>> 4872eb86d0c43a66ca5d2dfdbbde917c4fd6ee35
 }

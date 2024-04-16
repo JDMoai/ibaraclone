@@ -20,7 +20,7 @@ import com.tech.ibara.modal.dto.ModalBoardDto;
 import com.tech.ibara.modal.dto.ModalCheckDto;
 import com.tech.ibara.modal.dto.ModalCompleteDto;
 import com.tech.ibara.modal.dto.NonMemberDto;
-import com.tech.ibara.modal.service.ModalCheckService;
+import com.tech.ibara.modal.service.ModalBoardService;
 import com.tech.ibara.modal.service.ModalService;
 
 @Controller
@@ -103,30 +103,9 @@ public class ModalController {
 	@GetMapping("/modal/complete")
 	@ResponseBody
 	public CompleteInfoDto showCompleteModal(@RequestParam("phone") String phone) {
-<<<<<<< HEAD
 		CompleteInfoDto completeInfo = modalService.getCompleteInfo(phone);
 		System.out.println("completeInfo컨트롤러");
 		return completeInfo;
-=======
-	    CompleteInfoDto completeInfo = modalService.getCompleteInfo(phone);
-	    System.out.println("completeInfo컨트롤러");
-	    return completeInfo;
-	}
-	
-	@RequestMapping("/modal/mBoard")
-	public String mBoard(@RequestParam("email") String email, @RequestParam("pw") String pw, Model model) {
-	    System.out.println("mBoard 컨트롤러");
-	    modalService = new ModalCheckService(sqlSession);
-	    ModalBoardDto modalBoard = modalService.getModalBoard(email, pw);
-	    
-	    if (modalBoard != null) {
-	        model.addAttribute("modalBoard", modalBoard);
-	    } else {
-	        model.addAttribute("msg", "등록되지 않은 이메일 또는 비밀번호입니다.");
-	    }
-	    
-	    return "/modal/mBoard";
->>>>>>> 4872eb86d0c43a66ca5d2dfdbbde917c4fd6ee35
 	}
 
 

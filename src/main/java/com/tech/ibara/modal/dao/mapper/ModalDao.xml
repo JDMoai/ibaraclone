@@ -47,11 +47,5 @@
 	    JOIN MODAL_COMPLETE mc ON mn.PHONE = mc.PHONE
 	    WHERE mn.PHONE = #{phone}
 	</select>
-	
-	<select id="getModalBoard" parameterType="map" resultType="com.tech.ibara.modal.dto.ModalBoardDto">
-         SELECT *
-   		 FROM NONMEMBER_COMPLETE_VIEW
-   		 WHERE EMAIL=#{email} AND PW=#{pw}
-    </select>
 
 </mapper>
