@@ -8,6 +8,7 @@
     height: 100%;
     background-color: rgba(0, 0, 0, 0.2);
     font-family: 'Pretendard', sans-serif !important;
+    
 }
 
 .close {
@@ -21,11 +22,14 @@
 .modal_content{
     display: flex;
     background-color: #fefefe;
-    margin: 10% auto;
+    margin: 10vh auto;
     padding: 0px;
     border: 0px solid #888;
     width: 80%;
     max-width: 800px;
+    position: fixed;
+   	left: 30%;
+    
     
     
 }
