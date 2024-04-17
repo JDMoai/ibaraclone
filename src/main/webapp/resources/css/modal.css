@@ -1243,13 +1243,18 @@ footer {
     display: none;
   }
   
+  .modal_center_header {
+    position: relative;
+  }
+  
   .modal_center_header::after {
     content: '요약보기';
     font-size: 14px;
-    margin-left: 10px;
     position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
     cursor: pointer;
-    
   }
 }
 
