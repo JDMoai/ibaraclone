@@ -18,11 +18,13 @@
     font-weight: bold;
     cursor: pointer;
     margin-right: 10px;
+    margin-top: 5px;
 }
 .modal_content{
     display: flex;
     background-color: #fefefe;
     margin: 10vh auto;
+    margin-right: 35%;
     padding: 0px;
     border: 0px solid #888;
     width: 80%;
@@ -1236,7 +1238,22 @@ footer {
 
 
 /* ---------반응형 모달창------------ */
+.summary-button {
+  display: none;
+  font-size: 14px;
+  margin-right: 10px;
+  cursor: pointer;
+  position: absolute;
+    right: 40px;
+    top: 43%;
+    transform: translateY(-50%);
+    font-weight: bold;
+    color: #b1b8c0;
+}
 
+.close-summary{
+	display: block;
+}
 
 @media screen and (max-width: 1024px) {
   .rightside {
@@ -1246,16 +1263,13 @@ footer {
   .modal_center_header {
     position: relative;
   }
-  
-  .modal_center_header::after {
-    content: '요약보기';
-    font-size: 14px;
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
+   .summary-button {
+    display: inline-block;
   }
+  .close-summary{
+  display: inline-block;
+  }
+  
 }
 
 @media screen and (max-width: 768px) {

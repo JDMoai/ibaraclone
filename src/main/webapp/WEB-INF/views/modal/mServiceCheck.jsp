@@ -65,6 +65,7 @@ String path=request.getContextPath();
 			<div class="modal_center">
 				<div class="serviceCheckModal_center_header modal_center_header">
 					<h3>서비스를 선택해주세요.</h3>
+					<span class="summary-button">요약보기</span>
 					<span id="closeServiceCheckModal" class="close">&times;</span>
 				</div>
 				<div class="serviceCheckModal_center">

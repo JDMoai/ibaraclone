@@ -67,6 +67,7 @@
 			<div class="modal_center">
 				<div class="modal_center_header">
 					<h3>고객 정보 입력</h3>
+					<span class="summary-button">요약보기</span>
 					<span id="closeaskModal" class="close">&times;</span>
 				</div>
 				<div class="Modal_center">

@@ -63,7 +63,7 @@ String path=request.getContextPath();
 			<div class="modal_center">
 				<div class="modal_center_header">
 					<h3>평수 선택</h3>
-					
+					<span class="summary-button">요약보기</span>
 					<span id="closeSizeModal" class="close">&times;</span>
 				</div>
 				<div class="sizeModal_center_body">
