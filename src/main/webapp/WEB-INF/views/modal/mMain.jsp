@@ -117,6 +117,12 @@ $(document).ready(function() {
     var span = $('.close');
     var openSizeModalBtn = $('.openSizeModal');
     var openServiceCheckModalBtn = $('.openServiceCheckModal');
+    var summaryButton = $('.modal_center_header');
+    var modalRightside = $('.rightside');
+
+    summaryButton.on('click', function() {
+      modalRightside.toggle();
+    });
   
 
    

@@ -27,8 +27,6 @@
     border: 0px solid #888;
     width: 80%;
     max-width: 800px;
-    position: fixed;
-   	left: 30%;
     
     
     
@@ -1235,3 +1233,41 @@ footer {
 	margin-top: 100px;
 	width: 20%;
 }
+
+
+/* ---------반응형 모달창------------ */
+
+
+@media screen and (max-width: 1024px) {
+  .rightside {
+    display: none;
+  }
+  
+  .modal_center_header::after {
+    content: '요약보기';
+    font-size: 14px;
+    margin-left: 10px;
+    position: absolute;
+    cursor: pointer;
+    
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .modal_leftside {
+    display: none;
+  }
+}
+@media screen and (max-width: 480px) {
+  .modal_content {
+    flex-direction: column;
+  }
+  
+  .modal_center {
+    width: 100%;
+  }
+}
+
+
+
+

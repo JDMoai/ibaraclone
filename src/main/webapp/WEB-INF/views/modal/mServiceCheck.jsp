@@ -63,7 +63,7 @@ String path=request.getContextPath();
             </div>
         </div>
 			<div class="modal_center">
-				<div class="serviceCheckModal_center_header">
+				<div class="serviceCheckModal_center_header modal_center_header">
 					<h3>서비스를 선택해주세요.</h3>
 					<span id="closeServiceCheckModal" class="close">&times;</span>
 				</div>
@@ -128,6 +128,7 @@ String path=request.getContextPath();
 
 $(document).ready(function() {
     var serviceCheckModal = $('.serviceCheckModal');
+    
     
    
 
