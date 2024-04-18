@@ -111,7 +111,7 @@
 
 				</div>
 			</div>
-			<div class="rightside">
+			<div class="rightside rightside-ani">
 				<div class="modal_rightside_header">
 					<span>요약</span>
 				</div>
@@ -269,7 +269,7 @@ $(document).ready(function() {
 				                             closeModal('.infoModal');
 				                        },
 				                        error: function() {
-				                            alert('완료 정보를 가져오는 중 오류가 발생했습니다.');
+				                            alert('이미 등록된 정보이거나 잘못된 정보입니다.');
 				                        }
 				                    });
 				                },
