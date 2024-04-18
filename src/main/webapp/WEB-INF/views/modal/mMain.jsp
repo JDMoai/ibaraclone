@@ -119,35 +119,43 @@ $(document).ready(function() {
     var openServiceCheckModalBtn = $('.openServiceCheckModal');
     var summaryButton = $('.summary-button');
     var modalRightside = $('.rightside');
+    
+    /* 요약보기 */
     summaryButton.on('click', function() {
-    	  if (modalRightside.is(':visible')) {
-    	    modalRightside.hide();
-    	  } else {
-    	    if ($(window).width() <= 1024) {
-    	      modalRightside.css({
-    	        'position': 'fixed',
-    	        'top': '48%',
-    	        'left': '55%',
-    	        'transform': 'translate(-50%, -50%)',
-    	        'z-index': '9999',
-    	        'background-color': '#e2f0fe',
-    	        'padding': '20px',
-    	        'border-radius': '5px',
-    	        'box-shadow': '0 0 10px rgba(0, 0, 0, 0.3)',
-    	        'height': '550px',
-    	        'display': 'flex',
-    	        'flex-direction': 'column'
-    	      }).show();
-    	    } else {
-    	      modalRightside.css({	        
-    	        'background-color': '#e2f0fe',    	        
-    	        'display': 'flex',
-    	        'flex-direction': 'column'
-    	      }).show();
-    	    }
-    	  }
-    	});
-
+        if (modalRightside.is(':visible')) {
+            modalRightside.hide();
+        } else {
+            if ($(window).width() <= 1024) {
+                modalRightside.css({
+                    'position': 'fixed',
+                    'top': '180px',
+                    'left': '400px',
+                    'z-index': '99999',
+                    'background-color': '#e2f0fe',
+                    'padding': '20px',
+                    'border-radius': '5px',
+                    'box-shadow': '0 0 10px rgba(0, 0, 0, 0.3)',
+                    'height': '400px',
+                    'display': 'flex',
+                    'flex-direction': 'column',
+                    'overflow-y': 'auto'
+                }).show();
+            } else {
+                modalRightside.show();
+            }
+        }
+    });
+	
+    /* 창이 커지면 다시 rightside창이 원래자리로 돌아옴 */
+    $(window).on('resize', function() {
+        if ($(window).width() > 1024) {
+            modalRightside.removeAttr('style');
+        } else {
+            if (!modalRightside.is(':visible')) {
+                modalRightside.hide();
+            }
+        }
+    });
 
     	      
       
