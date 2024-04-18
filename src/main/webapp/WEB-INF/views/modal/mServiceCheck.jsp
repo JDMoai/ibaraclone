@@ -69,7 +69,7 @@ String path=request.getContextPath();
 					<span id="closeServiceCheckModal" class="close">&times;</span>
 				</div>
 				<div class="serviceCheckModal_center">
-				<div class="serviceCheckModal_center_body">
+				<div class="modal_center_body serviceCheckModal_center_body">
 					<div>
 						<div class="productCheckBox">
 					
@@ -84,7 +84,7 @@ String path=request.getContextPath();
 						
 				</div>			
 			</div>
-				<div class="rightside">
+				<div class="rightside rightside-ani">
 				<div class="modal_rightside_header">
 					<span>요약</span>
 				</div>

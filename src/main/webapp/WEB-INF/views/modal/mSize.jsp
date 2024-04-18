@@ -66,7 +66,7 @@ String path=request.getContextPath();
 					<span class="summary-button">요약보기</span>
 					<span id="closeSizeModal" class="close">&times;</span>
 				</div>
-				<div class="sizeModal_center_body">
+				<div class="modal_center_body sizeModal_center_body">
 					<div>
 						<div>
 							<h3>평형을 알려주세요.</h3>
@@ -90,7 +90,7 @@ String path=request.getContextPath();
 						
 				</div>			
 			</div>
-			<div class="rightside">
+			<div class="rightside rightside-ani">
 				<div class="modal_rightside_header">
 				<span>요약</span>
 				</div>
