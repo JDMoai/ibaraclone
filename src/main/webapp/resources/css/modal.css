@@ -51,6 +51,7 @@
 }
 
 .modal_center_body,
+.mainModal_center_body,
 .complete_modal_center_body{
   position: relative;
   animation: slideFromBottom 0.5s ease-in-out;
@@ -85,7 +86,7 @@
 .mainModal_content{
     display: flex;
     background-color: #fefefe;
-    margin: auto;
+
     border: 0px solid #888;
     width: 800px;
     max-width: 800px;
@@ -123,15 +124,12 @@
     display:flex;
     flex-direction: column;
     background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
     border: 0px solid #888;
     width:550px;
     max-height: 70vh;
     margin-top:0;
     margin-bottom:0;
     flex:1;
-    padding: 10px 0px;
     height: auto;
     
 }
@@ -226,9 +224,17 @@ position: absolute;
     flex:1 1 auto;
     overflow-y:auto;
     text-align: center;
-    width:550px;
-    
+    width:550px;    
 }
+
+.mainModal_center_body{
+    display:flex;
+    overflow-y:auto;
+    text-align: center;
+  
+    margin-top: 10px;
+}
+
 .row{
     display: flex;
     flex-direction:column;
@@ -725,6 +731,7 @@ margin-bottom: 15px;
 #nonMemberForm{
 	margin-left: 40px;
 	padding: 10px;
+	margin-top: 40px;
 }
 
 

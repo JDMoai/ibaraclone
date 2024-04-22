@@ -67,7 +67,7 @@ String path=request.getContextPath();
                 <h3>서비스 선택</h3>
                 <span class="close">&times;</span>
             </div>
-            <div class="modal_center_body">
+            <div class="mainModal_center_body">
                 <div class="row">
                     <a href="biz/magazine/bizMgzList">
                     <div class="item1">

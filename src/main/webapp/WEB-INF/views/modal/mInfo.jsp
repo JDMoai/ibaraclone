@@ -111,11 +111,11 @@
 
 				</div>
 			</div>
-			<div class="rightside rightside-ani">
+			<div class="rightside">
 				<div class="modal_rightside_header">
 					<span>요약</span>
 				</div>
-			<div class="modal_rightside">
+			<div class="modal_rightside rightside-ani">
 				<div class="modal_rightside_body">
 					<div class="service_box">
 						<div class="selectedSize complete-selectedSize" id="complete-selectedSize"></div>
