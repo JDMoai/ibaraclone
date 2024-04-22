@@ -17,7 +17,7 @@ String path=request.getContextPath();
 
 <!-- 모달 창 영역 -->
 <div class="myModal" id="modal" data-prev-modal="">
-    <div class="modal_content">
+    <div class="modal_content mainModal_content">
         <div class="modal_leftside">
             <div class=modal_leftside_progress>
                 <!-- <ul>
