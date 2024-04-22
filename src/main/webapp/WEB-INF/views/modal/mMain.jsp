@@ -69,7 +69,7 @@ String path=request.getContextPath();
             </div>
             <div class="mainModal_center_body">
                 <div class="row">
-                    <a href="biz/magazine/bizMgzList">
+                    <a href="${path}/biz/search/bizAddrSearch">
                     <div class="item1">
                         <img src="${pageContext.request.contextPath}/resources/img/modalimg/company.png" alt="Icon 1" class="icon1"> <span>업체 먼저 둘러보기</span>
                     </div>
@@ -125,11 +125,11 @@ $(document).ready(function() {
         if (modalRightside.is(':visible')) {
             modalRightside.hide();
         } else {
-            if ($(window).width() <= 1024) {
+            if ($(window).width() <= 950) {
                 modalRightside.css({
                     'position': 'fixed',
-                    'top': '180px',
-                    'left': '400px',
+                    'top': '11%',
+                    'left': '44%',
                     'z-index': '99999',
                     'background-color': '#e2f0fe',
                     'padding': '20px',
@@ -148,7 +148,7 @@ $(document).ready(function() {
 	
     /* 창이 커지면 다시 rightside창이 원래자리로 돌아옴 */
     $(window).on('resize', function() {
-        if ($(window).width() > 1024) {
+        if ($(window).width() > 950) {
             modalRightside.removeAttr('style');
         } else {
             if (!modalRightside.is(':visible')) {
@@ -164,13 +164,19 @@ $(document).ready(function() {
    
 
     function openModal(modalId) {
-        $(modalId).css('display', 'block');
-    }
+    	  $(modalId).css('display', 'block');
+    	  setTimeout(function() {
+    	    $(modalId).find('.modal_leftside_img, .modal_leftside_content, .rightside-ani, .modal_center_body, .complete_modal_center_body, .mainModal_center_body').addClass('show');
+    	  }, 130);
+    	}
 
     function closeModal(modalId) {
-        $(modalId).css('display', 'none');
-       
-    }
+    	  $(modalId).find('.modal_leftside_img, .modal_leftside_content, .rightside-ani, .modal_center_body, .complete_modal_center_body, .mainModal_center_body').removeClass('show');
+    	  setTimeout(function() {
+    	    $(modalId).css('display', 'none');
+    	  }, 50);
+    	}
+    
 
     btn.click(function() {
         openModal('.myModal');

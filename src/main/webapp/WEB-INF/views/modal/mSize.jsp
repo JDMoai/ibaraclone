@@ -119,12 +119,18 @@ $(document).ready(function() {
     
    
     function openModal(modalId) {
-        $(modalId).css('display', 'block');
-    }
+  	  $(modalId).css('display', 'block');
+  	  setTimeout(function() {
+  	    $(modalId).find('.modal_leftside_img, .modal_leftside_content, .rightside-ani, .modal_center_body, .complete_modal_center_body, .mainModal_center_body').addClass('show');
+  	  }, 130);
+  	}
 
     function closeModal(modalId) {
-        $(modalId).css('display', 'none');
-    }
+  	  $(modalId).find('.modal_leftside_img, .modal_leftside_content, .rightside-ani, .modal_center_body, .complete_modal_center_body, .mainModal_center_body').removeClass('show');
+  	  setTimeout(function() {
+  	    $(modalId).css('display', 'none');
+  	  }, 1);
+  	}
 
     closeSizeModalBtn.click(function() {
         closeModal('.sizeModal');
